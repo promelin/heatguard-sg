@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#c91f37">
+  <meta name="description" content="HeatGuard SG shows live heat index across Singapore's weather-station network, next-day heat-risk forecasts and planning-area vulnerability.">
+  <title>HeatGuard SG · Home</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <div class="language-switcher" role="group" aria-label="Language">
+    <span class="language-switcher-icon" aria-hidden="true">文</span>
+    <label for="language-select">Language</label>
+    <select id="language-select" aria-label="Language">
+      <option value="en">English</option>
+      <option value="zh-CN">中文</option>
+      <option value="ms">Bahasa Melayu</option>
+      <option value="ta">தமிழ்</option>
+    </select>
+  </div>
+
+  <main id="main-content">
+    <aside class="publication-status" aria-label="Forecast publication status">
+      <span id="publication-status-text" role="status">Pre-release · Loading the latest V4 forecast…</span>
+      <button id="publication-refresh" type="button">Check for latest forecast</button>
+    </aside>
+    <!-- HOME -->
+    <section class="app-view home-view" id="home" data-view="home" aria-labelledby="home-title">
+      <div class="workspace">
+        <div class="workspace-heading live-hero">
+          <div>
+            <a class="brand hero-brand" href="#home" aria-label="HeatGuard SG home">
+              <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+              <span>HeatGuard <b>SG</b></span>
+            </a>
+            <h1 id="home-title"><span class="hero-line hero-line-primary">See Singapore’s heat now.</span><span class="hero-line hero-line-accent">Plan for tomorrow.</span></h1>
+            <p class="lede">Singapore at its best, with care at its heart.</p>
+          </div>
+        </div>
+
+        <nav class="module-entry-grid" aria-label="HeatGuard modules">
+          <a class="module-entry" href="#home" data-nav-view="home">
+            <h2>Live Heat Index</h2>
+            <p>Live conditions across the station network.</p>
+          </a>
+          <a class="module-entry" href="#community-risk" data-nav-view="community-risk">
+            <h2>Area Heat Risk</h2>
+            <p>Heat + elderly density + cooling access.</p>
+          </a>
+          <a class="module-entry" href="#cooling" data-nav-view="cooling">
+            <h2>Cooling Simulation</h2>
+            <p>Test cooling options in high-risk zones.</p>
+          </a>
+          <a class="module-entry" href="#forecast" data-nav-view="forecast">
+            <h2>Next-Day Forecast</h2>
+            <p>24-hour V4 heat-risk outlook.</p>
+          </a>
+        </nav>
+
+
+
+        <section class="home-map-feature" id="live-dashboard" aria-labelledby="home-map-title">
+          <article class="panel map-panel community-map-panel home-map-panel" aria-labelledby="home-map-title">
+            <div class="panel-head map-head">
+              <h2 id="home-map-title">A live heat index dashboard across the weather station network</h2>
+            </div>
+            <div class="map-stage" data-map-key="home">
+              <svg id="home-sg-map" role="img" aria-label="Live heat index across Singapore's weather station network" viewBox="0 0 1080 650"></svg>
+              <div class="map-tooltip" id="home-map-tooltip" hidden></div>
+              <div class="map-legend" id="home-map-legend" aria-label="Map colour legend"></div>
+              <div class="map-zoom-controls" aria-label="Map zoom controls">
+                <button type="button" data-map-zoom="in" aria-label="Zoom in">+</button>
+                <button type="button" data-map-zoom="out" aria-label="Zoom out">−</button>
+                <button type="button" class="map-reset" data-map-zoom="reset" aria-label="Reset map zoom">⌂</button>
+              </div>
+              <div class="map-scale" aria-label="Map scale"><span class="map-scale-label">5 km</span><i class="map-scale-line"></i></div>
+            </div>
+            <div class="live-data-timing" aria-label="Live data timing">
+              <div><span id="home-reading-label">Latest data reading</span><strong id="home-reading-time">—</strong></div>
+              <div><span>Next scheduled update</span><strong id="home-next-update-time">—</strong></div>
+              <small>Singapore Time · page checks every 5 minutes</small>
+            </div>
+          </article>
+        </section>
+      </div>
+    </section>
+
+    <!-- FORECAST -->
+    <section class="app-view view-shell forecast-view" id="forecast" data-view="forecast" aria-labelledby="forecast-view-title" hidden>
+      <div class="view-header forecast-map-hero">
+        <div><p class="eyebrow">Next-day heat risk</p><h1 id="forecast-view-title">See where heat builds over the next 24 hours.</h1></div>
+      </div>
+
+      <article class="panel map-panel forecast-map-panel" aria-labelledby="forecast-map-title">
+        <div class="panel-head map-head forecast-map-head">
+          <div>
+            <h2 id="forecast-map-title">Next-day heat risk across Singapore</h2>
+            <p>Click a planning area or place name to view its next 24 hours.</p>
+          </div>
+        </div>
+        <div class="map-stage" data-map-key="forecast">
+          <svg id="forecast-sg-map" role="img" aria-label="Forecast heat risk across Singapore planning areas for the next 24 hours" viewBox="0 0 1080 650"></svg>
+          <div class="map-tooltip" id="forecast-map-tooltip" hidden></div>
+          <div class="map-legend" id="forecast-map-legend" aria-label="Forecast map colour legend"></div>
+          <div class="map-zoom-controls" aria-label="Forecast map zoom controls">
+            <button type="button" data-map-zoom="in" aria-label="Zoom in">+</button>
+            <button type="button" data-map-zoom="out" aria-label="Zoom out">−</button>
+            <button type="button" class="map-reset" data-map-zoom="reset" aria-label="Reset map zoom">⌂</button>
+          </div>
+          <div class="map-scale" aria-label="Map scale"><span class="map-scale-label">5 km</span><i class="map-scale-line"></i></div>
+        </div>
+      </article>
+
+      <article class="panel forecast-area-panel" aria-labelledby="forecast-area-title">
+        <div class="panel-head forecast-area-head">
+          <div><p class="panel-kicker">Selected planning area</p><h2 id="forecast-area-title">Planning area —</h2></div>
+          <span class="risk-chip" id="forecast-area-risk-chip">Loading</span>
+        </div>
+        <div class="forecast-risk-alert" id="forecast-risk-alert">
+          <div><span>Next 24h peak</span><strong id="forecast-area-peak">—°C</strong><small id="forecast-area-peak-time">—</small></div>
+          <p id="forecast-area-guidance">Select a planning area to view its heat-risk guidance.</p>
+        </div>
+        <div class="chart-wrap chart-wrap-wide">
+          <svg id="forecast-chart" role="img" aria-label="Selected planning area's heat index forecast for the next 24 hours" viewBox="0 0 900 340"></svg>
+          <div class="chart-tooltip" id="chart-tooltip" hidden></div>
+        </div>
+        <div class="chart-foot">
+          <span><i class="legend-line predicted"></i>Planning-area forecast</span>
+          <span><i class="legend-box threshold"></i>≥37°C focus zone</span>
+        </div>
+      </article>
+
+      <div class="forecast-data-bridge" hidden aria-hidden="true">
+        <select id="station-select" aria-label="Forecast data station"></select>
+        <input id="time-slider" type="range" min="0" max="1" value="0" step="1" aria-label="Forecast data time">
+        <span id="forecast-context-time"></span><span id="station-title"></span><span id="risk-chip"></span>
+        <span id="predicted-hi"></span><span id="forecast-delta"></span><span id="actual-label"></span>
+        <span id="actual-hi"></span><span id="actual-note"></span><span id="rmse-label"></span>
+        <span id="station-rmse"></span><span id="rmse-note"></span><span id="actual-legend"></span>
+      </div>
+    </section>
+
+    <!-- COMMUNITY RISK -->
+    <section class="app-view view-shell community-risk-view" id="community-risk" data-view="community-risk" aria-labelledby="community-risk-title" hidden>
+      <div class="view-header risk-map-hero">
+        <div><p class="eyebrow">Planning-area Heat Risk Score</p><h1 id="community-risk-title">See where protection is needed first.</h1></div>
+      </div>
+
+      <article class="panel map-panel community-map-panel" aria-labelledby="map-title">
+        <div class="panel-head map-head risk-map-head">
+          <div>
+            <h2 id="map-title">ML-assisted Heat Risk Score by planning area</h2>
+            <p>2026 elderly density + heat + nearby eldercare access. Zoom in for subzones and HDB blocks.</p>
+          </div>
+          <div class="risk-map-controls">
+            <div class="layer-control" role="group" aria-label="Map layer">
+              <button type="button" data-layer="risk" class="active">Risk score</button>
+              <button type="button" data-layer="heat">Heat</button>
+              <button type="button" data-layer="elderly">65+ density</button>
+            </div>
+            <label class="toggle-control"><input id="cooling-toggle" data-cooling-toggle type="checkbox" checked><span>Eldercare points</span></label>
+            <span class="spatial-detail-status" id="spatial-detail-status">55 planning areas · 2026 demographics</span>
+          </div>
+        </div>
+        <div class="map-stage" data-map-key="community">
+          <svg id="sg-map" role="img" aria-label="Detailed Singapore planning area map with heat, demographic risk and eldercare point overlays" viewBox="0 0 1080 650"></svg>
+          <div class="map-tooltip" id="map-tooltip" hidden></div>
+          <div class="map-legend" id="map-legend" aria-label="Map colour legend"></div>
+          <div class="map-zoom-controls" aria-label="Map zoom controls">
+            <button type="button" data-map-zoom="in" aria-label="Zoom in">+</button>
+            <button type="button" data-map-zoom="out" aria-label="Zoom out">−</button>
+            <button type="button" class="map-reset" data-map-zoom="reset" aria-label="Reset map zoom">⌂</button>
+          </div>
+          <div class="map-scale" aria-label="Map scale"><span class="map-scale-label">5 km</span><i class="map-scale-line"></i></div>
+        </div>
+      </article>
+
+      <div class="risk-decision-grid">
+        <article class="panel risk-score-panel" aria-labelledby="area-title">
+          <div class="panel-head compact">
+            <div><p class="panel-kicker">Selected planning area</p><h2 id="area-title">Area —</h2></div>
+            <span class="risk-chip" id="area-risk-chip">—</span>
+          </div>
+          <div class="risk-score-summary">
+            <div class="area-scoreline"><strong id="area-risk">—</strong><span>/ 100<br>Heat Risk Score</span></div>
+            <dl class="risk-key-facts">
+              <div><dt>Heat</dt><dd id="area-heat">—</dd></div>
+              <div><dt>Residents 65+</dt><dd id="area-seniors">—</dd></div>
+              <div><dt>Eldercare access</dt><dd id="area-cooling">—</dd></div>
+              <div><dt>HDB buildings</dt><dd id="area-hdb-blocks">—</dd></div>
+            </dl>
+          </div>
+          <div class="risk-driver-list" aria-label="Heat Risk Score components">
+            <div><span>Heat signal</span><i><b id="risk-heat-bar"></b></i><strong id="risk-heat-value">—</strong></div>
+            <div><span>Elderly vulnerability</span><i><b id="risk-elderly-bar"></b></i><strong id="risk-elderly-value">—</strong></div>
+            <div><span>Cooling-access gap</span><i><b id="risk-access-bar"></b></i><strong id="risk-access-value">—</strong></div>
+          </div>
+          <span id="area-share" hidden>—</span>
+        </article>
+
+        <article class="panel alert-tier-panel" id="action-card">
+          <div class="panel-head compact"><div><p class="panel-kicker">Automated classification</p><h2>Tiered alert recommendation</h2></div></div>
+          <div class="tier-scale" aria-label="Low, Medium and High alert tiers">
+            <div data-risk-tier="low"><strong>Low</strong><span>Routine monitoring</span></div>
+            <div data-risk-tier="medium"><strong>Medium</strong><span>Prepare local support</span></div>
+            <div data-risk-tier="high"><strong>High</strong><span>Targeted outreach</span></div>
+          </div>
+          <div class="tier-guidance">
+            <span>Recommended response</span>
+            <strong id="action-title">Preparing community guidance…</strong>
+            <p id="action-copy">Prototype guidance for planning support; human review remains required.</p>
+          </div>
+        </article>
+      </div>
+
+      <article class="panel compact-ranking-panel" aria-labelledby="priority-ranking-title">
+        <div class="panel-head compact">
+          <div><p class="panel-kicker">Priority queue</p><h2 id="priority-ranking-title">Highest-risk populated areas</h2></div>
+            <p><span id="mapped-seniors">—</span> residents aged 65+ mapped from official June 2026 planning-area statistics · risk score comes from the validated planning-area classifier.</p>
+        </div>
+        <div class="area-list-wrap">
+          <div class="list-head"><span>Priority</span><span>Planning area</span><span>65+ residents</span><span>Local heat</span><span>Risk</span></div>
+          <div id="area-list" class="area-list" role="list" aria-label="Planning areas ranked by community heat risk"></div>
+        </div>
+        <p class="model-disclosure">Privately computed planning-risk estimates and cooling scenarios · policy-calibrated random forest · Low / Medium / High score cut-offs 29 and 76. Model weights are not distributed. This supports planning review, not medical outcome prediction.</p>
+      </article>
+    </section>
+
+    <!-- COOLING SIMULATION -->
+    <section class="app-view view-shell cooling-view" id="cooling" data-view="cooling" aria-labelledby="cooling-title" hidden>
+      <div class="view-header cooling-map-hero">
+        <div><p class="eyebrow">Cooling infrastructure simulation</p><h1 id="cooling-title">Test interventions before the heat arrives.</h1></div>
+      </div>
+
+      <article class="panel map-panel cooling-map-panel" aria-labelledby="cooling-map-title">
+        <div class="panel-head map-head cooling-map-head">
+          <div>
+            <h2 id="cooling-map-title">Highest-risk zones and simulated cooling impact</h2>
+            <p>Explore real parks, cycling paths and park connectors, then test targeted additions.</p>
+          </div>
+          <div class="green-layer-controls" role="group" aria-label="Cooling infrastructure layers">
+            <label><input type="checkbox" data-green-layer="parks" checked><span>Parks</span></label>
+            <label><input type="checkbox" data-green-layer="cycling" checked><span>Cycling</span></label>
+            <label><input type="checkbox" data-green-layer="parkConnectors" checked><span>Park connectors</span></label>
+          </div>
+        </div>
+        <div class="map-stage" data-map-key="cooling">
+          <svg id="cooling-sg-map" role="img" aria-label="Singapore planning-area cooling infrastructure simulation" viewBox="0 0 1080 650"></svg>
+          <div class="map-tooltip" id="cooling-map-tooltip" hidden></div>
+          <div class="map-legend" id="cooling-map-legend" aria-label="Cooling simulation map legend"></div>
+          <div class="map-zoom-controls" aria-label="Cooling simulation map zoom controls">
+            <button type="button" data-map-zoom="in" aria-label="Zoom in">+</button>
+            <button type="button" data-map-zoom="out" aria-label="Zoom out">−</button>
+            <button type="button" class="map-reset" data-map-zoom="reset" aria-label="Reset map zoom">⌂</button>
+          </div>
+          <div class="map-scale" aria-label="Map scale"><span class="map-scale-label">5 km</span><i class="map-scale-line"></i></div>
+        </div>
+      </article>
+
+      <div class="simulation-grid">
+        <article class="panel simulation-controls-panel" aria-labelledby="simulation-controls-title">
+          <div class="panel-head compact"><div><p class="panel-kicker">Scenario controls</p><h2 id="simulation-controls-title">Intervene in <span id="simulation-area-name">—</span></h2></div></div>
+          <label class="scenario-select-label"><span>Planning area</span><select id="cooling-area-select" aria-label="Planning area for cooling simulation"></select></label>
+          <label class="scenario-slider">
+            <span><b>Additional cooling points</b><output id="cooling-points-output">2</output></span>
+            <input id="cooling-points-slider" type="range" min="0" max="6" value="2" step="1">
+            <small>Proxy for staffed rest points or temporary cooled spaces.</small>
+          </label>
+          <label class="scenario-slider">
+            <span><b>Added corridor shade</b><output id="green-shade-output">15%</output></span>
+            <input id="green-shade-slider" type="range" min="0" max="30" value="15" step="5">
+            <small>Marginal cooling is adjusted using the area's measured green-infrastructure baseline.</small>
+          </label>
+        </article>
+
+        <article class="panel simulation-results-panel" aria-labelledby="simulation-result-title">
+          <div class="panel-head compact"><div><p class="panel-kicker">Counterfactual result</p><h2 id="simulation-result-title">Estimated planning impact</h2></div><span class="risk-chip" id="simulation-risk-chip">—</span></div>
+          <div class="simulation-score-flow">
+            <div><span>Before</span><strong id="simulation-before-score">—</strong><small id="simulation-before-tier">—</small></div>
+            <i aria-hidden="true">→</i>
+            <div class="after"><span>After</span><strong id="simulation-after-score">—</strong><small id="simulation-after-tier">—</small></div>
+          </div>
+          <div class="simulation-outcomes">
+            <div><span>Risk-score change</span><strong id="simulation-score-change">—</strong></div>
+            <div><span>Heat proxy change</span><strong id="simulation-heat-change">—</strong></div>
+            <div><span>Cooling points</span><strong id="simulation-centre-change">—</strong></div>
+            <div><span>Existing green score</span><strong id="simulation-green-score">—</strong></div>
+            <div><span>Mapped park cover</span><strong id="simulation-park-cover">—</strong></div>
+            <div><span>Cycling + PCN</span><strong id="simulation-green-network">—</strong></div>
+          </div>
+          <p id="simulation-guidance" class="simulation-guidance">Select a planning area to test a cooling scenario.</p>
+        </article>
+      </div>
+
+      <article class="panel simulation-priority-panel" aria-labelledby="simulation-priority-title">
+        <div class="panel-head compact"><div><p class="panel-kicker">Start where need is highest</p><h2 id="simulation-priority-title">Priority zones</h2></div><p>Choose a row to move the scenario to that area.</p></div>
+        <div id="cooling-priority-list" class="cooling-priority-list" role="list" aria-label="Highest-risk planning areas for cooling intervention"></div>
+        <p class="model-disclosure">Scenario effects are planning assumptions, not measured causal effects. Existing parks and active-mobility networks come from mapped infrastructure; added shade has a smaller marginal effect where the green baseline is already strong.</p>
+      </article>
+    </section>
+
+    <!-- MODEL & EVIDENCE -->
+    <section class="app-view view-shell model-view" id="model" data-view="model" aria-labelledby="model-title" hidden>
+      <div class="view-header text-only-hero">
+        <div>
+          <p class="eyebrow">Model &amp; evidence</p>
+          <h1 id="model-title">Optimised for the dangerous end of the distribution.</h1>
+          <p class="lede view-lede">The full Temporal Fusion Transformer is trained with high-temperature weighting. The trade-off is explicit: better recovery of high-heat events and station-day peaks at the cost of some all-weather average accuracy.</p>
+        </div>
+      </div>
+
+      <div class="evidence-grid">
+        <article class="score-card primary-score"><span>RMSE when observed ≥37°C</span><strong>1.364<small>°C</small></strong><p>V4 history-only test result</p></article>
+        <article class="score-card"><span>High-heat recall</span><strong>82.6<small>%</small></strong><p>Measured across forecast hours 1–24</p></article>
+        <article class="score-card"><span>High-heat MAE</span><strong>1.023<small>°C</small></strong><p>Held-out 2024 high-temperature rows</p></article>
+        <article class="score-card caution"><span>All-weather 1–24h RMSE</span><strong>2.807<small>°C</small></strong><p>No future temperature, humidity or rainfall inputs</p></article>
+      </div>
+      <div class="model-detail">
+        <div><span>168h</span><p>historical context</p></div>
+        <div><span>24</span><p>forecast horizons</p></div>
+        <div><span>0.91M</span><p>trainable parameters</p></div>
+        <div><span>4</span><p>attention heads</p></div>
+        <p>Static covariate encoder → variable selection → LSTM encoder/decoder → static enrichment → interpretable causal attention → gated residual networks → quantile head</p>
+      </div>
+
+      <div class="model-explainer-grid">
+        <article><span>01</span><h3>Historical context</h3><p>Seven days of station history provide the model with recent heat and weather dynamics before each 24-hour forecast.</p></article>
+        <article><span>02</span><h3>High-heat weighting</h3><p>Training places extra emphasis on hotter observations so dangerous events are not overwhelmed by routine weather.</p></article>
+        <article><span>03</span><h3>Live serving</h3><p>The backend rebuilds 168 hours of station history and publishes all 24 horizons in one V4 inference pass.</p></article>
+      </div>
+    </section>
+
+    <!-- B1 READINESS -->
+    <section class="app-view view-shell readiness-view" id="readiness" data-view="readiness" aria-labelledby="readiness-title" hidden>
+      <div class="view-header text-only-hero">
+        <div>
+          <p class="eyebrow">Official B1 build checklist</p>
+          <h1 id="readiness-title">Connected to the brief—with unfinished parts made visible.</h1>
+          <p class="lede view-lede">The live backend reads temperature, humidity and rainfall, reconstructs V4 inputs, and refreshes the station and planning-area views automatically.</p>
+        </div>
+      </div>
+
+      <div class="readiness-grid">
+        <article class="done"><span>01 · Implemented</span><h3>Live station heat index</h3><p>Latest temperature and relative-humidity readings are paired into a current heat index across the station network.</p></article>
+        <article class="done"><span>02 · Implemented</span><h3>Live 24h heat forecast</h3><p>V4 produces station forecasts for hours 1–24 from a rolling 168-hour history.</p></article>
+        <article class="done"><span>03 · Implemented</span><h3>Planning-area Heat Risk Score</h3><p>A separately trained classifier combines forecast heat, official 2026 age structure and mapped eldercare access across 55 planning areas.</p></article>
+        <article class="done"><span>04 · Implemented</span><h3>Tiered recommendations</h3><p>Low, Medium and High classes drive a ranked review queue and response prompts.</p></article>
+        <article class="done"><span>05 · Implemented</span><h3>Three real-time streams</h3><p>Air temperature, relative humidity and rainfall feed the history-only live model service.</p></article>
+        <article class="done"><span>06 · Stretch implemented</span><h3>Cooling intervention simulator</h3><p>High-risk areas can be tested with added cooling points and a green-corridor shade proxy.</p></article>
+      </div>
+      <div class="pipeline-flow" aria-label="End-to-end architecture">
+        <div><b>01</b><span>NEA + demographic ingestion</span></div><i></i>
+        <div><b>02</b><span>Delta quality + feature tables</span></div><i></i>
+        <div><b>03</b><span>MLflow full TFT model</span></div><i></i>
+        <div><b>04</b><span>Planning-area risk scoring</span></div><i></i>
+        <div><b>05</b><span>Human-reviewed action queue</span></div>
+      </div>
+
+      <div class="governance-block">
+        <div class="section-heading narrow"><p class="eyebrow">Responsible use &amp; data lineage</p><h2>Useful because it is specific—and honest about its limits.</h2></div>
+        <div class="governance-grid">
+          <article><h3>Forecast, not an official alert</h3><p>The live output is a research forecast from public station data and is not an official Singapore heat warning.</p></article>
+          <article><h3>Demographics are contextual</h3><p>Planning-area and subzone age structure uses official 2026 statistics. HDB-building population values are modelled estimates and are labelled accordingly.</p></article>
+          <article><h3>Access is a proxy</h3><p>MOH eldercare points indicate nearby support, not guaranteed cooling capacity or opening-hour availability.</p></article>
+          <article><h3>Human review stays in the loop</h3><p>Risk tiers prioritise inspection; they are not medical advice or official Singapore heat alerts.</p></article>
+        </div>
+        <div class="source-row">
+          <a href="https://daisi.online/guide" target="_blank" rel="noreferrer">DAISI B1 participant guide</a>
+          <a href="https://data.gov.sg/datasets/d_4765db0e87b9c86336792efe8a1f7a66/view" target="_blank" rel="noreferrer">URA planning areas</a>
+          <span>SingStat resident population · June 2026</span>
+          <a href="https://data.gov.sg/datasets/d_f0fd1b3643ed8bd34bd403dedd7c1533/view" target="_blank" rel="noreferrer">MOH eldercare services</a>
+          <span>Models · V4 history-only full TFT + policy-calibrated planning-area risk classifier</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>HeatGuard SG · DAISI B1 prototype · v3.3</span><span>Forecast the heat. Prioritise people.</span></footer>
+  <script>window.HEATGUARD_STATIC_PUBLIC = true;</script>
+  <script src="data-bundle.js" defer></script>
+  <script src="i18n.js" defer></script>
+  <script src="spatial.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
