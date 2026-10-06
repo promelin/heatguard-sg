@@ -1,13 +1,88 @@
-# HeatGuard SG — public website
+# HeatGuard SG
 
-DeltaNexus's DAISI B1 pre-release dashboard: observed station heat index, planning-area risk, cooling-infrastructure scenarios and V4 hourly forecasts for the next 24 hours.
+[HeatGuard SG](https://promelin.github.io/heatguard-sg/) is DeltaNexus's open-source heat-planning dashboard for Singapore. It combines current station heat index, a planning-area Heat Risk Score, cooling-infrastructure scenarios and a 24-hour V4 forecast in one map-led interface.
 
-This repository contains the website, public spatial data and published prediction results only. Model weights and inference code remain in a separate private repository.
+[![HeatGuard SG concept poster](docs/HeatGuard-SG-Concept-Poster.png)](docs/HeatGuard-SG-Concept-Poster.pdf)
 
-Private scheduled inference reads data.gov.sg weather observations, constructs 168 hours of history and runs the V4 model. It also computes area and subzone risk estimates and the supported cooling scenarios privately. The resulting JSON is published here, then GitHub Pages redeploys automatically. Page loads do not trigger a separate model run; visitors explore the latest computed forecast. The browser checks for updates every five minutes.
+**[Open the live dashboard](https://promelin.github.io/heatguard-sg/)** · **[Download the one-page concept poster](docs/HeatGuard-SG-Concept-Poster.pdf)**
 
-Forecasts are scheduled hourly but may be delayed by upstream APIs, execution quotas or the scheduler. The site displays generation/observation times and warns when a forecast is stale. A failed computation leaves the last successful prediction intact.
+## Implemented modules
 
-The risk classifier follows a planning policy, not measured health outcomes. Cooling scenarios are planning assumptions, not validated causal cooling effects. HDB building population values are estimates. This is not an official Singapore heat alert.
+- **Live Heat Index** — current heat-index conditions across the weather-station network, with observation and refresh times.
+- **Area Heat Risk** — a policy-calibrated random-forest score that combines forecast heat, official 2026 age structure and mapped eldercare access across 55 planning areas.
+- **Cooling Simulation** — selectable parks, cycling routes and park connectors, area-specific green baselines, adjustable cooling points and corridor shade.
+- **Next-Day Forecast** — a V4 Temporal Fusion Transformer forecast for hours 1–24, selectable by planning area with an hourly curve and risk guidance.
 
-Data sources: data.gov.sg / NEA weather; SingStat / HDB demographics; URA planning boundaries and supplied building footprints; NParks parks, reserves and Park Connector Network; LTA cycling network. See spatial metadata and the dashboard's evidence view for provenance.
+The public site also includes planning-area and subzone demographics, close-zoom HDB building detail, a ranked priority queue, model evidence and the completed DAISI B1 delivery flow.
+
+## Repository layout
+
+```text
+backend/          FastAPI service, weather ingestion and model runtime
+backend/model/    V4 TFT and planning-area risk-model weights
+dist/             GitHub Pages website, spatial layers and published forecast
+docs/             Concept poster and project visuals
+reports/          Held-out validation evidence
+scripts/          Forecast publication, model validation and data-build tools
+```
+
+## Run locally
+
+Use Python 3.10 or newer. The project was developed in the local `cueq` environment.
+
+```bash
+conda activate cueq
+python -m pip install -r backend/requirements.txt
+cp backend/.env.example .env
+python run_live.py
+```
+
+Open `http://localhost:8000`. The service exposes `/api/health` and `/api/heatguard-data.json` and serves the website from the same origin.
+
+For a website-only preview:
+
+```bash
+python -m http.server 8001 --directory dist
+```
+
+Open `http://localhost:8001`. HTTP serving enables the lazy-loaded HDB and green-infrastructure layers.
+
+## Reproduce inference
+
+The repository includes both released model artefacts:
+
+- `backend/model/best_model.pt` — V4 history-only full Temporal Fusion Transformer.
+- `backend/model/risk_model.joblib` — policy-calibrated planning-area random forest.
+- `backend/model/v4_runtime_metadata.json` — feature order and training normalisation used by the V4 runtime.
+
+Install CPU PyTorch and the inference dependencies, then publish a fresh result:
+
+```bash
+python -m pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+python -m pip install -r requirements-inference.txt
+python scripts/publish_forecast.py
+```
+
+`DATA_GOV_SG_API_KEY` is optional and belongs in a local `.env` file or GitHub Actions secret. No credentials are stored in this repository. The scheduled workflow recomputes forecasts from current public observations and commits only the updated result file.
+
+## Data sources
+
+- data.gov.sg / NEA: air temperature, relative humidity and rainfall
+- URA: planning-area and subzone boundaries
+- SingStat and HDB: 2026 age structure and building context
+- MOH: eldercare-service locations
+- NParks: parks, nature reserves and Park Connector Network
+- LTA: cycling network
+
+Detailed spatial provenance is recorded in `dist/data/spatial/metadata.json`. HeatGuard SG is designed for planning review with human oversight; public health actions should continue to follow official Singapore guidance.
+
+## Contributors
+
+- **DeltaNexus** — Chen Xuanhong and Zhang Jiaheng, National University of Singapore, Chemistry, 2025 cohort
+- [**fromzerotoinfinityplus**](https://github.com/fromzerotoinfinityplus)
+
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for project credits.
+
+## License
+
+Released under the [MIT License](LICENSE). Source datasets remain subject to their respective providers' terms.

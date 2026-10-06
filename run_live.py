@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+"""Run HeatGuard SG as one website + live forecasting service."""
+
+import uvicorn
+
+
+if __name__ == "__main__":
+    uvicorn.run("backend.app:app", host="0.0.0.0", port=8000, reload=False)

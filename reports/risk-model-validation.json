@@ -1,0 +1,162 @@
+{
+  "model": "RandomForestClassifier",
+  "model_role": "Policy-calibrated planning-area heat-risk classifier",
+  "label_limitation": "No historical health outcomes were supplied. Labels encode the documented HeatGuard response matrix and are not medical outcomes.",
+  "created_at": "2026-10-06T12:05:27.872967+00:00",
+  "features": [
+    "heat_index_c",
+    "elderly_density_per_km2",
+    "elderly_share_pct",
+    "elderly_75plus_share_pct",
+    "eldercare_per_10k_seniors"
+  ],
+  "samples": 11055,
+  "hours": 201,
+  "stations": 18,
+  "observed_period": {
+    "start": "2026-09-27 16:00:00+00:00",
+    "end": "2026-10-06 00:00:00+00:00"
+  },
+  "split": {
+    "method": "chronological 60/20/20 by complete observation hour",
+    "train_hours": 120,
+    "validation_hours": 40,
+    "test_hours": 41,
+    "train_end": "2026-10-02 15:00:00+00:00",
+    "validation_end": "2026-10-04 07:00:00+00:00",
+    "test_start": "2026-10-04 08:00:00+00:00"
+  },
+  "label_policy": {
+    "Low": "Observed heat index <34 C",
+    "Medium": ">=34 C unless the joint High criteria are met",
+    "High": "34 to <37 C: priority+gap; 37 to <40 C: priority or elevated+gap; >=40 C: all areas",
+    "community_vulnerability": "0.50*percentile(65+ count) + 0.30*percentile(65+ share) + 0.20*percentile(75+ count)"
+  },
+  "class_counts": {
+    "Low": 4819,
+    "Medium": 5417,
+    "High": 819
+  },
+  "train_class_counts": {
+    "Low": 3294,
+    "Medium": 2861,
+    "High": 445
+  },
+  "test_class_counts": {
+    "High": 191,
+    "Medium": 1330,
+    "Low": 734
+  },
+  "thresholds": {
+    "low_medium": 29.0,
+    "medium_high": 76.0,
+    "score": "50*P(Medium) + 100*P(High)"
+  },
+  "threshold_objective": 1.198919,
+  "threshold_validation": {
+    "bootstrap_time_block_repeats": 80,
+    "low_medium_p05_p50_p95": [
+      25.0,
+      29.0,
+      29.0
+    ],
+    "medium_high_p05_p50_p95": [
+      76.0,
+      76.0,
+      79.0
+    ]
+  },
+  "validation_metrics": {
+    "accuracy": 0.9995,
+    "balanced_accuracy": 0.9997,
+    "macro_f1": 0.999,
+    "classes": {
+      "Low": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 791
+      },
+      "Medium": {
+        "precision": 1.0,
+        "recall": 0.9992,
+        "f1": 0.9996,
+        "support": 1226
+      },
+      "High": {
+        "precision": 0.9946,
+        "recall": 1.0,
+        "f1": 0.9973,
+        "support": 183
+      }
+    },
+    "confusion_matrix": [
+      [
+        791,
+        0,
+        0
+      ],
+      [
+        0,
+        1225,
+        1
+      ],
+      [
+        0,
+        0,
+        183
+      ]
+    ]
+  },
+  "test_metrics": {
+    "accuracy": 0.9987,
+    "balanced_accuracy": 0.9948,
+    "macro_f1": 0.997,
+    "classes": {
+      "Low": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 734
+      },
+      "Medium": {
+        "precision": 0.9977,
+        "recall": 1.0,
+        "f1": 0.9989,
+        "support": 1330
+      },
+      "High": {
+        "precision": 1.0,
+        "recall": 0.9843,
+        "f1": 0.9921,
+        "support": 191
+      }
+    },
+    "confusion_matrix": [
+      [
+        734,
+        0,
+        0
+      ],
+      [
+        0,
+        1330,
+        0
+      ],
+      [
+        0,
+        3,
+        188
+      ]
+    ]
+  },
+  "feature_importance": {
+    "heat_index_c": 0.81742,
+    "elderly_density_per_km2": 0.05558,
+    "elderly_share_pct": 0.05543,
+    "eldercare_per_10k_seniors": 0.05229,
+    "elderly_75plus_share_pct": 0.01928
+  },
+  "station_rows_after_quality_filter": 3613,
+  "station_metadata_rows": 18
+}

@@ -1,0 +1,64 @@
+name: Run V4 forecast and publish dashboard
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+concurrency:
+  group: hourly-forecast
+  cancel-in-progress: false
+jobs:
+  forecast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/cache/restore@v4
+        with:
+          path: .cache/weather.sqlite3.gz
+          key: weather-v1-${{ github.run_id }}
+          restore-keys: weather-v1-
+      - name: Install CPU inference dependencies
+        run: |
+          python -m pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -r requirements-inference.txt
+      - name: Run both open models on current public data
+        env:
+          DATA_GOV_SG_API_KEY: ${{ secrets.DATA_GOV_SG_API_KEY }}
+        run: python scripts/publish_forecast.py
+      - name: Preserve public-weather cache
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: .cache/weather.sqlite3.gz
+          key: weather-v1-${{ github.run_id }}
+      - name: Commit the updated prediction result
+        run: |
+          git config user.name 'HeatGuard Forecast Bot'
+          git config user.email '221676635+promelin@users.noreply.github.com'
+          git add dist/heatguard-data.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh V4 forecast and area risk results'
+            git push origin main
+          fi
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+          retention-days: 1
+
+  deploy:
+    needs: forecast
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

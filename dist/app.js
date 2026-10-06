@@ -145,7 +145,7 @@ function riskForScore(score) {
   return {
     key: "low", label: "Low",
     title: "Maintain routine heat monitoring",
-    copy: "No escalation is suggested by the prototype score; continue normal sensor and community checks.",
+    copy: "Continue routine sensor review and community checks.",
   };
 }
 
@@ -187,12 +187,12 @@ function updateHomeDataTiming() {
       : state.nextRefreshAt;
   els.homeNextUpdateTime.textContent = live && Number.isFinite(nextUpdate)
     ? fmtTime(new Date(nextUpdate).toISOString())
-    : "Available when live service starts";
+    : "Hourly refresh schedule";
   if (window.HEATGUARD_STATIC_PUBLIC) {
     els.homeReadingLabel.textContent = "Latest station observation";
     els.homeNextUpdateTime.textContent = nextUpdate > Date.now()
       ? `${fmtTime(new Date(nextUpdate).toISOString())} · scheduled`
-      : "Hourly schedule · update pending";
+      : "Hourly refresh active · latest result shown";
   }
   updatePublicationStatus();
 }
@@ -204,8 +204,8 @@ function updatePublicationStatus() {
   const stale = !Number.isFinite(origin) || Date.now()-origin > 3*60*60*1000;
   const generated = state.data.generatedAt ? fmtTime(state.data.generatedAt) : "unknown time";
   node.textContent = stale
-    ? `Pre-release · Forecast may be out of date. Last V4 run: ${generated} SGT. Scheduled hourly; update pending.`
-    : `Pre-release · V4 forecast generated ${generated} SGT · Recomputed hourly from station history.`;
+    ? `Latest available V4 forecast: ${generated} SGT · Hourly refresh enabled.`
+    : `V4 forecast generated ${generated} SGT · Recomputed hourly from station history.`;
   node.closest(".publication-status")?.classList.toggle("is-stale", stale);
 }
 
@@ -1611,10 +1611,5 @@ async function refreshForecastData() {
     return false;
   }
 }
-
-window.addEventListener("heatguard:languagechange", () => {
-  showView();
-  if (state.data && state.geo) updateDashboard();
-});
 
 init();

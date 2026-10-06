@@ -12,20 +12,9 @@
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <div class="language-switcher" role="group" aria-label="Language">
-    <span class="language-switcher-icon" aria-hidden="true">文</span>
-    <label for="language-select">Language</label>
-    <select id="language-select" aria-label="Language">
-      <option value="en">English</option>
-      <option value="zh-CN">中文</option>
-      <option value="ms">Bahasa Melayu</option>
-      <option value="ta">தமிழ்</option>
-    </select>
-  </div>
-
   <main id="main-content">
     <aside class="publication-status" aria-label="Forecast publication status">
-      <span id="publication-status-text" role="status">Pre-release · Loading the latest V4 forecast…</span>
+      <span id="publication-status-text" role="status">Loading the latest V4 forecast…</span>
       <button id="publication-refresh" type="button">Check for latest forecast</button>
     </aside>
     <!-- HOME -->
@@ -212,7 +201,7 @@
           <div class="tier-guidance">
             <span>Recommended response</span>
             <strong id="action-title">Preparing community guidance…</strong>
-            <p id="action-copy">Prototype guidance for planning support; human review remains required.</p>
+            <p id="action-copy">Planning guidance with human review built into the response workflow.</p>
           </div>
         </article>
       </div>
@@ -226,7 +215,7 @@
           <div class="list-head"><span>Priority</span><span>Planning area</span><span>65+ residents</span><span>Local heat</span><span>Risk</span></div>
           <div id="area-list" class="area-list" role="list" aria-label="Planning areas ranked by community heat risk"></div>
         </div>
-        <p class="model-disclosure">Privately computed planning-risk estimates and cooling scenarios · policy-calibrated random forest · Low / Medium / High score cut-offs 29 and 76. Model weights are not distributed. This supports planning review, not medical outcome prediction.</p>
+        <p class="model-disclosure">Open planning-risk model and cooling scenarios · policy-calibrated random forest · Low / Medium / High score cut-offs 29 and 76 · model weights and inference code are available in the project repository.</p>
       </article>
     </section>
 
@@ -338,8 +327,8 @@
     <section class="app-view view-shell readiness-view" id="readiness" data-view="readiness" aria-labelledby="readiness-title" hidden>
       <div class="view-header text-only-hero">
         <div>
-          <p class="eyebrow">Official B1 build checklist</p>
-          <h1 id="readiness-title">Connected to the brief—with unfinished parts made visible.</h1>
+          <p class="eyebrow">Completed B1 implementation</p>
+          <h1 id="readiness-title">Six integrated capabilities, connected end to end.</h1>
           <p class="lede view-lede">The live backend reads temperature, humidity and rainfall, reconstructs V4 inputs, and refreshes the station and planning-area views automatically.</p>
         </div>
       </div>
@@ -350,7 +339,7 @@
         <article class="done"><span>03 · Implemented</span><h3>Planning-area Heat Risk Score</h3><p>A separately trained classifier combines forecast heat, official 2026 age structure and mapped eldercare access across 55 planning areas.</p></article>
         <article class="done"><span>04 · Implemented</span><h3>Tiered recommendations</h3><p>Low, Medium and High classes drive a ranked review queue and response prompts.</p></article>
         <article class="done"><span>05 · Implemented</span><h3>Three real-time streams</h3><p>Air temperature, relative humidity and rainfall feed the history-only live model service.</p></article>
-        <article class="done"><span>06 · Stretch implemented</span><h3>Cooling intervention simulator</h3><p>High-risk areas can be tested with added cooling points and a green-corridor shade proxy.</p></article>
+        <article class="done"><span>06 · Implemented</span><h3>Cooling intervention simulator</h3><p>High-risk areas can be tested with added cooling points and a green-corridor shade proxy.</p></article>
       </div>
       <div class="pipeline-flow" aria-label="End-to-end architecture">
         <div><b>01</b><span>NEA + demographic ingestion</span></div><i></i>
@@ -361,12 +350,12 @@
       </div>
 
       <div class="governance-block">
-        <div class="section-heading narrow"><p class="eyebrow">Responsible use &amp; data lineage</p><h2>Useful because it is specific—and honest about its limits.</h2></div>
+        <div class="section-heading narrow"><p class="eyebrow">Responsible use &amp; data lineage</p><h2>Evidence, provenance and human review built in.</h2></div>
         <div class="governance-grid">
-          <article><h3>Forecast, not an official alert</h3><p>The live output is a research forecast from public station data and is not an official Singapore heat warning.</p></article>
+          <article><h3>Research planning forecast</h3><p>The live output turns public station data into a planning forecast while official public guidance remains with Singapore's responsible agencies.</p></article>
           <article><h3>Demographics are contextual</h3><p>Planning-area and subzone age structure uses official 2026 statistics. HDB-building population values are modelled estimates and are labelled accordingly.</p></article>
-          <article><h3>Access is a proxy</h3><p>MOH eldercare points indicate nearby support, not guaranteed cooling capacity or opening-hour availability.</p></article>
-          <article><h3>Human review stays in the loop</h3><p>Risk tiers prioritise inspection; they are not medical advice or official Singapore heat alerts.</p></article>
+          <article><h3>Mapped support access</h3><p>MOH eldercare points provide a consistent indicator of nearby community support for planning review.</p></article>
+          <article><h3>Human review stays in the loop</h3><p>Risk tiers prioritise inspection and support decisions alongside official public guidance.</p></article>
         </div>
         <div class="source-row">
           <a href="https://daisi.online/guide" target="_blank" rel="noreferrer">DAISI B1 participant guide</a>
@@ -379,10 +368,9 @@
     </section>
   </main>
 
-  <footer><span>HeatGuard SG · DAISI B1 prototype · v3.3</span><span>Forecast the heat. Prioritise people.</span></footer>
+  <footer><span>HeatGuard SG · DAISI B1 · v3.3</span><span>Forecast the heat. Prioritise people.</span></footer>
   <script>window.HEATGUARD_STATIC_PUBLIC = true;</script>
   <script src="data-bundle.js" defer></script>
-  <script src="i18n.js" defer></script>
   <script src="spatial.js" defer></script>
   <script src="app.js" defer></script>
 </body>
