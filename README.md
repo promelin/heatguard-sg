@@ -6,6 +6,23 @@
 
 **[Open the live dashboard](https://promelin.github.io/heatguard-sg/)** · **[Download the one-page concept poster](docs/HeatGuard-SG-Concept-Poster.pdf)**
 
+## Contributors
+
+**DeltaNexus:** Chen Xuanhong and Zhang Jiaheng, National University of Singapore, Chemistry, 2025 cohort.
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/fromzerotoinfinityplus">
+        <img src="https://avatars.githubusercontent.com/u/338661854?v=4" width="88" alt="fromzerotoinfinityplus"><br>
+        <sub><b>@fromzerotoinfinityplus</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+Full project credits are recorded in [CONTRIBUTORS.md](CONTRIBUTORS.md).
+
 ## Implemented modules
 
 - **Live Heat Index** — current heat-index conditions across the weather-station network, with observation and refresh times.
@@ -75,13 +92,6 @@ python scripts/publish_forecast.py
 - LTA: cycling network
 
 Detailed spatial provenance is recorded in `dist/data/spatial/metadata.json`. HeatGuard SG is designed for planning review with human oversight; public health actions should continue to follow official Singapore guidance.
-
-## Contributors
-
-- **DeltaNexus** — Chen Xuanhong and Zhang Jiaheng, National University of Singapore, Chemistry, 2025 cohort
-- [**fromzerotoinfinityplus**](https://github.com/fromzerotoinfinityplus)
-
-See [CONTRIBUTORS.md](CONTRIBUTORS.md) for project credits.
 
 ## License
 
