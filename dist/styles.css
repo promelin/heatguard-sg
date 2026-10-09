@@ -1175,3 +1175,27 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.6r
 @media (max-width: 680px) {
   .publication-status { align-items: flex-start; flex-direction: column; font-size: 12px; }
 }
+
+/* feature/hero-left-layout — anchor the complete home message at the upper left. */
+.workspace-heading.live-hero {
+  align-items: start;
+  padding: clamp(1.25rem, 2vw, 2rem) clamp(1.15rem, 1.7vw, 1.75rem);
+}
+.live-hero > div {
+  align-self: start;
+  max-width: 850px;
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .workspace-heading.live-hero {
+    align-items: start;
+    padding: 1.35rem 1.15rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .workspace-heading.live-hero {
+    padding: 1.15rem 1rem;
+  }
+}
