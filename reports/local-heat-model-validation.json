@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-09T09:44:47.141107+00:00",
+  "selected_model": "ridge",
+  "training": {
+    "rows": 2210,
+    "stations": 11,
+    "start": "2026-09-27T16:00:00+00:00",
+    "end": "2026-10-06T00:00:00+00:00",
+    "radius_m": 500,
+    "target": "observed station heat index",
+    "model_target": "observed heat index minus same-hour peer-station background",
+    "background": "mean heat index of all other stations at the same timestamp",
+    "delta_bounds_c": [
+      -5.2883,
+      4.2562
+    ]
+  },
+  "candidates": {
+    "ridge": {
+      "grouped_mae_c": 1.0108,
+      "grouped_rmse_c": 1.4821,
+      "grouped_r2": 0.8454,
+      "residual_p10_c": -1.3468,
+      "residual_p90_c": 1.6856,
+      "folds": [
+        {
+          "station": "S104",
+          "rows": 201,
+          "mae_c": 0.7456,
+          "rmse_c": 1.0613
+        },
+        {
+          "station": "S109",
+          "rows": 201,
+          "mae_c": 0.5339,
+          "rmse_c": 0.725
+        },
+        {
+          "station": "S111",
+          "rows": 201,
+          "mae_c": 0.7358,
+          "rmse_c": 0.9208
+        },
+        {
+          "station": "S115",
+          "rows": 200,
+          "mae_c": 1.145,
+          "rmse_c": 1.4136
+        },
+        {
+          "station": "S117",
+          "rows": 201,
+          "mae_c": 0.7913,
+          "rmse_c": 1.1304
+        },
+        {
+          "station": "S121",
+          "rows": 201,
+          "mae_c": 1.427,
+          "rmse_c": 2.0332
+        },
+        {
+          "station": "S24",
+          "rows": 201,
+          "mae_c": 0.9994,
+          "rmse_c": 1.2905
+        },
+        {
+          "station": "S43",
+          "rows": 201,
+          "mae_c": 2.1393,
+          "rmse_c": 2.4659
+        },
+        {
+          "station": "S44",
+          "rows": 201,
+          "mae_c": 1.0464,
+          "rmse_c": 1.7719
+        },
+        {
+          "station": "S50",
+          "rows": 201,
+          "mae_c": 0.4836,
+          "rmse_c": 0.685
+        },
+        {
+          "station": "S60",
+          "rows": 201,
+          "mae_c": 1.0727,
+          "rmse_c": 1.7024
+        }
+      ]
+    },
+    "random_forest": {
+      "grouped_mae_c": 1.1149,
+      "grouped_rmse_c": 1.5781,
+      "grouped_r2": 0.8248,
+      "residual_p10_c": -1.7037,
+      "residual_p90_c": 1.673,
+      "folds": [
+        {
+          "station": "S104",
+          "rows": 201,
+          "mae_c": 0.7353,
+          "rmse_c": 1.1484
+        },
+        {
+          "station": "S109",
+          "rows": 201,
+          "mae_c": 0.7798,
+          "rmse_c": 0.9881
+        },
+        {
+          "station": "S111",
+          "rows": 201,
+          "mae_c": 1.2417,
+          "rmse_c": 1.4158
+        },
+        {
+          "station": "S115",
+          "rows": 200,
+          "mae_c": 1.0508,
+          "rmse_c": 1.2849
+        },
+        {
+          "station": "S117",
+          "rows": 201,
+          "mae_c": 1.1582,
+          "rmse_c": 1.6491
+        },
+        {
+          "station": "S121",
+          "rows": 201,
+          "mae_c": 1.482,
+          "rmse_c": 2.1411
+        },
+        {
+          "station": "S24",
+          "rows": 201,
+          "mae_c": 1.199,
+          "rmse_c": 1.4793
+        },
+        {
+          "station": "S43",
+          "rows": 201,
+          "mae_c": 2.0276,
+          "rmse_c": 2.3317
+        },
+        {
+          "station": "S44",
+          "rows": 201,
+          "mae_c": 1.0751,
+          "rmse_c": 1.7941
+        },
+        {
+          "station": "S50",
+          "rows": 201,
+          "mae_c": 0.4678,
+          "rmse_c": 0.6647
+        },
+        {
+          "station": "S60",
+          "rows": 201,
+          "mae_c": 1.0462,
+          "rmse_c": 1.6887
+        }
+      ]
+    },
+    "extra_trees": {
+      "grouped_mae_c": 1.1014,
+      "grouped_rmse_c": 1.5728,
+      "grouped_r2": 0.826,
+      "residual_p10_c": -1.5042,
+      "residual_p90_c": 1.7932,
+      "folds": [
+        {
+          "station": "S104",
+          "rows": 201,
+          "mae_c": 0.7134,
+          "rmse_c": 1.1122
+        },
+        {
+          "station": "S109",
+          "rows": 201,
+          "mae_c": 0.7669,
+          "rmse_c": 0.9525
+        },
+        {
+          "station": "S111",
+          "rows": 201,
+          "mae_c": 0.8905,
+          "rmse_c": 1.0557
+        },
+        {
+          "station": "S115",
+          "rows": 200,
+          "mae_c": 1.3621,
+          "rmse_c": 1.6313
+        },
+        {
+          "station": "S117",
+          "rows": 201,
+          "mae_c": 0.9947,
+          "rmse_c": 1.415
+        },
+        {
+          "station": "S121",
+          "rows": 201,
+          "mae_c": 1.4869,
+          "rmse_c": 2.1406
+        },
+        {
+          "station": "S24",
+          "rows": 201,
+          "mae_c": 1.1297,
+          "rmse_c": 1.4141
+        },
+        {
+          "station": "S43",
+          "rows": 201,
+          "mae_c": 2.0668,
+          "rmse_c": 2.3928
+        },
+        {
+          "station": "S44",
+          "rows": 201,
+          "mae_c": 1.1615,
+          "rmse_c": 1.9092
+        },
+        {
+          "station": "S50",
+          "rows": 201,
+          "mae_c": 0.4759,
+          "rmse_c": 0.6755
+        },
+        {
+          "station": "S60",
+          "rows": 201,
+          "mae_c": 1.0678,
+          "rmse_c": 1.6972
+        }
+      ]
+    }
+  },
+  "feature_importance": {
+    "latitude": 0.2437,
+    "park_cover_proxy_pct": 0.1713,
+    "building_coverage_pct": 0.1655,
+    "distance_to_cbd_km": 0.1091,
+    "mean_building_height_floors": 0.0876,
+    "coastal_proximity": 0.069,
+    "longitude": 0.0558,
+    "distance_to_coast_m": 0.0314,
+    "building_density_per_km2": 0.029,
+    "building_floor_area_ratio": 0.0269,
+    "background_heat_index_c": 0.0106
+  }
+}

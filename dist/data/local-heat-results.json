@@ -1,0 +1,5514 @@
+{
+  "schema_version": 1,
+  "model": "local-environment-v1",
+  "generated_at": "2026-10-09T09:44:48.449688+00:00",
+  "background_heat_index_c": 34.0,
+  "radii_m": [
+    250,
+    500,
+    1000
+  ],
+  "areas": [
+    {
+      "id": "BS",
+      "name": "Bishan",
+      "centroid": [
+        103.840436,
+        1.354955
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 171.0858,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.840436,
+            "latitude": 1.354955,
+            "radius_m": 250,
+            "planning_area": "Bishan",
+            "park_count": 1,
+            "park_cover_proxy_pct": 2.4688,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1058.82,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 7.3058
+          }
+        },
+        "500": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 74.0041,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.840436,
+            "latitude": 1.354955,
+            "radius_m": 500,
+            "planning_area": "Bishan",
+            "park_count": 2,
+            "park_cover_proxy_pct": 1.0911,
+            "building_count": 30,
+            "building_coverage_pct": 5.9414,
+            "building_floor_area_ratio": 0.5756,
+            "building_density_per_km2": 38.1972,
+            "mean_building_height_floors": 9.6879,
+            "distance_to_coast_m": 1058.82,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 7.3058
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 49.8686,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.840436,
+            "latitude": 1.354955,
+            "radius_m": 1000,
+            "planning_area": "Bishan",
+            "park_count": 10,
+            "park_cover_proxy_pct": 0.7478,
+            "building_count": 126,
+            "building_coverage_pct": 5.0285,
+            "building_floor_area_ratio": 0.5489,
+            "building_density_per_km2": 40.107,
+            "mean_building_height_floors": 10.9159,
+            "distance_to_coast_m": 1058.82,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 7.3058
+          }
+        }
+      }
+    },
+    {
+      "id": "BM",
+      "name": "Bukit Merah",
+      "centroid": [
+        103.823135,
+        1.275489
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.55,
+          "interval_c": [
+            33.21,
+            36.24
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.55,
+          "spatial_support": {
+            "weight": 0.4296,
+            "distance": 2.535,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.823135,
+            "latitude": 1.275489,
+            "radius_m": 250,
+            "planning_area": "Bukit Merah",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 6,
+            "building_coverage_pct": 2.5674,
+            "building_floor_area_ratio": 0.3361,
+            "building_density_per_km2": 30.5577,
+            "mean_building_height_floors": 13.0915,
+            "distance_to_coast_m": 1267.91,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 3.6012
+          }
+        },
+        "500": {
+          "estimate_c": 34.49,
+          "interval_c": [
+            33.14,
+            36.18
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.49,
+          "spatial_support": {
+            "weight": 0.1351,
+            "distance": 6.0043,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.823135,
+            "latitude": 1.275489,
+            "radius_m": 500,
+            "planning_area": "Bukit Merah",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 53,
+            "building_coverage_pct": 8.385,
+            "building_floor_area_ratio": 1.0445,
+            "building_density_per_km2": 67.4817,
+            "mean_building_height_floors": 12.4564,
+            "distance_to_coast_m": 1267.91,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 3.6012
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 446.8571,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.823135,
+            "latitude": 1.275489,
+            "radius_m": 1000,
+            "planning_area": "Bukit Merah",
+            "park_count": 2,
+            "park_cover_proxy_pct": 6.3683,
+            "building_count": 155,
+            "building_coverage_pct": 6.2083,
+            "building_floor_area_ratio": 0.803,
+            "building_density_per_km2": 49.338,
+            "mean_building_height_floors": 12.9344,
+            "distance_to_coast_m": 1267.91,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 3.6012
+          }
+        }
+      }
+    },
+    {
+      "id": "BT",
+      "name": "Bukit Timah",
+      "centroid": [
+        103.790699,
+        1.329997
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 49.1604,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.790699,
+            "latitude": 1.329997,
+            "radius_m": 250,
+            "planning_area": "Bukit Timah",
+            "park_count": 1,
+            "park_cover_proxy_pct": 0.7432,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1634.91,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 8.1173
+          }
+        },
+        "500": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 51.7434,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.790699,
+            "latitude": 1.329997,
+            "radius_m": 500,
+            "planning_area": "Bukit Timah",
+            "park_count": 1,
+            "park_cover_proxy_pct": 0.7798,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1634.91,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 8.1173
+          }
+        },
+        "1000": {
+          "estimate_c": 34.01,
+          "interval_c": [
+            32.67,
+            35.7
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.01,
+          "spatial_support": {
+            "weight": 0.0034,
+            "distance": 17.0356,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.790699,
+            "latitude": 1.329997,
+            "radius_m": 1000,
+            "planning_area": "Bukit Timah",
+            "park_count": 5,
+            "park_cover_proxy_pct": 0.2863,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1634.91,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 8.1173
+          }
+        }
+      }
+    },
+    {
+      "id": "DT",
+      "name": "Downtown Core",
+      "centroid": [
+        103.855497,
+        1.286789
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.21,
+          "interval_c": [
+            32.86,
+            35.89
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.21,
+          "spatial_support": {
+            "weight": 0.5263,
+            "distance": 1.9257,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.855497,
+            "latitude": 1.286789,
+            "radius_m": 250,
+            "planning_area": "Downtown Core",
+            "park_count": 1,
+            "park_cover_proxy_pct": 0.0231,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 673.02,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 0.5518
+          }
+        },
+        "500": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 88.7511,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.855497,
+            "latitude": 1.286789,
+            "radius_m": 500,
+            "planning_area": "Downtown Core",
+            "park_count": 4,
+            "park_cover_proxy_pct": 1.304,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 673.02,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 0.5518
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 88.3391,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.855497,
+            "latitude": 1.286789,
+            "radius_m": 1000,
+            "planning_area": "Downtown Core",
+            "park_count": 10,
+            "park_cover_proxy_pct": 1.2984,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 673.02,
+            "coastal_proximity": 0.326976,
+            "distance_to_cbd_km": 0.5518
+          }
+        }
+      }
+    },
+    {
+      "id": "GL",
+      "name": "Geylang",
+      "centroid": [
+        103.889523,
+        1.320896
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.53,
+          "interval_c": [
+            33.19,
+            36.22
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.53,
+          "spatial_support": {
+            "weight": 0.125,
+            "distance": 6.2395,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.889523,
+            "latitude": 1.320896,
+            "radius_m": 250,
+            "planning_area": "Geylang",
+            "park_count": 1,
+            "park_cover_proxy_pct": 0.1237,
+            "building_count": 1,
+            "building_coverage_pct": 0.623,
+            "building_floor_area_ratio": 0.0623,
+            "building_density_per_km2": 5.093,
+            "mean_building_height_floors": 10.0,
+            "distance_to_coast_m": 1377.8,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 5.3884
+          }
+        },
+        "500": {
+          "estimate_c": 34.03,
+          "interval_c": [
+            32.69,
+            35.72
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.03,
+          "spatial_support": {
+            "weight": 0.0078,
+            "distance": 14.5692,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.889523,
+            "latitude": 1.320896,
+            "radius_m": 500,
+            "planning_area": "Geylang",
+            "park_count": 1,
+            "park_cover_proxy_pct": 0.2001,
+            "building_count": 45,
+            "building_coverage_pct": 8.3514,
+            "building_floor_area_ratio": 0.8505,
+            "building_density_per_km2": 57.2958,
+            "mean_building_height_floors": 10.1836,
+            "distance_to_coast_m": 1377.8,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 5.3884
+          }
+        },
+        "1000": {
+          "estimate_c": 34.28,
+          "interval_c": [
+            32.94,
+            35.97
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.28,
+          "spatial_support": {
+            "weight": 0.0668,
+            "distance": 8.119,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.889523,
+            "latitude": 1.320896,
+            "radius_m": 1000,
+            "planning_area": "Geylang",
+            "park_count": 3,
+            "park_cover_proxy_pct": 0.11,
+            "building_count": 146,
+            "building_coverage_pct": 5.9804,
+            "building_floor_area_ratio": 0.6257,
+            "building_density_per_km2": 46.4732,
+            "mean_building_height_floors": 10.462,
+            "distance_to_coast_m": 1377.8,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 5.3884
+          }
+        }
+      }
+    },
+    {
+      "id": "KL",
+      "name": "Kallang",
+      "centroid": [
+        103.866544,
+        1.311125
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.38,
+          "interval_c": [
+            32.04,
+            35.07
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.62,
+          "spatial_support": {
+            "weight": 0.6501,
+            "distance": 1.2918,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.866544,
+            "latitude": 1.311125,
+            "radius_m": 250,
+            "planning_area": "Kallang",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 748.63,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 2.8296
+          }
+        },
+        "500": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0001,
+            "distance": 28.9214,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.866544,
+            "latitude": 1.311125,
+            "radius_m": 500,
+            "planning_area": "Kallang",
+            "park_count": 1,
+            "park_cover_proxy_pct": 0.4547,
+            "building_count": 3,
+            "building_coverage_pct": 0.8411,
+            "building_floor_area_ratio": 0.1262,
+            "building_density_per_km2": 3.8197,
+            "mean_building_height_floors": 15.0085,
+            "distance_to_coast_m": 748.63,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 2.8296
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 34.0353,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.866544,
+            "latitude": 1.311125,
+            "radius_m": 1000,
+            "planning_area": "Kallang",
+            "park_count": 3,
+            "park_cover_proxy_pct": 0.5199,
+            "building_count": 120,
+            "building_coverage_pct": 5.0873,
+            "building_floor_area_ratio": 0.6611,
+            "building_density_per_km2": 38.1972,
+            "mean_building_height_floors": 12.9946,
+            "distance_to_coast_m": 748.63,
+            "coastal_proximity": 0.251373,
+            "distance_to_cbd_km": 2.8296
+          }
+        }
+      }
+    },
+    {
+      "id": "ME",
+      "name": "Marina East",
+      "centroid": [
+        103.872352,
+        1.288517
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.61,
+          "interval_c": [
+            32.26,
+            35.3
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.39,
+          "spatial_support": {
+            "weight": 0.7309,
+            "distance": 0.9405,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.872352,
+            "latitude": 1.288517,
+            "radius_m": 250,
+            "planning_area": "Marina East",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 461.04,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 2.2754
+          }
+        },
+        "500": {
+          "estimate_c": 33.66,
+          "interval_c": [
+            32.31,
+            35.35
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.34,
+          "spatial_support": {
+            "weight": 0.724,
+            "distance": 0.9688,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.872352,
+            "latitude": 1.288517,
+            "radius_m": 500,
+            "planning_area": "Marina East",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 461.04,
+            "coastal_proximity": 0.077916,
+            "distance_to_cbd_km": 2.2754
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 68.1469,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.872352,
+            "latitude": 1.288517,
+            "radius_m": 1000,
+            "planning_area": "Marina East",
+            "park_count": 2,
+            "park_cover_proxy_pct": 1.0129,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 461.04,
+            "coastal_proximity": 0.538958,
+            "distance_to_cbd_km": 2.2754
+          }
+        }
+      }
+    },
+    {
+      "id": "MS",
+      "name": "Marina South",
+      "centroid": [
+        103.865629,
+        1.280531
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.66,
+          "interval_c": [
+            32.31,
+            35.34
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.34,
+          "spatial_support": {
+            "weight": 0.7565,
+            "distance": 0.837,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.865629,
+            "latitude": 1.280531,
+            "radius_m": 250,
+            "planning_area": "Marina South",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 580.44,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 1.866
+          }
+        },
+        "500": {
+          "estimate_c": 33.66,
+          "interval_c": [
+            32.31,
+            35.34
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.34,
+          "spatial_support": {
+            "weight": 0.7565,
+            "distance": 0.837,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.865629,
+            "latitude": 1.280531,
+            "radius_m": 500,
+            "planning_area": "Marina South",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 580.44,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 1.866
+          }
+        },
+        "1000": {
+          "estimate_c": 33.91,
+          "interval_c": [
+            32.56,
+            35.6
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.09,
+          "spatial_support": {
+            "weight": 0.7148,
+            "distance": 1.0073,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.865629,
+            "latitude": 1.280531,
+            "radius_m": 1000,
+            "planning_area": "Marina South",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 580.44,
+            "coastal_proximity": 0.419559,
+            "distance_to_cbd_km": 1.866
+          }
+        }
+      }
+    },
+    {
+      "id": "MP",
+      "name": "Marine Parade",
+      "centroid": [
+        103.896272,
+        1.300228
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 62.7293,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.896272,
+            "latitude": 1.300228,
+            "radius_m": 250,
+            "planning_area": "Marine Parade",
+            "park_count": 1,
+            "park_cover_proxy_pct": 0.9359,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 597.39,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 5.049
+          }
+        },
+        "500": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 338.3696,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.896272,
+            "latitude": 1.300228,
+            "radius_m": 500,
+            "planning_area": "Marine Parade",
+            "park_count": 3,
+            "park_cover_proxy_pct": 4.835,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 597.39,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 5.049
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 371.7921,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.896272,
+            "latitude": 1.300228,
+            "radius_m": 1000,
+            "planning_area": "Marine Parade",
+            "park_count": 5,
+            "park_cover_proxy_pct": 5.3078,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 597.39,
+            "coastal_proximity": 0.402612,
+            "distance_to_cbd_km": 5.049
+          }
+        }
+      }
+    },
+    {
+      "id": "MU",
+      "name": "Museum",
+      "centroid": [
+        103.846717,
+        1.295916
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 1157.8498,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.846717,
+            "latitude": 1.295916,
+            "radius_m": 250,
+            "planning_area": "Museum",
+            "park_count": 3,
+            "park_cover_proxy_pct": 16.4258,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 452.65,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 0.8566
+          }
+        },
+        "500": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 1174.8318,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.846717,
+            "latitude": 1.295916,
+            "radius_m": 500,
+            "planning_area": "Museum",
+            "park_count": 9,
+            "park_cover_proxy_pct": 16.666,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 452.65,
+            "coastal_proximity": 0.094703,
+            "distance_to_cbd_km": 0.8566
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 447.0574,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.846717,
+            "latitude": 1.295916,
+            "radius_m": 1000,
+            "planning_area": "Museum",
+            "park_count": 14,
+            "park_cover_proxy_pct": 6.3723,
+            "building_count": 17,
+            "building_coverage_pct": 1.1398,
+            "building_floor_area_ratio": 0.0903,
+            "building_density_per_km2": 5.4113,
+            "mean_building_height_floors": 7.9195,
+            "distance_to_coast_m": 452.65,
+            "coastal_proximity": 0.547352,
+            "distance_to_cbd_km": 0.8566
+          }
+        }
+      }
+    },
+    {
+      "id": "NT",
+      "name": "Newton",
+      "centroid": [
+        103.838078,
+        1.30866
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.39,
+          "interval_c": [
+            32.05,
+            35.08
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.61,
+          "spatial_support": {
+            "weight": 0.6713,
+            "distance": 1.1955,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.838078,
+            "latitude": 1.30866,
+            "radius_m": 250,
+            "planning_area": "Newton",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 292.37,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 2.5618
+          }
+        },
+        "500": {
+          "estimate_c": 33.52,
+          "interval_c": [
+            32.18,
+            35.21
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.48,
+          "spatial_support": {
+            "weight": 0.8235,
+            "distance": 0.5826,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.838078,
+            "latitude": 1.30866,
+            "radius_m": 500,
+            "planning_area": "Newton",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 292.37,
+            "coastal_proximity": 0.415263,
+            "distance_to_cbd_km": 2.5618
+          }
+        },
+        "1000": {
+          "estimate_c": 35.61,
+          "interval_c": [
+            34.26,
+            37.29
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 1.61,
+          "spatial_support": {
+            "weight": 0.5982,
+            "distance": 1.5414,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.838078,
+            "latitude": 1.30866,
+            "radius_m": 1000,
+            "planning_area": "Newton",
+            "park_count": 2,
+            "park_cover_proxy_pct": 0.0658,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 292.37,
+            "coastal_proximity": 0.707631,
+            "distance_to_cbd_km": 2.5618
+          }
+        }
+      }
+    },
+    {
+      "id": "NV",
+      "name": "Novena",
+      "centroid": [
+        103.835309,
+        1.326984
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.33,
+          "interval_c": [
+            31.98,
+            35.01
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.67,
+          "spatial_support": {
+            "weight": 0.5092,
+            "distance": 2.0245,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.835309,
+            "latitude": 1.326984,
+            "radius_m": 250,
+            "planning_area": "Novena",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1506.52,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 4.4824
+          }
+        },
+        "500": {
+          "estimate_c": 33.33,
+          "interval_c": [
+            31.98,
+            35.01
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.67,
+          "spatial_support": {
+            "weight": 0.5092,
+            "distance": 2.0245,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.835309,
+            "latitude": 1.326984,
+            "radius_m": 500,
+            "planning_area": "Novena",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1506.52,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 4.4824
+          }
+        },
+        "1000": {
+          "estimate_c": 34.47,
+          "interval_c": [
+            33.12,
+            36.15
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.47,
+          "spatial_support": {
+            "weight": 0.3503,
+            "distance": 3.1465,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.835309,
+            "latitude": 1.326984,
+            "radius_m": 1000,
+            "planning_area": "Novena",
+            "park_count": 4,
+            "park_cover_proxy_pct": 0.0386,
+            "building_count": 14,
+            "building_coverage_pct": 0.5299,
+            "building_floor_area_ratio": 0.0561,
+            "building_density_per_km2": 4.4563,
+            "mean_building_height_floors": 10.5941,
+            "distance_to_coast_m": 1506.52,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 4.4824
+          }
+        }
+      }
+    },
+    {
+      "id": "OR",
+      "name": "Orchard",
+      "centroid": [
+        103.833581,
+        1.303807
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.62,
+          "interval_c": [
+            32.28,
+            35.31
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.38,
+          "spatial_support": {
+            "weight": 0.8647,
+            "distance": 0.4361,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.833581,
+            "latitude": 1.303807,
+            "radius_m": 250,
+            "planning_area": "Orchard",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 132.78,
+            "coastal_proximity": 0.468892,
+            "distance_to_cbd_km": 2.5377
+          }
+        },
+        "500": {
+          "estimate_c": 33.8,
+          "interval_c": [
+            32.45,
+            35.49
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.2,
+          "spatial_support": {
+            "weight": 0.8688,
+            "distance": 0.4219,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.833581,
+            "latitude": 1.303807,
+            "radius_m": 500,
+            "planning_area": "Orchard",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 132.78,
+            "coastal_proximity": 0.734446,
+            "distance_to_cbd_km": 2.5377
+          }
+        },
+        "1000": {
+          "estimate_c": 34.42,
+          "interval_c": [
+            33.07,
+            36.11
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.42,
+          "spatial_support": {
+            "weight": 0.6105,
+            "distance": 1.4804,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.833581,
+            "latitude": 1.303807,
+            "radius_m": 1000,
+            "planning_area": "Orchard",
+            "park_count": 2,
+            "park_cover_proxy_pct": 0.0176,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 132.78,
+            "coastal_proximity": 0.867223,
+            "distance_to_cbd_km": 2.5377
+          }
+        }
+      }
+    },
+    {
+      "id": "OT",
+      "name": "Outram",
+      "centroid": [
+        103.842061,
+        1.282858
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.2,
+          "interval_c": [
+            32.86,
+            35.89
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.2,
+          "spatial_support": {
+            "weight": 0.0477,
+            "distance": 9.1292,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.842061,
+            "latitude": 1.282858,
+            "radius_m": 250,
+            "planning_area": "Outram",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 9,
+            "building_coverage_pct": 12.6733,
+            "building_floor_area_ratio": 1.5278,
+            "building_density_per_km2": 45.8366,
+            "mean_building_height_floors": 12.0551,
+            "distance_to_coast_m": 531.25,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 1.3748
+          }
+        },
+        "500": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 269.3836,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.842061,
+            "latitude": 1.282858,
+            "radius_m": 500,
+            "planning_area": "Outram",
+            "park_count": 2,
+            "park_cover_proxy_pct": 3.8579,
+            "building_count": 20,
+            "building_coverage_pct": 6.6421,
+            "building_floor_area_ratio": 0.7211,
+            "building_density_per_km2": 25.4648,
+            "mean_building_height_floors": 10.8568,
+            "distance_to_coast_m": 531.25,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 1.3748
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 163.7693,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.842061,
+            "latitude": 1.282858,
+            "radius_m": 1000,
+            "planning_area": "Outram",
+            "park_count": 9,
+            "park_cover_proxy_pct": 2.3638,
+            "building_count": 80,
+            "building_coverage_pct": 5.0186,
+            "building_floor_area_ratio": 0.625,
+            "building_density_per_km2": 25.4648,
+            "mean_building_height_floors": 12.4546,
+            "distance_to_coast_m": 531.25,
+            "coastal_proximity": 0.468748,
+            "distance_to_cbd_km": 1.3748
+          }
+        }
+      }
+    },
+    {
+      "id": "QT",
+      "name": "Queenstown",
+      "centroid": [
+        103.784567,
+        1.289083
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.66,
+          "interval_c": [
+            32.31,
+            35.34
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.34,
+          "spatial_support": {
+            "weight": 0.5873,
+            "distance": 1.5967,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.784567,
+            "latitude": 1.289083,
+            "radius_m": 250,
+            "planning_area": "Queenstown",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1427.44,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 7.4929
+          }
+        },
+        "500": {
+          "estimate_c": 33.66,
+          "interval_c": [
+            32.31,
+            35.34
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.34,
+          "spatial_support": {
+            "weight": 0.5873,
+            "distance": 1.5967,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.784567,
+            "latitude": 1.289083,
+            "radius_m": 500,
+            "planning_area": "Queenstown",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1427.44,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 7.4929
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 122.7176,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.784567,
+            "latitude": 1.289083,
+            "radius_m": 1000,
+            "planning_area": "Queenstown",
+            "park_count": 1,
+            "park_cover_proxy_pct": 1.7844,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1427.44,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 7.4929
+          }
+        }
+      }
+    },
+    {
+      "id": "RV",
+      "name": "River Valley",
+      "centroid": [
+        103.833978,
+        1.298046
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.46,
+          "interval_c": [
+            32.11,
+            35.14
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.54,
+          "spatial_support": {
+            "weight": 0.7125,
+            "distance": 1.0169,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.833978,
+            "latitude": 1.298046,
+            "radius_m": 250,
+            "planning_area": "River Valley",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 350.38,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 2.1779
+          }
+        },
+        "500": {
+          "estimate_c": 33.62,
+          "interval_c": [
+            32.27,
+            35.3
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.38,
+          "spatial_support": {
+            "weight": 0.7239,
+            "distance": 0.9693,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.833978,
+            "latitude": 1.298046,
+            "radius_m": 500,
+            "planning_area": "River Valley",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 350.38,
+            "coastal_proximity": 0.299243,
+            "distance_to_cbd_km": 2.1779
+          }
+        },
+        "1000": {
+          "estimate_c": 34.38,
+          "interval_c": [
+            33.04,
+            36.07
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.38,
+          "spatial_support": {
+            "weight": 0.0898,
+            "distance": 7.2306,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.833978,
+            "latitude": 1.298046,
+            "radius_m": 1000,
+            "planning_area": "River Valley",
+            "park_count": 4,
+            "park_cover_proxy_pct": 0.1435,
+            "building_count": 7,
+            "building_coverage_pct": 0.2447,
+            "building_floor_area_ratio": 0.0322,
+            "building_density_per_km2": 2.2282,
+            "mean_building_height_floors": 13.1462,
+            "distance_to_coast_m": 350.38,
+            "coastal_proximity": 0.649621,
+            "distance_to_cbd_km": 2.1779
+          }
+        }
+      }
+    },
+    {
+      "id": "RC",
+      "name": "Rochor",
+      "centroid": [
+        103.853284,
+        1.304139
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.58,
+          "interval_c": [
+            32.23,
+            35.26
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.42,
+          "spatial_support": {
+            "weight": 0.7743,
+            "distance": 0.7674,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.853284,
+            "latitude": 1.304139,
+            "radius_m": 250,
+            "planning_area": "Rochor",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 158.77,
+            "coastal_proximity": 0.364933,
+            "distance_to_cbd_km": 1.5492
+          }
+        },
+        "500": {
+          "estimate_c": 34.85,
+          "interval_c": [
+            33.5,
+            36.53
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.85,
+          "spatial_support": {
+            "weight": 0.2949,
+            "distance": 3.6637,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.853284,
+            "latitude": 1.304139,
+            "radius_m": 500,
+            "planning_area": "Rochor",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 31,
+            "building_coverage_pct": 6.4049,
+            "building_floor_area_ratio": 0.6375,
+            "building_density_per_km2": 39.4704,
+            "mean_building_height_floors": 9.9533,
+            "distance_to_coast_m": 158.77,
+            "coastal_proximity": 0.682466,
+            "distance_to_cbd_km": 1.5492
+          }
+        },
+        "1000": {
+          "estimate_c": 34.01,
+          "interval_c": [
+            32.66,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.01,
+          "spatial_support": {
+            "weight": 0.0014,
+            "distance": 19.783,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.853284,
+            "latitude": 1.304139,
+            "radius_m": 1000,
+            "planning_area": "Rochor",
+            "park_count": 6,
+            "park_cover_proxy_pct": 0.3214,
+            "building_count": 75,
+            "building_coverage_pct": 3.5114,
+            "building_floor_area_ratio": 0.3647,
+            "building_density_per_km2": 23.8732,
+            "mean_building_height_floors": 10.3872,
+            "distance_to_coast_m": 158.77,
+            "coastal_proximity": 0.841233,
+            "distance_to_cbd_km": 1.5492
+          }
+        }
+      }
+    },
+    {
+      "id": "SR",
+      "name": "Singapore River",
+      "centroid": [
+        103.84121,
+        1.290115
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.49,
+          "interval_c": [
+            33.14,
+            36.17
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.49,
+          "spatial_support": {
+            "weight": 0.4186,
+            "distance": 2.6125,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.84121,
+            "latitude": 1.290115,
+            "radius_m": 250,
+            "planning_area": "Singapore River",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 2,
+            "building_coverage_pct": 1.2669,
+            "building_floor_area_ratio": 0.19,
+            "building_density_per_km2": 10.1859,
+            "mean_building_height_floors": 14.9978,
+            "distance_to_coast_m": 148.54,
+            "coastal_proximity": 0.40585,
+            "distance_to_cbd_km": 1.1951
+          }
+        },
+        "500": {
+          "estimate_c": 34.59,
+          "interval_c": [
+            33.24,
+            36.27
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.59,
+          "spatial_support": {
+            "weight": 0.2892,
+            "distance": 3.7218,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.84121,
+            "latitude": 1.290115,
+            "radius_m": 500,
+            "planning_area": "Singapore River",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 16,
+            "building_coverage_pct": 2.9399,
+            "building_floor_area_ratio": 0.4104,
+            "building_density_per_km2": 20.3718,
+            "mean_building_height_floors": 13.9601,
+            "distance_to_coast_m": 148.54,
+            "coastal_proximity": 0.702925,
+            "distance_to_cbd_km": 1.1951
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 221.9343,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.84121,
+            "latitude": 1.290115,
+            "radius_m": 1000,
+            "planning_area": "Singapore River",
+            "park_count": 8,
+            "park_cover_proxy_pct": 3.1878,
+            "building_count": 46,
+            "building_coverage_pct": 2.4642,
+            "building_floor_area_ratio": 0.2688,
+            "building_density_per_km2": 14.6423,
+            "mean_building_height_floors": 10.9087,
+            "distance_to_coast_m": 148.54,
+            "coastal_proximity": 0.851463,
+            "distance_to_cbd_km": 1.1951
+          }
+        }
+      }
+    },
+    {
+      "id": "SI",
+      "name": "Southern Islands",
+      "centroid": [
+        103.835848,
+        1.242999
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.35,
+          "interval_c": [
+            33.01,
+            36.04
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.35,
+          "spatial_support": {
+            "weight": 0.9319,
+            "distance": 0.2115,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.835848,
+            "latitude": 1.242999,
+            "radius_m": 250,
+            "planning_area": "Southern Islands",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 407.41,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 5.5531
+          }
+        },
+        "500": {
+          "estimate_c": 34.43,
+          "interval_c": [
+            33.08,
+            36.12
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.43,
+          "spatial_support": {
+            "weight": 0.8209,
+            "distance": 0.5919,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.835848,
+            "latitude": 1.242999,
+            "radius_m": 500,
+            "planning_area": "Southern Islands",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 407.41,
+            "coastal_proximity": 0.185187,
+            "distance_to_cbd_km": 5.5531
+          }
+        },
+        "1000": {
+          "estimate_c": 34.54,
+          "interval_c": [
+            33.19,
+            36.22
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.54,
+          "spatial_support": {
+            "weight": 0.6386,
+            "distance": 1.3456,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.835848,
+            "latitude": 1.242999,
+            "radius_m": 1000,
+            "planning_area": "Southern Islands",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 407.41,
+            "coastal_proximity": 0.592594,
+            "distance_to_cbd_km": 5.5531
+          }
+        }
+      }
+    },
+    {
+      "id": "SV",
+      "name": "Straits View",
+      "centroid": [
+        103.858773,
+        1.271252
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.8,
+          "interval_c": [
+            32.45,
+            35.48
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.2,
+          "spatial_support": {
+            "weight": 0.7984,
+            "distance": 0.6753,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.858773,
+            "latitude": 1.271252,
+            "radius_m": 250,
+            "planning_area": "Straits View",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 388.92,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 2.2463
+          }
+        },
+        "500": {
+          "estimate_c": 33.94,
+          "interval_c": [
+            32.6,
+            35.63
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.06,
+          "spatial_support": {
+            "weight": 0.7294,
+            "distance": 0.9465,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.858773,
+            "latitude": 1.271252,
+            "radius_m": 500,
+            "planning_area": "Straits View",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 388.92,
+            "coastal_proximity": 0.222158,
+            "distance_to_cbd_km": 2.2463
+          }
+        },
+        "1000": {
+          "estimate_c": 34.17,
+          "interval_c": [
+            32.83,
+            35.86
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.17,
+          "spatial_support": {
+            "weight": 0.7625,
+            "distance": 0.8135,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.858773,
+            "latitude": 1.271252,
+            "radius_m": 1000,
+            "planning_area": "Straits View",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 388.92,
+            "coastal_proximity": 0.611079,
+            "distance_to_cbd_km": 2.2463
+          }
+        }
+      }
+    },
+    {
+      "id": "TN",
+      "name": "Tanglin",
+      "centroid": [
+        103.817595,
+        1.308375
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.38,
+          "interval_c": [
+            32.03,
+            35.06
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.62,
+          "spatial_support": {
+            "weight": 0.6849,
+            "distance": 1.1354,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.817595,
+            "latitude": 1.308375,
+            "radius_m": 250,
+            "planning_area": "Tanglin",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 715.41,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 4.3181
+          }
+        },
+        "500": {
+          "estimate_c": 33.38,
+          "interval_c": [
+            32.03,
+            35.06
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.62,
+          "spatial_support": {
+            "weight": 0.6849,
+            "distance": 1.1354,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.817595,
+            "latitude": 1.308375,
+            "radius_m": 500,
+            "planning_area": "Tanglin",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 715.41,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 4.3181
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 522.9026,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.817595,
+            "latitude": 1.308375,
+            "radius_m": 1000,
+            "planning_area": "Tanglin",
+            "park_count": 3,
+            "park_cover_proxy_pct": 7.4451,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 715.41,
+            "coastal_proximity": 0.284586,
+            "distance_to_cbd_km": 4.3181
+          }
+        }
+      }
+    },
+    {
+      "id": "TP",
+      "name": "Toa Payoh",
+      "centroid": [
+        103.861026,
+        1.336684
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.73,
+          "interval_c": [
+            33.39,
+            36.42
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.73,
+          "spatial_support": {
+            "weight": 0.3176,
+            "distance": 3.4406,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.861026,
+            "latitude": 1.336684,
+            "radius_m": 250,
+            "planning_area": "Toa Payoh",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 10,
+            "building_coverage_pct": 7.5992,
+            "building_floor_area_ratio": 0.7241,
+            "building_density_per_km2": 50.9296,
+            "mean_building_height_floors": 9.529,
+            "distance_to_coast_m": 684.13,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 5.2585
+          }
+        },
+        "500": {
+          "estimate_c": 34.51,
+          "interval_c": [
+            33.17,
+            36.2
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.51,
+          "spatial_support": {
+            "weight": 0.1911,
+            "distance": 4.9646,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.861026,
+            "latitude": 1.336684,
+            "radius_m": 500,
+            "planning_area": "Toa Payoh",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 50,
+            "building_coverage_pct": 8.4298,
+            "building_floor_area_ratio": 0.8909,
+            "building_density_per_km2": 63.662,
+            "mean_building_height_floors": 10.5681,
+            "distance_to_coast_m": 684.13,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 5.2585
+          }
+        },
+        "1000": {
+          "estimate_c": 34.78,
+          "interval_c": [
+            33.43,
+            36.46
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.78,
+          "spatial_support": {
+            "weight": 0.2084,
+            "distance": 4.7044,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.861026,
+            "latitude": 1.336684,
+            "radius_m": 1000,
+            "planning_area": "Toa Payoh",
+            "park_count": 1,
+            "park_cover_proxy_pct": 0.0255,
+            "building_count": 190,
+            "building_coverage_pct": 7.3721,
+            "building_floor_area_ratio": 0.8313,
+            "building_density_per_km2": 60.4789,
+            "mean_building_height_floors": 11.2765,
+            "distance_to_coast_m": 684.13,
+            "coastal_proximity": 0.315875,
+            "distance_to_cbd_km": 5.2585
+          }
+        }
+      }
+    },
+    {
+      "id": "BD",
+      "name": "Bedok",
+      "centroid": [
+        103.928409,
+        1.324047
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.46,
+          "interval_c": [
+            33.11,
+            36.14
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.46,
+          "spatial_support": {
+            "weight": 0.1077,
+            "distance": 6.6856,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.928409,
+            "latitude": 1.324047,
+            "radius_m": 250,
+            "planning_area": "Bedok",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 12,
+            "building_coverage_pct": 12.7693,
+            "building_floor_area_ratio": 0.8444,
+            "building_density_per_km2": 61.1155,
+            "mean_building_height_floors": 6.6128,
+            "distance_to_coast_m": 2082.12,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 9.2916
+          }
+        },
+        "500": {
+          "estimate_c": 34.6,
+          "interval_c": [
+            33.25,
+            36.28
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.6,
+          "spatial_support": {
+            "weight": 0.1756,
+            "distance": 5.2185,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.928409,
+            "latitude": 1.324047,
+            "radius_m": 500,
+            "planning_area": "Bedok",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 49,
+            "building_coverage_pct": 9.8883,
+            "building_floor_area_ratio": 0.7793,
+            "building_density_per_km2": 62.3887,
+            "mean_building_height_floors": 7.8815,
+            "distance_to_coast_m": 2082.12,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 9.2916
+          }
+        },
+        "1000": {
+          "estimate_c": 34.02,
+          "interval_c": [
+            32.67,
+            35.7
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.02,
+          "spatial_support": {
+            "weight": 0.0044,
+            "distance": 16.303,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.928409,
+            "latitude": 1.324047,
+            "radius_m": 1000,
+            "planning_area": "Bedok",
+            "park_count": 6,
+            "park_cover_proxy_pct": 0.211,
+            "building_count": 222,
+            "building_coverage_pct": 10.3823,
+            "building_floor_area_ratio": 1.0207,
+            "building_density_per_km2": 70.6648,
+            "mean_building_height_floors": 9.8311,
+            "distance_to_coast_m": 2082.12,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 9.2916
+          }
+        }
+      }
+    },
+    {
+      "id": "CH",
+      "name": "Changi",
+      "centroid": [
+        103.99782,
+        1.350316
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.36,
+          "interval_c": [
+            32.02,
+            35.05
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.64,
+          "spatial_support": {
+            "weight": 0.8506,
+            "distance": 0.4856,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.99782,
+            "latitude": 1.350316,
+            "radius_m": 250,
+            "planning_area": "Changi",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 2357.67,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 17.5356
+          }
+        },
+        "500": {
+          "estimate_c": 33.36,
+          "interval_c": [
+            32.02,
+            35.05
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.64,
+          "spatial_support": {
+            "weight": 0.8506,
+            "distance": 0.4856,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.99782,
+            "latitude": 1.350316,
+            "radius_m": 500,
+            "planning_area": "Changi",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 2357.67,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 17.5356
+          }
+        },
+        "1000": {
+          "estimate_c": 33.36,
+          "interval_c": [
+            32.02,
+            35.05
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.64,
+          "spatial_support": {
+            "weight": 0.8506,
+            "distance": 0.4856,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.99782,
+            "latitude": 1.350316,
+            "radius_m": 1000,
+            "planning_area": "Changi",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 2357.67,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 17.5356
+          }
+        }
+      }
+    },
+    {
+      "id": "CB",
+      "name": "Changi Bay",
+      "centroid": [
+        104.026357,
+        1.327423
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.07,
+          "interval_c": [
+            32.73,
+            35.76
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.07,
+          "spatial_support": {
+            "weight": 0.3994,
+            "distance": 2.7532,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 104.026357,
+            "latitude": 1.327423,
+            "radius_m": 250,
+            "planning_area": null,
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 329.33,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 19.8224
+          }
+        },
+        "500": {
+          "estimate_c": 34.17,
+          "interval_c": [
+            32.82,
+            35.86
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.17,
+          "spatial_support": {
+            "weight": 0.3759,
+            "distance": 2.9357,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 104.026357,
+            "latitude": 1.327423,
+            "radius_m": 500,
+            "planning_area": null,
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 329.33,
+            "coastal_proximity": 0.341348,
+            "distance_to_cbd_km": 19.8224
+          }
+        },
+        "1000": {
+          "estimate_c": 34.25,
+          "interval_c": [
+            32.91,
+            35.94
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.25,
+          "spatial_support": {
+            "weight": 0.3562,
+            "distance": 3.0972,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 104.026357,
+            "latitude": 1.327423,
+            "radius_m": 1000,
+            "planning_area": null,
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 329.33,
+            "coastal_proximity": 0.670674,
+            "distance_to_cbd_km": 19.8224
+          }
+        }
+      }
+    },
+    {
+      "id": "PR",
+      "name": "Pasir Ris",
+      "centroid": [
+        103.948287,
+        1.378618
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.34,
+          "interval_c": [
+            32.99,
+            36.02
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.34,
+          "spatial_support": {
+            "weight": 0.0794,
+            "distance": 7.5998,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.948287,
+            "latitude": 1.378618,
+            "radius_m": 250,
+            "planning_area": "Pasir Ris",
+            "park_count": 1,
+            "park_cover_proxy_pct": 0.0213,
+            "building_count": 10,
+            "building_coverage_pct": 14.7593,
+            "building_floor_area_ratio": 0.8394,
+            "building_density_per_km2": 50.9296,
+            "mean_building_height_floors": 5.6869,
+            "distance_to_coast_m": 494.81,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 14.5319
+          }
+        },
+        "500": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 44.012,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.948287,
+            "latitude": 1.378618,
+            "radius_m": 500,
+            "planning_area": "Pasir Ris",
+            "park_count": 1,
+            "park_cover_proxy_pct": 0.6628,
+            "building_count": 34,
+            "building_coverage_pct": 6.6618,
+            "building_floor_area_ratio": 0.5396,
+            "building_density_per_km2": 43.2901,
+            "mean_building_height_floors": 8.1004,
+            "distance_to_coast_m": 494.81,
+            "coastal_proximity": 0.01039,
+            "distance_to_cbd_km": 14.5319
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 723.7706,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.948287,
+            "latitude": 1.378618,
+            "radius_m": 1000,
+            "planning_area": "Pasir Ris",
+            "park_count": 3,
+            "park_cover_proxy_pct": 10.2853,
+            "building_count": 255,
+            "building_coverage_pct": 6.5198,
+            "building_floor_area_ratio": 0.5515,
+            "building_density_per_km2": 81.169,
+            "mean_building_height_floors": 8.4582,
+            "distance_to_coast_m": 494.81,
+            "coastal_proximity": 0.505195,
+            "distance_to_cbd_km": 14.5319
+          }
+        }
+      }
+    },
+    {
+      "id": "PL",
+      "name": "Paya Lebar",
+      "centroid": [
+        103.914779,
+        1.359398
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.28,
+          "interval_c": [
+            31.93,
+            34.96
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.72,
+          "spatial_support": {
+            "weight": 0.5526,
+            "distance": 1.7792,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.914779,
+            "latitude": 1.359398,
+            "radius_m": 250,
+            "planning_area": "Paya Lebar",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1189.59,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 10.3852
+          }
+        },
+        "500": {
+          "estimate_c": 33.28,
+          "interval_c": [
+            31.93,
+            34.96
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.72,
+          "spatial_support": {
+            "weight": 0.5526,
+            "distance": 1.7792,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.914779,
+            "latitude": 1.359398,
+            "radius_m": 500,
+            "planning_area": "Paya Lebar",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1189.59,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 10.3852
+          }
+        },
+        "1000": {
+          "estimate_c": 33.28,
+          "interval_c": [
+            31.93,
+            34.96
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.72,
+          "spatial_support": {
+            "weight": 0.5526,
+            "distance": 1.7792,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.914779,
+            "latitude": 1.359398,
+            "radius_m": 1000,
+            "planning_area": "Paya Lebar",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1189.59,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 10.3852
+          }
+        }
+      }
+    },
+    {
+      "id": "TM",
+      "name": "Tampines",
+      "centroid": [
+        103.954029,
+        1.343786
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.05,
+          "interval_c": [
+            32.7,
+            35.74
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.05,
+          "spatial_support": {
+            "weight": 0.0121,
+            "distance": 13.2411,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.954029,
+            "latitude": 1.343786,
+            "radius_m": 250,
+            "planning_area": "Tampines",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 21,
+            "building_coverage_pct": 17.0284,
+            "building_floor_area_ratio": 1.6594,
+            "building_density_per_km2": 106.9521,
+            "mean_building_height_floors": 9.7452,
+            "distance_to_coast_m": 1416.23,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 12.8124
+          }
+        },
+        "500": {
+          "estimate_c": 34.09,
+          "interval_c": [
+            32.74,
+            35.78
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.09,
+          "spatial_support": {
+            "weight": 0.0213,
+            "distance": 11.5476,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.954029,
+            "latitude": 1.343786,
+            "radius_m": 500,
+            "planning_area": "Tampines",
+            "park_count": 1,
+            "park_cover_proxy_pct": 0.0589,
+            "building_count": 78,
+            "building_coverage_pct": 14.2142,
+            "building_floor_area_ratio": 1.3868,
+            "building_density_per_km2": 99.3127,
+            "mean_building_height_floors": 9.7562,
+            "distance_to_coast_m": 1416.23,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 12.8124
+          }
+        },
+        "1000": {
+          "estimate_c": 34.06,
+          "interval_c": [
+            32.72,
+            35.75
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.06,
+          "spatial_support": {
+            "weight": 0.0149,
+            "distance": 12.621,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.954029,
+            "latitude": 1.343786,
+            "radius_m": 1000,
+            "planning_area": "Tampines",
+            "park_count": 8,
+            "park_cover_proxy_pct": 0.1688,
+            "building_count": 176,
+            "building_coverage_pct": 8.1498,
+            "building_floor_area_ratio": 0.7917,
+            "building_density_per_km2": 56.0225,
+            "mean_building_height_floors": 9.7147,
+            "distance_to_coast_m": 1416.23,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 12.8124
+          }
+        }
+      }
+    },
+    {
+      "id": "CC",
+      "name": "Central Water Catchment",
+      "centroid": [
+        103.801196,
+        1.376651
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 32.96,
+          "interval_c": [
+            31.61,
+            34.65
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -1.04,
+          "spatial_support": {
+            "weight": 0.509,
+            "distance": 2.0256,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.801196,
+            "latitude": 1.376651,
+            "radius_m": 250,
+            "planning_area": "Central Water Catchment",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 2624.37,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 11.1401
+          }
+        },
+        "500": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 4624.2789,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.801196,
+            "latitude": 1.376651,
+            "radius_m": 500,
+            "planning_area": "Central Water Catchment",
+            "park_count": 1,
+            "park_cover_proxy_pct": 65.455,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 2624.37,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 11.1401
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 7066.6557,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.801196,
+            "latitude": 1.376651,
+            "radius_m": 1000,
+            "planning_area": "Central Water Catchment",
+            "park_count": 1,
+            "park_cover_proxy_pct": 100.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 2624.37,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 11.1401
+          }
+        }
+      }
+    },
+    {
+      "id": "LK",
+      "name": "Lim Chu Kang",
+      "centroid": [
+        103.719285,
+        1.430643
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 32.59,
+          "interval_c": [
+            31.24,
+            34.27
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -1.41,
+          "spatial_support": {
+            "weight": 0.5792,
+            "distance": 1.6385,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.719285,
+            "latitude": 1.430643,
+            "radius_m": 250,
+            "planning_area": "Lim Chu Kang",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 2099.67,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 21.4745
+          }
+        },
+        "500": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 87.1563,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.719285,
+            "latitude": 1.430643,
+            "radius_m": 500,
+            "planning_area": "Lim Chu Kang",
+            "park_count": 1,
+            "park_cover_proxy_pct": 1.2802,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 2099.67,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 21.4745
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 255.4434,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.719285,
+            "latitude": 1.430643,
+            "radius_m": 1000,
+            "planning_area": "Lim Chu Kang",
+            "park_count": 1,
+            "park_cover_proxy_pct": 3.6616,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 2099.67,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 21.4745
+          }
+        }
+      }
+    },
+    {
+      "id": "MD",
+      "name": "Mandai",
+      "centroid": [
+        103.80246,
+        1.423623
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 32.9,
+          "interval_c": [
+            31.56,
+            34.59
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -1.1,
+          "spatial_support": {
+            "weight": 0.4952,
+            "distance": 2.1084,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.80246,
+            "latitude": 1.423623,
+            "radius_m": 250,
+            "planning_area": "Mandai",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 540.41,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 15.8162
+          }
+        },
+        "500": {
+          "estimate_c": 32.9,
+          "interval_c": [
+            31.56,
+            34.59
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -1.1,
+          "spatial_support": {
+            "weight": 0.4952,
+            "distance": 2.1084,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.80246,
+            "latitude": 1.423623,
+            "radius_m": 500,
+            "planning_area": "Mandai",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 540.41,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 15.8162
+          }
+        },
+        "1000": {
+          "estimate_c": 33.62,
+          "interval_c": [
+            32.28,
+            35.31
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.38,
+          "spatial_support": {
+            "weight": 0.4256,
+            "distance": 2.5629,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.80246,
+            "latitude": 1.423623,
+            "radius_m": 1000,
+            "planning_area": "Mandai",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 16,
+            "building_coverage_pct": 0.7185,
+            "building_floor_area_ratio": 0.077,
+            "building_density_per_km2": 5.093,
+            "mean_building_height_floors": 10.722,
+            "distance_to_coast_m": 540.41,
+            "coastal_proximity": 0.459589,
+            "distance_to_cbd_km": 15.8162
+          }
+        }
+      }
+    },
+    {
+      "id": "SB",
+      "name": "Sembawang",
+      "centroid": [
+        103.818828,
+        1.455747
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.2,
+          "interval_c": [
+            32.86,
+            35.89
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.2,
+          "spatial_support": {
+            "weight": 0.2926,
+            "distance": 3.687,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.818828,
+            "latitude": 1.455747,
+            "radius_m": 250,
+            "planning_area": "Sembawang",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 10,
+            "building_coverage_pct": 6.3728,
+            "building_floor_area_ratio": 0.7783,
+            "building_density_per_km2": 50.9296,
+            "mean_building_height_floors": 12.2127,
+            "distance_to_coast_m": 716.63,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 18.7652
+          }
+        },
+        "500": {
+          "estimate_c": 34.15,
+          "interval_c": [
+            32.8,
+            35.83
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.15,
+          "spatial_support": {
+            "weight": 0.0726,
+            "distance": 7.8701,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.818828,
+            "latitude": 1.455747,
+            "radius_m": 500,
+            "planning_area": "Sembawang",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 66,
+            "building_coverage_pct": 10.201,
+            "building_floor_area_ratio": 1.1522,
+            "building_density_per_km2": 84.0338,
+            "mean_building_height_floors": 11.2948,
+            "distance_to_coast_m": 716.63,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 18.7652
+          }
+        },
+        "1000": {
+          "estimate_c": 34.41,
+          "interval_c": [
+            33.06,
+            36.09
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.41,
+          "spatial_support": {
+            "weight": 0.1953,
+            "distance": 4.8994,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.818828,
+            "latitude": 1.455747,
+            "radius_m": 1000,
+            "planning_area": "Sembawang",
+            "park_count": 1,
+            "park_cover_proxy_pct": 0.017,
+            "building_count": 186,
+            "building_coverage_pct": 7.4945,
+            "building_floor_area_ratio": 0.8671,
+            "building_density_per_km2": 59.2056,
+            "mean_building_height_floors": 11.5695,
+            "distance_to_coast_m": 716.63,
+            "coastal_proximity": 0.283373,
+            "distance_to_cbd_km": 18.7652
+          }
+        }
+      }
+    },
+    {
+      "id": "SM",
+      "name": "Simpang",
+      "centroid": [
+        103.852919,
+        1.444085
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 32.97,
+          "interval_c": [
+            31.62,
+            34.65
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -1.03,
+          "spatial_support": {
+            "weight": 0.4319,
+            "distance": 2.5189,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.852919,
+            "latitude": 1.444085,
+            "radius_m": 250,
+            "planning_area": "Simpang",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 562.45,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 17.1038
+          }
+        },
+        "500": {
+          "estimate_c": 32.97,
+          "interval_c": [
+            31.62,
+            34.65
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -1.03,
+          "spatial_support": {
+            "weight": 0.4319,
+            "distance": 2.5189,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.852919,
+            "latitude": 1.444085,
+            "radius_m": 500,
+            "planning_area": "Simpang",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 562.45,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 17.1038
+          }
+        },
+        "1000": {
+          "estimate_c": 32.93,
+          "interval_c": [
+            31.58,
+            34.61
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -1.07,
+          "spatial_support": {
+            "weight": 0.5238,
+            "distance": 1.9397,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.852919,
+            "latitude": 1.444085,
+            "radius_m": 1000,
+            "planning_area": "Simpang",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 562.45,
+            "coastal_proximity": 0.437549,
+            "distance_to_cbd_km": 17.1038
+          }
+        }
+      }
+    },
+    {
+      "id": "SK",
+      "name": "Sungei Kadut",
+      "centroid": [
+        103.757461,
+        1.418126
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 32.71,
+          "interval_c": [
+            31.36,
+            34.39
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -1.29,
+          "spatial_support": {
+            "weight": 0.5679,
+            "distance": 1.6973,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.757461,
+            "latitude": 1.418126,
+            "radius_m": 250,
+            "planning_area": "Sungei Kadut",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1544.13,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 17.6769
+          }
+        },
+        "500": {
+          "estimate_c": 34.05,
+          "interval_c": [
+            32.7,
+            35.73
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.05,
+          "spatial_support": {
+            "weight": 0.0107,
+            "distance": 13.613,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.757461,
+            "latitude": 1.418126,
+            "radius_m": 500,
+            "planning_area": "Sungei Kadut",
+            "park_count": 1,
+            "park_cover_proxy_pct": 0.2344,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1544.13,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 17.6769
+          }
+        },
+        "1000": {
+          "estimate_c": 34.38,
+          "interval_c": [
+            33.04,
+            36.07
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.38,
+          "spatial_support": {
+            "weight": 0.2131,
+            "distance": 4.6375,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.757461,
+            "latitude": 1.418126,
+            "radius_m": 1000,
+            "planning_area": "Sungei Kadut",
+            "park_count": 1,
+            "park_cover_proxy_pct": 0.0883,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1544.13,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 17.6769
+          }
+        }
+      }
+    },
+    {
+      "id": "WD",
+      "name": "Woodlands",
+      "centroid": [
+        103.787705,
+        1.440681
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.13,
+          "interval_c": [
+            32.79,
+            35.82
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.13,
+          "spatial_support": {
+            "weight": 0.051,
+            "distance": 8.9295,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.787705,
+            "latitude": 1.440681,
+            "radius_m": 250,
+            "planning_area": "Woodlands",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 17,
+            "building_coverage_pct": 11.4971,
+            "building_floor_area_ratio": 1.3033,
+            "building_density_per_km2": 86.5803,
+            "mean_building_height_floors": 11.3363,
+            "distance_to_coast_m": 1666.2,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 18.1863
+          }
+        },
+        "500": {
+          "estimate_c": 34.23,
+          "interval_c": [
+            32.88,
+            35.91
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.23,
+          "spatial_support": {
+            "weight": 0.1004,
+            "distance": 6.8947,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.787705,
+            "latitude": 1.440681,
+            "radius_m": 500,
+            "planning_area": "Woodlands",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 57,
+            "building_coverage_pct": 11.168,
+            "building_floor_area_ratio": 0.9796,
+            "building_density_per_km2": 72.5747,
+            "mean_building_height_floors": 8.7716,
+            "distance_to_coast_m": 1666.2,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 18.1863
+          }
+        },
+        "1000": {
+          "estimate_c": 34.18,
+          "interval_c": [
+            32.83,
+            35.87
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.18,
+          "spatial_support": {
+            "weight": 0.0792,
+            "distance": 7.6063,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.787705,
+            "latitude": 1.440681,
+            "radius_m": 1000,
+            "planning_area": "Woodlands",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 254,
+            "building_coverage_pct": 11.0713,
+            "building_floor_area_ratio": 1.0723,
+            "building_density_per_km2": 80.8507,
+            "mean_building_height_floors": 9.6853,
+            "distance_to_coast_m": 1666.2,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 18.1863
+          }
+        }
+      }
+    },
+    {
+      "id": "YS",
+      "name": "Yishun",
+      "centroid": [
+        103.837118,
+        1.415039
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.03,
+          "interval_c": [
+            32.69,
+            35.72
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.03,
+          "spatial_support": {
+            "weight": 0.0078,
+            "distance": 14.578,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.837118,
+            "latitude": 1.415039,
+            "radius_m": 250,
+            "planning_area": "Yishun",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 24,
+            "building_coverage_pct": 16.8248,
+            "building_floor_area_ratio": 1.803,
+            "building_density_per_km2": 122.231,
+            "mean_building_height_floors": 10.7162,
+            "distance_to_coast_m": 2333.84,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 13.9714
+          }
+        },
+        "500": {
+          "estimate_c": 34.06,
+          "interval_c": [
+            32.71,
+            35.74
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.06,
+          "spatial_support": {
+            "weight": 0.0144,
+            "distance": 12.7297,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.837118,
+            "latitude": 1.415039,
+            "radius_m": 500,
+            "planning_area": "Yishun",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 91,
+            "building_coverage_pct": 15.4028,
+            "building_floor_area_ratio": 1.5372,
+            "building_density_per_km2": 115.8648,
+            "mean_building_height_floors": 9.9798,
+            "distance_to_coast_m": 2333.84,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 13.9714
+          }
+        },
+        "1000": {
+          "estimate_c": 34.2,
+          "interval_c": [
+            32.86,
+            35.89
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.2,
+          "spatial_support": {
+            "weight": 0.1113,
+            "distance": 6.5852,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.837118,
+            "latitude": 1.415039,
+            "radius_m": 1000,
+            "planning_area": "Yishun",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 245,
+            "building_coverage_pct": 9.446,
+            "building_floor_area_ratio": 0.9907,
+            "building_density_per_km2": 77.9859,
+            "mean_building_height_floors": 10.4875,
+            "distance_to_coast_m": 2333.84,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 13.9714
+          }
+        }
+      }
+    },
+    {
+      "id": "AM",
+      "name": "Ang Mo Kio",
+      "centroid": [
+        103.842098,
+        1.380094
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.08,
+          "interval_c": [
+            32.74,
+            35.77
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.08,
+          "spatial_support": {
+            "weight": 0.0194,
+            "distance": 11.8202,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.842098,
+            "latitude": 1.380094,
+            "radius_m": 250,
+            "planning_area": "Ang Mo Kio",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 20,
+            "building_coverage_pct": 15.9492,
+            "building_floor_area_ratio": 1.4763,
+            "building_density_per_km2": 101.8592,
+            "mean_building_height_floors": 9.2564,
+            "distance_to_coast_m": 1612.09,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 10.0479
+          }
+        },
+        "500": {
+          "estimate_c": 34.34,
+          "interval_c": [
+            33.0,
+            36.03
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.34,
+          "spatial_support": {
+            "weight": 0.128,
+            "distance": 6.1663,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.842098,
+            "latitude": 1.380094,
+            "radius_m": 500,
+            "planning_area": "Ang Mo Kio",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 52,
+            "building_coverage_pct": 9.7835,
+            "building_floor_area_ratio": 1.078,
+            "building_density_per_km2": 66.2085,
+            "mean_building_height_floors": 11.0183,
+            "distance_to_coast_m": 1612.09,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 10.0479
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 182.3796,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.842098,
+            "latitude": 1.380094,
+            "radius_m": 1000,
+            "planning_area": "Ang Mo Kio",
+            "park_count": 7,
+            "park_cover_proxy_pct": 2.6272,
+            "building_count": 100,
+            "building_coverage_pct": 4.8006,
+            "building_floor_area_ratio": 0.4803,
+            "building_density_per_km2": 31.831,
+            "mean_building_height_floors": 10.0057,
+            "distance_to_coast_m": 1612.09,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 10.0479
+          }
+        }
+      }
+    },
+    {
+      "id": "HG",
+      "name": "Hougang",
+      "centroid": [
+        103.8898,
+        1.363638
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.1,
+          "interval_c": [
+            32.75,
+            35.78
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.1,
+          "spatial_support": {
+            "weight": 0.0233,
+            "distance": 11.2808,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.8898,
+            "latitude": 1.363638,
+            "radius_m": 250,
+            "planning_area": "Hougang",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 19,
+            "building_coverage_pct": 13.3261,
+            "building_floor_area_ratio": 1.6314,
+            "building_density_per_km2": 96.7662,
+            "mean_building_height_floors": 12.2421,
+            "distance_to_coast_m": 1621.78,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 9.1788
+          }
+        },
+        "500": {
+          "estimate_c": 34.53,
+          "interval_c": [
+            33.18,
+            36.21
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.53,
+          "spatial_support": {
+            "weight": 0.2467,
+            "distance": 4.1985,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.8898,
+            "latitude": 1.363638,
+            "radius_m": 500,
+            "planning_area": "Hougang",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 46,
+            "building_coverage_pct": 7.6714,
+            "building_floor_area_ratio": 0.8651,
+            "building_density_per_km2": 58.569,
+            "mean_building_height_floors": 11.2764,
+            "distance_to_coast_m": 1621.78,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 9.1788
+          }
+        },
+        "1000": {
+          "estimate_c": 34.12,
+          "interval_c": [
+            32.77,
+            35.8
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.12,
+          "spatial_support": {
+            "weight": 0.028,
+            "distance": 10.7255,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.8898,
+            "latitude": 1.363638,
+            "radius_m": 1000,
+            "planning_area": "Hougang",
+            "park_count": 5,
+            "park_cover_proxy_pct": 0.1438,
+            "building_count": 166,
+            "building_coverage_pct": 7.5562,
+            "building_floor_area_ratio": 0.7525,
+            "building_density_per_km2": 52.8394,
+            "mean_building_height_floors": 9.959,
+            "distance_to_coast_m": 1621.78,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 9.1788
+          }
+        }
+      }
+    },
+    {
+      "id": "NE",
+      "name": "North-Eastern Islands",
+      "centroid": [
+        104.034823,
+        1.401641
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.61,
+          "interval_c": [
+            32.26,
+            35.29
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.39,
+          "spatial_support": {
+            "weight": 0.4396,
+            "distance": 2.4656,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 104.034823,
+            "latitude": 1.401641,
+            "radius_m": 250,
+            "planning_area": "North-Eastern Islands",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 659.95,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 23.8031
+          }
+        },
+        "500": {
+          "estimate_c": 33.61,
+          "interval_c": [
+            32.26,
+            35.29
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.39,
+          "spatial_support": {
+            "weight": 0.4396,
+            "distance": 2.4656,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 104.034823,
+            "latitude": 1.401641,
+            "radius_m": 500,
+            "planning_area": "North-Eastern Islands",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 659.95,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 23.8031
+          }
+        },
+        "1000": {
+          "estimate_c": 33.74,
+          "interval_c": [
+            32.4,
+            35.43
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.26,
+          "spatial_support": {
+            "weight": 0.4112,
+            "distance": 2.6664,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 104.034823,
+            "latitude": 1.401641,
+            "radius_m": 1000,
+            "planning_area": "North-Eastern Islands",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 659.95,
+            "coastal_proximity": 0.340052,
+            "distance_to_cbd_km": 23.8031
+          }
+        }
+      }
+    },
+    {
+      "id": "PG",
+      "name": "Punggol",
+      "centroid": [
+        103.910046,
+        1.405365
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.66,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0009,
+            "distance": 20.9512,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.910046,
+            "latitude": 1.405365,
+            "radius_m": 250,
+            "planning_area": "Punggol",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 36,
+            "building_coverage_pct": 20.8154,
+            "building_floor_area_ratio": 2.1992,
+            "building_density_per_km2": 183.3465,
+            "mean_building_height_floors": 10.5654,
+            "distance_to_coast_m": 1179.51,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 14.3347
+          }
+        },
+        "500": {
+          "estimate_c": 34.03,
+          "interval_c": [
+            32.69,
+            35.72
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.03,
+          "spatial_support": {
+            "weight": 0.008,
+            "distance": 14.4708,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.910046,
+            "latitude": 1.405365,
+            "radius_m": 500,
+            "planning_area": "Punggol",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 103,
+            "building_coverage_pct": 17.5303,
+            "building_floor_area_ratio": 1.5822,
+            "building_density_per_km2": 131.1437,
+            "mean_building_height_floors": 9.0253,
+            "distance_to_coast_m": 1179.51,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 14.3347
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 92.6592,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.910046,
+            "latitude": 1.405365,
+            "radius_m": 1000,
+            "planning_area": "Punggol",
+            "park_count": 2,
+            "park_cover_proxy_pct": 1.3423,
+            "building_count": 299,
+            "building_coverage_pct": 13.4057,
+            "building_floor_area_ratio": 1.2261,
+            "building_density_per_km2": 95.1747,
+            "mean_building_height_floors": 9.1464,
+            "distance_to_coast_m": 1179.51,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 14.3347
+          }
+        }
+      }
+    },
+    {
+      "id": "SL",
+      "name": "Seletar",
+      "centroid": [
+        103.87707,
+        1.41438
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 32.82,
+          "interval_c": [
+            31.47,
+            34.51
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -1.18,
+          "spatial_support": {
+            "weight": 0.5508,
+            "distance": 1.7893,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.87707,
+            "latitude": 1.41438,
+            "radius_m": 250,
+            "planning_area": "Seletar",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1369.44,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 14.0799
+          }
+        },
+        "500": {
+          "estimate_c": 32.82,
+          "interval_c": [
+            31.47,
+            34.51
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -1.18,
+          "spatial_support": {
+            "weight": 0.5508,
+            "distance": 1.7893,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.87707,
+            "latitude": 1.41438,
+            "radius_m": 500,
+            "planning_area": "Seletar",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1369.44,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 14.0799
+          }
+        },
+        "1000": {
+          "estimate_c": 32.82,
+          "interval_c": [
+            31.47,
+            34.51
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -1.18,
+          "spatial_support": {
+            "weight": 0.5508,
+            "distance": 1.7893,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.87707,
+            "latitude": 1.41438,
+            "radius_m": 1000,
+            "planning_area": "Seletar",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1369.44,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 14.0799
+          }
+        }
+      }
+    },
+    {
+      "id": "SE",
+      "name": "Sengkang",
+      "centroid": [
+        103.887708,
+        1.391279
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0004,
+            "distance": 23.6931,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.887708,
+            "latitude": 1.391279,
+            "radius_m": 250,
+            "planning_area": "Sengkang",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 37,
+            "building_coverage_pct": 20.8369,
+            "building_floor_area_ratio": 2.8152,
+            "building_density_per_km2": 188.4395,
+            "mean_building_height_floors": 13.5107,
+            "distance_to_coast_m": 792.45,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 11.914
+          }
+        },
+        "500": {
+          "estimate_c": 34.02,
+          "interval_c": [
+            32.67,
+            35.7
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.02,
+          "spatial_support": {
+            "weight": 0.0036,
+            "distance": 16.8704,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.887708,
+            "latitude": 1.391279,
+            "radius_m": 500,
+            "planning_area": "Sengkang",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 111,
+            "building_coverage_pct": 16.8552,
+            "building_floor_area_ratio": 2.1153,
+            "building_density_per_km2": 141.3296,
+            "mean_building_height_floors": 12.5497,
+            "distance_to_coast_m": 792.45,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 11.914
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 119.8816,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.887708,
+            "latitude": 1.391279,
+            "radius_m": 1000,
+            "planning_area": "Sengkang",
+            "park_count": 1,
+            "park_cover_proxy_pct": 1.7318,
+            "building_count": 293,
+            "building_coverage_pct": 11.9227,
+            "building_floor_area_ratio": 1.3447,
+            "building_density_per_km2": 93.2648,
+            "mean_building_height_floors": 11.2785,
+            "distance_to_coast_m": 792.45,
+            "coastal_proximity": 0.207554,
+            "distance_to_cbd_km": 11.914
+          }
+        }
+      }
+    },
+    {
+      "id": "SG",
+      "name": "Serangoon",
+      "centroid": [
+        103.867818,
+        1.365202
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.28,
+          "interval_c": [
+            31.93,
+            34.96
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.72,
+          "spatial_support": {
+            "weight": 0.4745,
+            "distance": 2.2368,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.867818,
+            "latitude": 1.365202,
+            "radius_m": 250,
+            "planning_area": "Serangoon",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 676.26,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 8.5165
+          }
+        },
+        "500": {
+          "estimate_c": 33.8,
+          "interval_c": [
+            32.46,
+            35.49
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.2,
+          "spatial_support": {
+            "weight": 0.4797,
+            "distance": 2.2041,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.867818,
+            "latitude": 1.365202,
+            "radius_m": 500,
+            "planning_area": "Serangoon",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 11,
+            "building_coverage_pct": 1.5724,
+            "building_floor_area_ratio": 0.1365,
+            "building_density_per_km2": 14.0056,
+            "mean_building_height_floors": 8.6809,
+            "distance_to_coast_m": 676.26,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 8.5165
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.66,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0011,
+            "distance": 20.5673,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.867818,
+            "latitude": 1.365202,
+            "radius_m": 1000,
+            "planning_area": "Serangoon",
+            "park_count": 8,
+            "park_cover_proxy_pct": 0.332,
+            "building_count": 89,
+            "building_coverage_pct": 3.7024,
+            "building_floor_area_ratio": 0.3571,
+            "building_density_per_km2": 28.3296,
+            "mean_building_height_floors": 9.6447,
+            "distance_to_coast_m": 676.26,
+            "coastal_proximity": 0.323737,
+            "distance_to_cbd_km": 8.5165
+          }
+        }
+      }
+    },
+    {
+      "id": "BL",
+      "name": "Boon Lay",
+      "centroid": [
+        103.702217,
+        1.314787
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.65,
+          "interval_c": [
+            32.3,
+            35.34
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.35,
+          "spatial_support": {
+            "weight": 0.6743,
+            "distance": 1.1823,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.702217,
+            "latitude": 1.314787,
+            "radius_m": 250,
+            "planning_area": "Boon Lay",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 704.59,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 16.868
+          }
+        },
+        "500": {
+          "estimate_c": 33.65,
+          "interval_c": [
+            32.3,
+            35.34
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.35,
+          "spatial_support": {
+            "weight": 0.6743,
+            "distance": 1.1823,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.702217,
+            "latitude": 1.314787,
+            "radius_m": 500,
+            "planning_area": "Boon Lay",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 704.59,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 16.868
+          }
+        },
+        "1000": {
+          "estimate_c": 33.82,
+          "interval_c": [
+            32.48,
+            35.51
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.18,
+          "spatial_support": {
+            "weight": 0.6116,
+            "distance": 1.4749,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.702217,
+            "latitude": 1.314787,
+            "radius_m": 1000,
+            "planning_area": "Boon Lay",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 704.59,
+            "coastal_proximity": 0.295412,
+            "distance_to_cbd_km": 16.868
+          }
+        }
+      }
+    },
+    {
+      "id": "BK",
+      "name": "Bukit Batok",
+      "centroid": [
+        103.754732,
+        1.355658
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.03,
+          "interval_c": [
+            31.68,
+            34.72
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.97,
+          "spatial_support": {
+            "weight": 0.6446,
+            "distance": 1.3172,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.754732,
+            "latitude": 1.355658,
+            "radius_m": 250,
+            "planning_area": "Bukit Batok",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1674.21,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 13.0263
+          }
+        },
+        "500": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 1336.5035,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.754732,
+            "latitude": 1.355658,
+            "radius_m": 500,
+            "planning_area": "Bukit Batok",
+            "park_count": 1,
+            "park_cover_proxy_pct": 18.9525,
+            "building_count": 29,
+            "building_coverage_pct": 4.222,
+            "building_floor_area_ratio": 0.397,
+            "building_density_per_km2": 36.9239,
+            "mean_building_height_floors": 9.4024,
+            "distance_to_coast_m": 1674.21,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 13.0263
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 638.72,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.754732,
+            "latitude": 1.355658,
+            "radius_m": 1000,
+            "planning_area": "Bukit Batok",
+            "park_count": 6,
+            "park_cover_proxy_pct": 9.0823,
+            "building_count": 191,
+            "building_coverage_pct": 7.0626,
+            "building_floor_area_ratio": 0.6774,
+            "building_density_per_km2": 60.7972,
+            "mean_building_height_floors": 9.5909,
+            "distance_to_coast_m": 1674.21,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 13.0263
+          }
+        }
+      }
+    },
+    {
+      "id": "BP",
+      "name": "Bukit Panjang",
+      "centroid": [
+        103.772998,
+        1.366822
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.2,
+          "interval_c": [
+            31.85,
+            34.89
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.8,
+          "spatial_support": {
+            "weight": 0.5213,
+            "distance": 1.9541,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.772998,
+            "latitude": 1.366822,
+            "radius_m": 250,
+            "planning_area": "Bukit Panjang",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 657.21,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 12.2272
+          }
+        },
+        "500": {
+          "estimate_c": 34.21,
+          "interval_c": [
+            32.86,
+            35.9
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.21,
+          "spatial_support": {
+            "weight": 0.0497,
+            "distance": 9.0063,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.772998,
+            "latitude": 1.366822,
+            "radius_m": 500,
+            "planning_area": "Bukit Panjang",
+            "park_count": 2,
+            "park_cover_proxy_pct": 0.1714,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 657.21,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 12.2272
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 258.2935,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.772998,
+            "latitude": 1.366822,
+            "radius_m": 1000,
+            "planning_area": "Bukit Panjang",
+            "park_count": 7,
+            "park_cover_proxy_pct": 3.7022,
+            "building_count": 40,
+            "building_coverage_pct": 1.5067,
+            "building_floor_area_ratio": 0.1611,
+            "building_density_per_km2": 12.7324,
+            "mean_building_height_floors": 10.694,
+            "distance_to_coast_m": 657.21,
+            "coastal_proximity": 0.342792,
+            "distance_to_cbd_km": 12.2272
+          }
+        }
+      }
+    },
+    {
+      "id": "CK",
+      "name": "Choa Chu Kang",
+      "centroid": [
+        103.747191,
+        1.385556
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 706.735,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.747191,
+            "latitude": 1.385556,
+            "radius_m": 250,
+            "planning_area": "Choa Chu Kang",
+            "park_count": 1,
+            "park_cover_proxy_pct": 10.045,
+            "building_count": 5,
+            "building_coverage_pct": 3.3624,
+            "building_floor_area_ratio": 0.3184,
+            "building_density_per_km2": 25.4648,
+            "mean_building_height_floors": 9.4708,
+            "distance_to_coast_m": 636.37,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 15.7449
+          }
+        },
+        "500": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 537.6405,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.747191,
+            "latitude": 1.385556,
+            "radius_m": 500,
+            "planning_area": "Choa Chu Kang",
+            "park_count": 1,
+            "park_cover_proxy_pct": 7.653,
+            "building_count": 34,
+            "building_coverage_pct": 4.2125,
+            "building_floor_area_ratio": 0.4455,
+            "building_density_per_km2": 43.2901,
+            "mean_building_height_floors": 10.5758,
+            "distance_to_coast_m": 636.37,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 15.7449
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 185.4576,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.747191,
+            "latitude": 1.385556,
+            "radius_m": 1000,
+            "planning_area": "Choa Chu Kang",
+            "park_count": 3,
+            "park_cover_proxy_pct": 2.666,
+            "building_count": 271,
+            "building_coverage_pct": 9.9963,
+            "building_floor_area_ratio": 1.0796,
+            "building_density_per_km2": 86.262,
+            "mean_building_height_floors": 10.8004,
+            "distance_to_coast_m": 636.37,
+            "coastal_proximity": 0.363635,
+            "distance_to_cbd_km": 15.7449
+          }
+        }
+      }
+    },
+    {
+      "id": "CL",
+      "name": "Clementi",
+      "centroid": [
+        103.760751,
+        1.317592
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.52,
+          "interval_c": [
+            32.17,
+            35.2
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.48,
+          "spatial_support": {
+            "weight": 0.5422,
+            "distance": 1.8364,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.760751,
+            "latitude": 1.317592,
+            "radius_m": 250,
+            "planning_area": "Clementi",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 1120.02,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 10.5846
+          }
+        },
+        "500": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0001,
+            "distance": 27.0141,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.760751,
+            "latitude": 1.317592,
+            "radius_m": 500,
+            "planning_area": "Clementi",
+            "park_count": 2,
+            "park_cover_proxy_pct": 0.4201,
+            "building_count": 25,
+            "building_coverage_pct": 4.1358,
+            "building_floor_area_ratio": 0.5382,
+            "building_density_per_km2": 31.831,
+            "mean_building_height_floors": 13.0141,
+            "distance_to_coast_m": 1120.02,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 10.5846
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 36.2227,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.760751,
+            "latitude": 1.317592,
+            "radius_m": 1000,
+            "planning_area": "Clementi",
+            "park_count": 6,
+            "park_cover_proxy_pct": 0.5477,
+            "building_count": 138,
+            "building_coverage_pct": 6.5719,
+            "building_floor_area_ratio": 0.7385,
+            "building_density_per_km2": 43.9268,
+            "mean_building_height_floors": 11.2378,
+            "distance_to_coast_m": 1120.02,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 10.5846
+          }
+        }
+      }
+    },
+    {
+      "id": "JE",
+      "name": "Jurong East",
+      "centroid": [
+        103.734787,
+        1.320437
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.09,
+          "interval_c": [
+            32.75,
+            35.78
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.09,
+          "spatial_support": {
+            "weight": 0.6325,
+            "distance": 1.3743,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.734787,
+            "latitude": 1.320437,
+            "radius_m": 250,
+            "planning_area": "Jurong East",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 1,
+            "building_coverage_pct": 0.5717,
+            "building_floor_area_ratio": 0.0743,
+            "building_density_per_km2": 5.093,
+            "mean_building_height_floors": 13.0,
+            "distance_to_coast_m": 1617.69,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 13.4505
+          }
+        },
+        "500": {
+          "estimate_c": 34.46,
+          "interval_c": [
+            33.11,
+            36.14
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.46,
+          "spatial_support": {
+            "weight": 0.4678,
+            "distance": 2.2789,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.734787,
+            "latitude": 1.320437,
+            "radius_m": 500,
+            "planning_area": "Jurong East",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 18,
+            "building_coverage_pct": 2.9451,
+            "building_floor_area_ratio": 0.337,
+            "building_density_per_km2": 22.9183,
+            "mean_building_height_floors": 11.4429,
+            "distance_to_coast_m": 1617.69,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 13.4505
+          }
+        },
+        "1000": {
+          "estimate_c": 34.25,
+          "interval_c": [
+            32.91,
+            35.94
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.25,
+          "spatial_support": {
+            "weight": 0.4586,
+            "distance": 2.3387,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.734787,
+            "latitude": 1.320437,
+            "radius_m": 1000,
+            "planning_area": "Jurong East",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 47,
+            "building_coverage_pct": 1.823,
+            "building_floor_area_ratio": 0.2151,
+            "building_density_per_km2": 14.9606,
+            "mean_building_height_floors": 11.7988,
+            "distance_to_coast_m": 1617.69,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 13.4505
+          }
+        }
+      }
+    },
+    {
+      "id": "JW",
+      "name": "Jurong West",
+      "centroid": [
+        103.704902,
+        1.341612
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.01,
+          "interval_c": [
+            32.66,
+            35.7
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.01,
+          "spatial_support": {
+            "weight": 0.0025,
+            "distance": 18.0058,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.704902,
+            "latitude": 1.341612,
+            "radius_m": 250,
+            "planning_area": "Jurong West",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 30,
+            "building_coverage_pct": 17.8365,
+            "building_floor_area_ratio": 2.1394,
+            "building_density_per_km2": 152.7887,
+            "mean_building_height_floors": 11.9947,
+            "distance_to_coast_m": 1530.38,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 17.3159
+          }
+        },
+        "500": {
+          "estimate_c": 34.02,
+          "interval_c": [
+            32.67,
+            35.7
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.02,
+          "spatial_support": {
+            "weight": 0.0046,
+            "distance": 16.1746,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.704902,
+            "latitude": 1.341612,
+            "radius_m": 500,
+            "planning_area": "Jurong West",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 110,
+            "building_coverage_pct": 16.1746,
+            "building_floor_area_ratio": 1.9917,
+            "building_density_per_km2": 140.0563,
+            "mean_building_height_floors": 12.3134,
+            "distance_to_coast_m": 1530.38,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 17.3159
+          }
+        },
+        "1000": {
+          "estimate_c": 34.0,
+          "interval_c": [
+            32.65,
+            35.69
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.0,
+          "spatial_support": {
+            "weight": 0.0,
+            "distance": 86.504,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.704902,
+            "latitude": 1.341612,
+            "radius_m": 1000,
+            "planning_area": "Jurong West",
+            "park_count": 1,
+            "park_cover_proxy_pct": 1.251,
+            "building_count": 322,
+            "building_coverage_pct": 12.1727,
+            "building_floor_area_ratio": 1.4713,
+            "building_density_per_km2": 102.4958,
+            "mean_building_height_floors": 12.0868,
+            "distance_to_coast_m": 1530.38,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 17.3159
+          }
+        }
+      }
+    },
+    {
+      "id": "PN",
+      "name": "Pioneer",
+      "centroid": [
+        103.672987,
+        1.312585
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.76,
+          "interval_c": [
+            32.41,
+            35.44
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.24,
+          "spatial_support": {
+            "weight": 0.7039,
+            "distance": 1.0535,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.672987,
+            "latitude": 1.312585,
+            "radius_m": 250,
+            "planning_area": "Pioneer",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 638.98,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 20.0498
+          }
+        },
+        "500": {
+          "estimate_c": 33.76,
+          "interval_c": [
+            32.41,
+            35.44
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.24,
+          "spatial_support": {
+            "weight": 0.7039,
+            "distance": 1.0535,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.672987,
+            "latitude": 1.312585,
+            "radius_m": 500,
+            "planning_area": "Pioneer",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 638.98,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 20.0498
+          }
+        },
+        "1000": {
+          "estimate_c": 33.96,
+          "interval_c": [
+            32.62,
+            35.65
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.04,
+          "spatial_support": {
+            "weight": 0.6051,
+            "distance": 1.5071,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.672987,
+            "latitude": 1.312585,
+            "radius_m": 1000,
+            "planning_area": "Pioneer",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 638.98,
+            "coastal_proximity": 0.361025,
+            "distance_to_cbd_km": 20.0498
+          }
+        }
+      }
+    },
+    {
+      "id": "TH",
+      "name": "Tengah",
+      "centroid": [
+        103.728746,
+        1.363853
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 33.19,
+          "interval_c": [
+            31.84,
+            34.87
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -0.81,
+          "spatial_support": {
+            "weight": 0.5775,
+            "distance": 1.6474,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.728746,
+            "latitude": 1.363853,
+            "radius_m": 250,
+            "planning_area": "Tengah",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 989.25,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 15.9547
+          }
+        },
+        "500": {
+          "estimate_c": 34.39,
+          "interval_c": [
+            33.04,
+            36.07
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.39,
+          "spatial_support": {
+            "weight": 0.565,
+            "distance": 1.7129,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.728746,
+            "latitude": 1.363853,
+            "radius_m": 500,
+            "planning_area": "Tengah",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 19,
+            "building_coverage_pct": 4.2141,
+            "building_floor_area_ratio": 0.3146,
+            "building_density_per_km2": 24.1916,
+            "mean_building_height_floors": 7.4647,
+            "distance_to_coast_m": 989.25,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 15.9547
+          }
+        },
+        "1000": {
+          "estimate_c": 34.76,
+          "interval_c": [
+            33.41,
+            36.44
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.76,
+          "spatial_support": {
+            "weight": 0.5314,
+            "distance": 1.8969,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.728746,
+            "latitude": 1.363853,
+            "radius_m": 1000,
+            "planning_area": "Tengah",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 103,
+            "building_coverage_pct": 5.7791,
+            "building_floor_area_ratio": 0.501,
+            "building_density_per_km2": 32.7859,
+            "mean_building_height_floors": 8.6695,
+            "distance_to_coast_m": 989.25,
+            "coastal_proximity": 0.010751,
+            "distance_to_cbd_km": 15.9547
+          }
+        }
+      }
+    },
+    {
+      "id": "TS",
+      "name": "Tuas",
+      "centroid": [
+        103.633103,
+        1.280234
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.26,
+          "interval_c": [
+            32.91,
+            35.94
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.26,
+          "spatial_support": {
+            "weight": 0.7257,
+            "distance": 0.9619,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.633103,
+            "latitude": 1.280234,
+            "radius_m": 250,
+            "planning_area": "Tuas",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 826.24,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 24.3551
+          }
+        },
+        "500": {
+          "estimate_c": 34.26,
+          "interval_c": [
+            32.91,
+            35.94
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.26,
+          "spatial_support": {
+            "weight": 0.7257,
+            "distance": 0.9619,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.633103,
+            "latitude": 1.280234,
+            "radius_m": 500,
+            "planning_area": "Tuas",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 826.24,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 24.3551
+          }
+        },
+        "1000": {
+          "estimate_c": 34.34,
+          "interval_c": [
+            32.99,
+            36.03
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.34,
+          "spatial_support": {
+            "weight": 0.6947,
+            "distance": 1.0928,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.633103,
+            "latitude": 1.280234,
+            "radius_m": 1000,
+            "planning_area": "Tuas",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 826.24,
+            "coastal_proximity": 0.173765,
+            "distance_to_cbd_km": 24.3551
+          }
+        }
+      }
+    },
+    {
+      "id": "WI",
+      "name": "Western Islands",
+      "centroid": [
+        103.709028,
+        1.249549
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 34.51,
+          "interval_c": [
+            33.16,
+            36.19
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.51,
+          "spatial_support": {
+            "weight": 0.8338,
+            "distance": 0.5453,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.709028,
+            "latitude": 1.249549,
+            "radius_m": 250,
+            "planning_area": null,
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 635.29,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 16.5219
+          }
+        },
+        "500": {
+          "estimate_c": 34.51,
+          "interval_c": [
+            33.16,
+            36.19
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.51,
+          "spatial_support": {
+            "weight": 0.8338,
+            "distance": 0.5453,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.709028,
+            "latitude": 1.249549,
+            "radius_m": 500,
+            "planning_area": null,
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 635.29,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 16.5219
+          }
+        },
+        "1000": {
+          "estimate_c": 34.6,
+          "interval_c": [
+            33.25,
+            36.28
+          ],
+          "risk": "Elevated",
+          "local_adjustment_c": 0.6,
+          "spatial_support": {
+            "weight": 0.6664,
+            "distance": 1.2176,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.709028,
+            "latitude": 1.249549,
+            "radius_m": 1000,
+            "planning_area": null,
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 635.29,
+            "coastal_proximity": 0.364706,
+            "distance_to_cbd_km": 16.5219
+          }
+        }
+      }
+    },
+    {
+      "id": "WC",
+      "name": "Western Water Catchment",
+      "centroid": [
+        103.68973,
+        1.38213
+      ],
+      "estimates": {
+        "250": {
+          "estimate_c": 32.79,
+          "interval_c": [
+            31.45,
+            34.48
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -1.21,
+          "spatial_support": {
+            "weight": 0.6651,
+            "distance": 1.2234,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.68973,
+            "latitude": 1.38213,
+            "radius_m": 250,
+            "planning_area": "Western Water Catchment",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 2704.97,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 20.7259
+          }
+        },
+        "500": {
+          "estimate_c": 32.79,
+          "interval_c": [
+            31.45,
+            34.48
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -1.21,
+          "spatial_support": {
+            "weight": 0.6651,
+            "distance": 1.2234,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.68973,
+            "latitude": 1.38213,
+            "radius_m": 500,
+            "planning_area": "Western Water Catchment",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 2704.97,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 20.7259
+          }
+        },
+        "1000": {
+          "estimate_c": 32.79,
+          "interval_c": [
+            31.45,
+            34.48
+          ],
+          "risk": "Watch",
+          "local_adjustment_c": -1.21,
+          "spatial_support": {
+            "weight": 0.6651,
+            "distance": 1.2234,
+            "interpretation": "Closer to 1 means the local feature profile is better represented by training stations."
+          },
+          "spatial": {
+            "longitude": 103.68973,
+            "latitude": 1.38213,
+            "radius_m": 1000,
+            "planning_area": "Western Water Catchment",
+            "park_count": 0,
+            "park_cover_proxy_pct": 0.0,
+            "building_count": 0,
+            "building_coverage_pct": 0.0,
+            "building_floor_area_ratio": 0.0,
+            "building_density_per_km2": 0.0,
+            "mean_building_height_floors": 0.0,
+            "distance_to_coast_m": 2704.97,
+            "coastal_proximity": 0.0,
+            "distance_to_cbd_km": 20.7259
+          }
+        }
+      }
+    }
+  ],
+  "notice": "Illustrative local-environment estimates under a fixed background heat condition; not observations, forecasts or official alerts."
+}
