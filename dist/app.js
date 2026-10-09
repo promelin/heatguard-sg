@@ -31,6 +31,8 @@ const state = {
 
 const LIVE_DATA_URL = window.HEATGUARD_STATIC_PUBLIC ? "heatguard-data.json" : "/api/heatguard-data.json";
 const LIVE_POLL_MS = 5 * 60 * 1000;
+const SPATIAL_API_BASE = String(window.HEATGUARD_SPATIAL_API || "").replace(/\/$/, "");
+const spatialApiUrl = (path) => `${SPATIAL_API_BASE}${path}`;
 
 const STATION_META = {
   S104: { name: "Woodlands Avenue 9", lon: 103.78538, lat: 1.44387 },
@@ -1646,7 +1648,7 @@ async function loadPlannerStatus() {
     return;
   }
   try {
-    const response = await fetch("/api/spatial-layout/status", { cache: "no-store" });
+    const response = await fetch(spatialApiUrl("/api/spatial-layout/status"), { cache: "no-store" });
     if (!response.ok) throw new Error("Spatial model service is unavailable");
     state.plannerStatus = await response.json();
     els.plannerStatus.textContent = `${state.plannerStatus.model} ready · draw any Singapore site · up to 1,000 candidates per run.`;
@@ -1717,7 +1719,7 @@ async function generatePlannerLayouts() {
   els.plannerStatus.textContent = "Sampling the spatial latent space and checking hard exclusions…";
   els.plannerStatus.className = "planner-status";
   try {
-    const response = await fetch("/api/spatial-layout/jobs", {
+    const response = await fetch(spatialApiUrl("/api/spatial-layout/jobs"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -1735,7 +1737,7 @@ async function generatePlannerLayouts() {
       const elapsed = Math.max(1, Math.round((Date.now() - started) / 1000));
       els.plannerStatus.textContent = `${job.status === "queued" ? "Queued" : "Generating"} ${fmtNumber.format(count)} layouts · ${elapsed} s elapsed`;
       await new Promise((resolve) => window.setTimeout(resolve, 1200));
-      const jobResponse = await fetch(`/api/spatial-layout/jobs/${job.jobId}`, { cache: "no-store" });
+      const jobResponse = await fetch(spatialApiUrl(`/api/spatial-layout/jobs/${job.jobId}`), { cache: "no-store" });
       job = await jobResponse.json();
       if (!jobResponse.ok) throw new Error(job.detail || "Generation status is unavailable");
     }

@@ -1233,6 +1233,8 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.6r
 .planner-water { fill: #e7f0f0; }
 .planner-context-image { opacity: .98; }
 .planner-area-reference { fill: transparent; stroke: rgba(70, 59, 60, .24); stroke-width: .65; vector-effect: non-scaling-stroke; cursor: zoom-in; }
+.planner-map-stage svg:focus,
+.planner-area-reference:focus { outline: none !important; }
 .planner-area-reference:hover,
 .planner-area-reference:focus-visible { fill: rgba(255,255,255,.16); stroke: #a91931; outline: none; }
 .planner-area-reference.selected { fill: rgba(255,255,255,.08); stroke: #a91931; stroke-width: 1.5; }

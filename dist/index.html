@@ -607,7 +607,14 @@
   </main>
 
   <footer><span>HeatGuard SG · DAISI B1 · v3.3</span><span>See the heat. Plan local action.</span></footer>
-  <script>window.HEATGUARD_STATIC_PUBLIC = true;</script>
+  <script>
+    window.HEATGUARD_STATIC_PUBLIC = true;
+    window.HEATGUARD_SPATIAL_API = window.HEATGUARD_SPATIAL_API || (
+      window.location.hostname === "promelin.github.io"
+        ? "https://heatguard-sg-spatial-deltanexus.onrender.com"
+        : ""
+    );
+  </script>
   <script src="data-bundle.js" defer></script>
   <script src="spatial.js" defer></script>
   <script src="app.js" defer></script>
