@@ -69,6 +69,7 @@ const VIEW_TITLES = {
   forecast: "Forecast",
   "community-risk": "Community Risk",
   cooling: "Cooling Simulation",
+  contribute: "Community Data",
   model: "Model & Evidence",
   readiness: "B1 Readiness",
 };
@@ -1557,6 +1558,9 @@ async function init() {
 }
 
 async function loadLatestData() {
+  if (window.location.protocol === "file:" && window.__HEATGUARD_DATA__) {
+    return window.__HEATGUARD_DATA__;
+  }
   if (window.HEATGUARD_STATIC_PUBLIC) {
     const response = await fetch(`${LIVE_DATA_URL}?t=${Date.now()}`, { cache: "no-store" });
     if (!response.ok) throw new Error("Published V4 forecast is unavailable");
