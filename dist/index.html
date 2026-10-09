@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#c91f37">
-  <meta name="description" content="HeatGuard SG shows live heat index across Singapore's weather-station network, next-day heat-risk forecasts and planning-area vulnerability.">
+  <meta name="description" content="HeatGuard SG shows live heat index, local environment heat estimates and planning-area vulnerability across Singapore.">
   <title>HeatGuard SG · Home</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="styles.css">
@@ -13,9 +13,9 @@
   <a class="skip-link" href="#main-content">Skip to content</a>
 
   <main id="main-content">
-    <aside class="publication-status" aria-label="Forecast publication status">
-      <span id="publication-status-text" role="status">Loading the latest V4 forecast…</span>
-      <button id="publication-refresh" type="button">Check for latest forecast</button>
+    <aside class="publication-status" aria-label="Heat data publication status">
+      <span id="publication-status-text" role="status">Loading the latest heat data…</span>
+      <button id="publication-refresh" type="button">Check for latest data</button>
     </aside>
     <!-- HOME -->
     <section class="app-view home-view" id="home" data-view="home" aria-labelledby="home-title">
@@ -45,8 +45,8 @@
             <p>Test cooling options in high-risk zones.</p>
           </a>
           <a class="module-entry" href="#forecast" data-nav-view="forecast">
-            <h2>Next-Day Forecast</h2>
-            <p>24-hour V4 heat-risk outlook.</p>
+            <h2>Local Heat Estimate</h2>
+            <p>Estimate heat from nearby greenery, buildings and water.</p>
           </a>
           <a class="module-entry" href="#contribute" data-nav-view="contribute">
             <h2>Community Data</h2>
@@ -82,23 +82,23 @@
       </div>
     </section>
 
-    <!-- FORECAST -->
+    <!-- LOCAL ENVIRONMENT HEAT -->
     <section class="app-view view-shell forecast-view" id="forecast" data-view="forecast" aria-labelledby="forecast-view-title" hidden>
       <div class="view-header forecast-map-hero">
-        <div><p class="eyebrow">Next-day heat risk</p><h1 id="forecast-view-title">See where heat builds over the next 24 hours.</h1></div>
+        <div><p class="eyebrow">Local micro-environment</p><h1 id="forecast-view-title">Estimate possible heat from the surroundings.</h1></div>
       </div>
 
       <article class="panel map-panel forecast-map-panel" aria-labelledby="forecast-map-title">
         <div class="panel-head map-head forecast-map-head">
           <div>
-            <h2 id="forecast-map-title">Next-day heat risk across Singapore</h2>
-            <p>Click a planning area or place name to view its next 24 hours.</p>
+            <h2 id="forecast-map-title">Local environment heat estimate</h2>
+            <p>Click a planning area to compare vegetation, buildings, coastline exposure and location.</p>
           </div>
         </div>
         <div class="map-stage" data-map-key="forecast">
-          <svg id="forecast-sg-map" role="img" aria-label="Forecast heat risk across Singapore planning areas for the next 24 hours" viewBox="0 0 1080 650"></svg>
+          <svg id="forecast-sg-map" role="img" aria-label="Local environment heat estimates across Singapore planning areas" viewBox="0 0 1080 650"></svg>
           <div class="map-tooltip" id="forecast-map-tooltip" hidden></div>
-          <div class="map-legend" id="forecast-map-legend" aria-label="Forecast map colour legend"></div>
+          <div class="map-legend" id="forecast-map-legend" aria-label="Local heat estimate map colour legend"></div>
           <div class="map-zoom-controls" aria-label="Forecast map zoom controls">
             <button type="button" data-map-zoom="in" aria-label="Zoom in">+</button>
             <button type="button" data-map-zoom="out" aria-label="Zoom out">−</button>
@@ -111,20 +111,27 @@
       <article class="panel forecast-area-panel" aria-labelledby="forecast-area-title">
         <div class="panel-head forecast-area-head">
           <div><p class="panel-kicker">Selected planning area</p><h2 id="forecast-area-title">Planning area —</h2></div>
+          <div class="local-radius-control">
+            <label for="local-radius-select">Analysis radius</label>
+            <select id="local-radius-select">
+              <option value="250">250 m</option>
+              <option value="500" selected>500 m</option>
+              <option value="1000">1 km</option>
+            </select>
+          </div>
           <span class="risk-chip" id="forecast-area-risk-chip">Loading</span>
         </div>
         <div class="forecast-risk-alert" id="forecast-risk-alert">
-          <div><span>Next 24h peak</span><strong id="forecast-area-peak">—°C</strong><small id="forecast-area-peak-time">—</small></div>
-          <p id="forecast-area-guidance">Select a planning area to view its heat-risk guidance.</p>
+          <div><span>Possible local heat index</span><strong id="forecast-area-peak">—°C</strong><small id="forecast-area-peak-time">500 m surroundings</small></div>
+          <p id="forecast-area-guidance">Select a planning area to view its local environment estimate.</p>
         </div>
-        <div class="chart-wrap chart-wrap-wide">
-          <svg id="forecast-chart" role="img" aria-label="Selected planning area's heat index forecast for the next 24 hours" viewBox="0 0 900 340"></svg>
-          <div class="chart-tooltip" id="chart-tooltip" hidden></div>
+        <div class="local-feature-grid" aria-label="Local environment model inputs">
+          <div><span>Green cover proxy</span><strong id="local-park-cover">—</strong></div>
+          <div><span>Building footprint</span><strong id="local-building-cover">—</strong></div>
+          <div><span>Building density</span><strong id="local-building-density">—</strong></div>
+          <div><span>Nearest coast</span><strong id="local-coast-distance">—</strong></div>
         </div>
-        <div class="chart-foot">
-          <span><i class="legend-line predicted"></i>Planning-area forecast</span>
-          <span><i class="legend-box threshold"></i>≥37°C focus zone</span>
-        </div>
+        <p class="local-model-note" id="local-model-note">Spatial downscaling under a fixed network background heat condition. Research estimate only—not an observation, next-day forecast or official alert.</p>
       </article>
 
       <div class="forecast-data-bridge" hidden aria-hidden="true">
@@ -399,14 +406,37 @@
 
             <div class="contribution-rules"><strong>Data safeguards</strong><span>Location-and-time tagged evidence · first valid issue counts · weekly submission cap · no public names</span></div>
             <div class="form-error" id="contribution-error" role="alert" hidden></div>
-            <button class="contribution-submit" type="submit">Submit for review</button>
+            <button class="contribution-submit" type="submit">Review summary</button>
           </form>
         </article>
       </div>
 
+      <section class="panel contribution-summary" id="contribution-summary" aria-labelledby="contribution-summary-title" hidden>
+        <div class="contribution-summary-head">
+          <div><p class="panel-kicker">Summary mode</p><h2 id="contribution-summary-title">Review your contribution</h2><p>Check the structured record below before it enters the council-review queue.</p></div>
+          <span class="summary-status" id="contribution-summary-status">Ready to submit</span>
+        </div>
+        <div class="contribution-summary-grid">
+          <article><span>Contribution</span><strong id="summary-kind">—</strong><small id="summary-step">—</small></article>
+          <article><span>Location</span><strong id="summary-area">—</strong><small id="summary-coordinates">—</small></article>
+          <article><span>Channel</span><strong id="summary-channel">—</strong><small id="summary-time">—</small></article>
+          <article><span>Evidence</span><strong id="summary-evidence">—</strong><small>Private review evidence</small></article>
+        </div>
+        <div class="summary-record">
+          <div><p class="panel-kicker">Structured answers</p><dl id="summary-details"></dl></div>
+          <figure class="summary-photo" id="summary-photo" hidden><img id="summary-photo-preview" alt="Uploaded contribution evidence preview"><figcaption id="summary-photo-caption">Photo evidence</figcaption></figure>
+        </div>
+        <p class="summary-consent"><strong>Consent confirmed.</strong> Exact location and evidence remain in the private review record; only approved, aggregated reporting may appear publicly.</p>
+        <div class="summary-actions" id="summary-actions">
+          <button class="summary-back" id="summary-back" type="button">Back to edit</button>
+          <button class="summary-confirm" id="summary-confirm" type="button">Confirm and submit</button>
+        </div>
+      </section>
+
       <section class="contribution-receipt" id="contribution-receipt" aria-live="polite" hidden>
         <div><p class="panel-kicker">Contribution received</p><h2>Thank you for helping your neighbourhood adapt.</h2><p id="contribution-receipt-copy">Your structured report has been added to the review queue.</p></div>
         <div class="receipt-impact"><span>Estimated local value</span><strong id="contribution-impact">Review pending</strong><small id="contribution-receipt-id">Receipt —</small></div>
+        <button class="receipt-another" id="contribution-another" type="button">Start another contribution</button>
       </section>
       <p class="contribution-privacy-footer"><strong>Privacy by design.</strong> No names appear on the public map. Location, time and structured observations are used for council review, and only aggregated reporting is shared publicly.</p>
     </section>
@@ -416,29 +446,29 @@
       <div class="view-header text-only-hero">
         <div>
           <p class="eyebrow">Model &amp; evidence</p>
-          <h1 id="model-title">Optimised for the dangerous end of the distribution.</h1>
-          <p class="lede view-lede">The full Temporal Fusion Transformer is trained with high-temperature weighting. The trade-off is explicit: better recovery of high-heat events and station-day peaks at the cost of some all-weather average accuracy.</p>
+          <h1 id="model-title">From local surroundings to possible heat.</h1>
+          <p class="lede view-lede">The local-environment model downscales a network heat condition using nearby greenery, HDB building form, coastline exposure and geographic position. It estimates local variation; it does not predict tomorrow's weather.</p>
         </div>
       </div>
 
       <div class="evidence-grid">
-        <article class="score-card primary-score"><span>RMSE when observed ≥37°C</span><strong>1.364<small>°C</small></strong><p>V4 history-only test result</p></article>
-        <article class="score-card"><span>High-heat recall</span><strong>82.6<small>%</small></strong><p>Measured across forecast hours 1–24</p></article>
-        <article class="score-card"><span>High-heat MAE</span><strong>1.023<small>°C</small></strong><p>Held-out 2024 high-temperature rows</p></article>
-        <article class="score-card caution"><span>All-weather 1–24h RMSE</span><strong>2.807<small>°C</small></strong><p>No future temperature, humidity or rainfall inputs</p></article>
+        <article class="score-card primary-score"><span>Station-held-out MAE</span><strong>1.011<small>°C</small></strong><p>Every fold excludes one complete location</p></article>
+        <article class="score-card"><span>Station-held-out RMSE</span><strong>1.482<small>°C</small></strong><p>2,210 hourly station observations</p></article>
+        <article class="score-card"><span>Grouped R²</span><strong>0.845</strong><p>Validation grouped by weather station</p></article>
+        <article class="score-card caution"><span>Training stations</span><strong>11</strong><p>Spatial support is shown and guarded at inference</p></article>
       </div>
       <div class="model-detail">
-        <div><span>168h</span><p>historical context</p></div>
-        <div><span>24</span><p>forecast horizons</p></div>
-        <div><span>0.91M</span><p>trainable parameters</p></div>
-        <div><span>4</span><p>attention heads</p></div>
-        <p>Static covariate encoder → variable selection → LSTM encoder/decoder → static enrichment → interpretable causal attention → gated residual networks → quantile head</p>
+        <div><span>500m</span><p>default local radius</p></div>
+        <div><span>11</span><p>training stations</p></div>
+        <div><span>2,210</span><p>hourly examples</p></div>
+        <div><span>3</span><p>published radii</p></div>
+        <p>Peer-station background → local spatial features → regularised residual model → spatial-support guard → calibrated heat-index interval</p>
       </div>
 
       <div class="model-explainer-grid">
-        <article><span>01</span><h3>Historical context</h3><p>Seven days of station history provide the model with recent heat and weather dynamics before each 24-hour forecast.</p></article>
-        <article><span>02</span><h3>High-heat weighting</h3><p>Training places extra emphasis on hotter observations so dangerous events are not overwhelmed by routine weather.</p></article>
-        <article><span>03</span><h3>Live serving</h3><p>The backend rebuilds 168 hours of station history and publishes all 24 horizons in one V4 inference pass.</p></article>
+        <article><span>01</span><h3>Weather background</h3><p>The same-hour station network supplies the background heat condition, so the model learns local differences rather than pretending weather is static.</p></article>
+        <article><span>02</span><h3>Local environment</h3><p>Parks, HDB footprints and height, building density, coastline proximity, latitude, longitude and CBD distance describe each neighbourhood.</p></article>
+        <article><span>03</span><h3>Guarded inference</h3><p>Predictions far from known station profiles are conservatively pulled toward the network background instead of extrapolating without bound.</p></article>
       </div>
     </section>
 
@@ -448,22 +478,22 @@
         <div>
           <p class="eyebrow">Completed B1 implementation</p>
           <h1 id="readiness-title">Six integrated capabilities, connected end to end.</h1>
-          <p class="lede view-lede">The live backend reads temperature, humidity and rainfall, reconstructs V4 inputs, and refreshes the station and planning-area views automatically.</p>
+          <p class="lede view-lede">The backend combines current station heat with mapped local environment features, then refreshes local estimates and planning-area views with explicit uncertainty.</p>
         </div>
       </div>
 
       <div class="readiness-grid">
         <article class="done"><span>01 · Implemented</span><h3>Live station heat index</h3><p>Latest temperature and relative-humidity readings are paired into a current heat index across the station network.</p></article>
-        <article class="done"><span>02 · Implemented</span><h3>Live 24h heat forecast</h3><p>V4 produces station forecasts for hours 1–24 from a rolling 168-hour history.</p></article>
-        <article class="done"><span>03 · Implemented</span><h3>Planning-area Heat Risk Score</h3><p>A separately trained classifier combines forecast heat, official 2026 age structure and mapped eldercare access across 55 planning areas.</p></article>
+        <article class="done"><span>02 · Implemented</span><h3>Local environment heat estimate</h3><p>A separate model estimates possible heat from nearby vegetation, buildings, coastline exposure and location at selectable radii.</p></article>
+        <article class="done"><span>03 · Implemented</span><h3>Planning-area Heat Risk Score</h3><p>A separately trained classifier combines heat conditions, official 2026 age structure and mapped eldercare access across 55 planning areas.</p></article>
         <article class="done"><span>04 · Implemented</span><h3>Tiered recommendations</h3><p>Low, Medium and High classes drive a ranked review queue and response prompts.</p></article>
-        <article class="done"><span>05 · Implemented</span><h3>Three real-time streams</h3><p>Air temperature, relative humidity and rainfall feed the history-only live model service.</p></article>
+        <article class="done"><span>05 · Implemented</span><h3>Weather + spatial inputs</h3><p>Public station observations provide the background while mapped environment layers describe local conditions.</p></article>
         <article class="done"><span>06 · Implemented</span><h3>Cooling intervention simulator</h3><p>High-risk areas can be tested with added cooling points and a green-corridor shade proxy.</p></article>
       </div>
       <div class="pipeline-flow" aria-label="End-to-end architecture">
         <div><b>01</b><span>NEA + demographic ingestion</span></div><i></i>
         <div><b>02</b><span>Delta quality + feature tables</span></div><i></i>
-        <div><b>03</b><span>MLflow full TFT model</span></div><i></i>
+        <div><b>03</b><span>MLflow local heat model</span></div><i></i>
         <div><b>04</b><span>Planning-area risk scoring</span></div><i></i>
         <div><b>05</b><span>Human-reviewed action queue</span></div>
       </div>
@@ -471,7 +501,7 @@
       <div class="governance-block">
         <div class="section-heading narrow"><p class="eyebrow">Responsible use &amp; data lineage</p><h2>Evidence, provenance and human review built in.</h2></div>
         <div class="governance-grid">
-          <article><h3>Research planning forecast</h3><p>The live output turns public station data into a planning forecast while official public guidance remains with Singapore's responsible agencies.</p></article>
+          <article><h3>Research local estimate</h3><p>The output combines public station and spatial data into a possible local heat estimate while official public guidance remains with Singapore's responsible agencies.</p></article>
           <article><h3>Demographics are contextual</h3><p>Planning-area and subzone age structure uses official 2026 statistics. HDB-building population values are modelled estimates and are labelled accordingly.</p></article>
           <article><h3>Mapped support access</h3><p>MOH eldercare points provide a consistent indicator of nearby community support for planning review.</p></article>
           <article><h3>Human review stays in the loop</h3><p>Risk tiers prioritise inspection and support decisions alongside official public guidance.</p></article>
@@ -481,13 +511,13 @@
           <a href="https://data.gov.sg/datasets/d_4765db0e87b9c86336792efe8a1f7a66/view" target="_blank" rel="noreferrer">URA planning areas</a>
           <span>SingStat resident population · June 2026</span>
           <a href="https://data.gov.sg/datasets/d_f0fd1b3643ed8bd34bd403dedd7c1533/view" target="_blank" rel="noreferrer">MOH eldercare services</a>
-          <span>Models · V4 history-only full TFT + policy-calibrated planning-area risk classifier</span>
+          <span>Models · local-environment heat estimator + policy-calibrated planning-area risk classifier</span>
         </div>
       </div>
     </section>
   </main>
 
-  <footer><span>HeatGuard SG · DAISI B1 · v3.3</span><span>Forecast the heat. Prioritise people.</span></footer>
+  <footer><span>HeatGuard SG · DAISI B1 · v3.3</span><span>See the heat. Plan local action.</span></footer>
   <script>window.HEATGUARD_STATIC_PUBLIC = true;</script>
   <script src="data-bundle.js" defer></script>
   <script src="spatial.js" defer></script>

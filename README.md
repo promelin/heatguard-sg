@@ -1,6 +1,6 @@
 # HeatGuard SG
 
-[HeatGuard SG](https://promelin.github.io/heatguard-sg/) is DeltaNexus's open-source heat-planning dashboard for Singapore. It combines current station heat index, a planning-area Heat Risk Score, cooling-infrastructure scenarios and a 24-hour V4 forecast in one map-led interface.
+[HeatGuard SG](https://promelin.github.io/heatguard-sg/) is DeltaNexus's heat-planning dashboard for Singapore. It combines current station heat index, a planning-area Heat Risk Score, cooling-infrastructure scenarios and published local micro-environment heat estimates in one map-led interface.
 
 [![HeatGuard SG concept poster](docs/HeatGuard-SG-Concept-Poster.png)](docs/HeatGuard-SG-Concept-Poster.pdf)
 
@@ -28,7 +28,7 @@ Full project credits are recorded in [CONTRIBUTORS.md](CONTRIBUTORS.md).
 - **Live Heat Index** — current heat-index conditions across the weather-station network, with observation and refresh times.
 - **Area Heat Risk** — a policy-calibrated random-forest score that combines forecast heat, official 2026 age structure and mapped eldercare access across 55 planning areas.
 - **Cooling Simulation** — selectable parks, cycling routes and park connectors, area-specific green baselines, adjustable cooling points and corridor shade.
-- **Next-Day Forecast** — a V4 Temporal Fusion Transformer forecast for hours 1–24, selectable by planning area with an hourly curve and risk guidance.
+- **Local Heat Estimate** — published spatial estimates combining a station-network background with nearby vegetation, HDB building form, coastline exposure and geographic position at 250 m, 500 m or 1 km.
 - **Community Data** — structured, privacy-minimised collection for green-pocket proposals, build confirmation, monthly condition checks and on-site comfort feedback.
 
 The public site also includes planning-area and subzone demographics, close-zoom HDB building detail, a ranked priority queue, model evidence and the completed DAISI B1 delivery flow.
@@ -38,7 +38,7 @@ The public site also includes planning-area and subzone demographics, close-zoom
 ```text
 backend/          FastAPI service, weather ingestion and model runtime
 backend/model/    V4 TFT and planning-area risk-model weights
-dist/             GitHub Pages website, spatial layers and published forecast
+dist/             GitHub Pages website, spatial layers and published model results
 docs/             Concept poster and project visuals
 reports/          Held-out validation evidence
 scripts/          Forecast publication, model validation and data-build tools
@@ -64,6 +64,12 @@ python -m http.server 8001 --directory dist
 ```
 
 Open `http://localhost:8001`. HTTP serving enables the lazy-loaded HDB and green-infrastructure layers.
+
+## Local environment heat results
+
+`dist/data/local-heat-results.json` contains the public outputs for 55 planning areas at three analysis radii. The validation summary is published in `reports/local-heat-model-validation.md`: 2,210 hourly observations across 11 stations, leave-one-station-out MAE 1.011 °C and RMSE 1.482 °C.
+
+The fitted local-environment model, its private weights and training implementation are not included in this public repository. The public site contains only the interface, validation summary and prediction results. The result is spatial downscaling under a specified network heat background—not a next-day weather forecast, direct observation or official alert.
 
 ## Reproduce inference
 

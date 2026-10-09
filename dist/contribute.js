@@ -11,6 +11,54 @@
     maintenance: { step: "Step 03", title: "Monthly check-in", photo: "Condition photo", requirePhoto: true, impact: "Green coverage confidence refreshed" },
     comfort: { step: "Step 04", title: "On-site comfort", photo: "Photo not required", requirePhoto: false, impact: "Comfort signal added to aggregated validation" },
   };
+  const SUMMARY_LABELS = {
+    siteType: "Site type",
+    approxSize: "Approximate size",
+    shade: "Existing shade",
+    seating: "Seating",
+    plantTypes: "Suggested planting",
+    approvalStatus: "Town council stage",
+    proposalReference: "Proposal reference",
+    verifierRole: "Confirmed by",
+    pocketReference: "Pocket reference",
+    conditionRating: "Condition rating",
+    issue: "Observed issue",
+    qrReference: "Pocket / QR code",
+    comfort: "Thermal comfort",
+  };
+  const SUMMARY_VALUES = {
+    "void-deck": "Void deck edge",
+    "open-space": "Open space",
+    "corridor-edge": "Corridor edge",
+    "community-facility": "Community facility",
+    "under-25": "Under 25 m²",
+    "25-100": "25–100 m²",
+    "100-500": "100–500 m²",
+    "over-500": "Over 500 m²",
+    none: "None",
+    partial: "Partial",
+    full: "Full",
+    yes: "Yes",
+    no: "No",
+    native: "Native",
+    edible: "Edible",
+    flowering: "Flowering",
+    "shade-tree": "Shade tree",
+    "not-requested": "Not requested yet",
+    requested: "Approval requested",
+    approved: "Approved",
+    "town-council": "Town council staff",
+    aac: "AAC staff",
+    "resident-pending": "Resident · pending staff review",
+    "dead-plants": "Dead or damaged plants",
+    "standing-water": "Standing water",
+    "blocked-access": "Blocked access",
+    "damaged-seating": "Damaged seating",
+    "too-hot": "Too hot",
+    ok: "OK",
+    cool: "Cool",
+  };
+  const CHANNEL_LABELS = { web: "Web form", qr: "On-site QR", aac: "AAC-assisted" };
 
   const state = {
     kind: "proposal",
@@ -18,6 +66,7 @@
     lat: null,
     lon: null,
     photoDataUrl: null,
+    pendingPayload: null,
   };
 
   const byId = (id) => document.getElementById(id);
@@ -216,6 +265,57 @@
     error.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
+  function summaryValue(value) {
+    if (Array.isArray(value)) return value.map((item) => SUMMARY_VALUES[item] || item).join(", ");
+    return SUMMARY_VALUES[value] || String(value || "Not provided");
+  }
+
+  function renderSummary(payload) {
+    byId("summary-kind").textContent = FLOW_COPY[payload.kind].title;
+    byId("summary-step").textContent = FLOW_COPY[payload.kind].step;
+    byId("summary-area").textContent = payload.area;
+    byId("summary-coordinates").textContent = `${payload.coordinates.lat.toFixed(5)}, ${payload.coordinates.lon.toFixed(5)}`;
+    byId("summary-channel").textContent = CHANNEL_LABELS[payload.channel] || payload.channel;
+    byId("summary-time").textContent = new Intl.DateTimeFormat("en-SG", {
+      dateStyle: "medium",
+      timeStyle: "short",
+      timeZone: "Asia/Singapore",
+    }).format(new Date(payload.observedAt));
+    byId("summary-evidence").textContent = payload.photo ? "Photo attached" : "No photo required";
+
+    const details = byId("summary-details");
+    details.replaceChildren();
+    Object.entries(payload.details).forEach(([key, value]) => {
+      if (value === "" || value == null) return;
+      const row = document.createElement("div");
+      const term = document.createElement("dt");
+      const description = document.createElement("dd");
+      term.textContent = SUMMARY_LABELS[key] || key;
+      description.textContent = summaryValue(value);
+      row.append(term, description);
+      details.appendChild(row);
+    });
+
+    const photo = byId("summary-photo");
+    photo.hidden = !payload.photo;
+    document.querySelector(".summary-record").classList.toggle("no-photo", !payload.photo);
+    if (payload.photo) {
+      byId("summary-photo-preview").src = payload.photo.dataUrl;
+      byId("summary-photo-caption").textContent = `${payload.photo.name} · ${(payload.photo.size / 1024 / 1024).toFixed(1)} MB`;
+    } else {
+      byId("summary-photo-preview").removeAttribute("src");
+    }
+
+    byId("contribution-summary-status").textContent = "Ready to submit";
+    byId("contribution-summary-status").classList.remove("submitted");
+    byId("summary-actions").hidden = false;
+    byId("contribution-receipt").hidden = true;
+    document.querySelector(".contribution-workspace").hidden = true;
+    const summary = byId("contribution-summary");
+    summary.hidden = false;
+    summary.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   async function submitPayload(payload) {
     if (location.protocol === "file:") return null;
     try {
@@ -257,7 +357,7 @@
 
     const submitButton = event.currentTarget.querySelector(".contribution-submit");
     submitButton.disabled = true;
-    submitButton.textContent = "Submitting…";
+    submitButton.textContent = "Preparing summary…";
     try {
       const photoDataUrl = await fileAsDataUrl(file);
       const requestId = uuid();
@@ -273,29 +373,72 @@
         details,
         photo: photoDataUrl ? { name: file.name, type: file.type, size: file.size, dataUrl: photoDataUrl, capturedAt: new Date().toISOString() } : null,
       };
-      const remoteReceipt = await submitPayload(payload);
-      const receipt = remoteReceipt || { id: `LOCAL-${requestId.slice(0, 8).toUpperCase()}`, status: "saved-on-device" };
-      saveLocally({ ...payload, receipt });
-      byId("contribution-impact").textContent = FLOW_COPY[state.kind].impact;
-      byId("contribution-receipt-id").textContent = `Receipt ${receipt.id}`;
-      byId("contribution-receipt-copy").textContent = remoteReceipt
-        ? "Your structured report is in the council-review queue. Only approved, aggregated results can appear on the public map."
-        : "This prototype record is saved on this device and is ready to sync when the collection service is connected.";
-      const receiptPanel = byId("contribution-receipt");
-      receiptPanel.hidden = false;
-      receiptPanel.scrollIntoView({ behavior: "smooth", block: "center" });
-      event.currentTarget.reset();
-      byId("contribution-channel").value = payload.channel;
-      state.photoDataUrl = null;
-      byId("contribution-photo-name").textContent = "Choose photo";
-      byId("contribution-consent").checked = false;
-      setKind(state.kind);
+      state.pendingPayload = payload;
+      renderSummary(payload);
     } catch (error) {
       showError(error.message || "The contribution could not be prepared.");
     } finally {
       submitButton.disabled = false;
-      submitButton.textContent = "Submit for review";
+      submitButton.textContent = "Review summary";
     }
+  }
+
+  function backToEdit() {
+    byId("contribution-summary").hidden = true;
+    document.querySelector(".contribution-workspace").hidden = false;
+    state.pendingPayload = null;
+    document.querySelector(".contribution-workspace").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  async function confirmSubmission() {
+    const payload = state.pendingPayload;
+    if (!payload) return;
+    const button = byId("summary-confirm");
+    button.disabled = true;
+    button.textContent = "Submitting…";
+    try {
+      const remoteReceipt = await submitPayload(payload);
+      const receipt = remoteReceipt || { id: `LOCAL-${payload.requestId.slice(0, 8).toUpperCase()}`, status: "saved-on-device" };
+      saveLocally({ ...payload, receipt });
+      byId("contribution-impact").textContent = FLOW_COPY[payload.kind].impact;
+      byId("contribution-receipt-id").textContent = `Receipt ${receipt.id}`;
+      byId("contribution-receipt-copy").textContent = remoteReceipt
+        ? "Your structured report is in the council-review queue. Only approved, aggregated results can appear on the public map."
+        : "This prototype record is saved on this device and is ready to sync when the collection service is connected.";
+      byId("contribution-summary-status").textContent = "Submitted";
+      byId("contribution-summary-status").classList.add("submitted");
+      byId("summary-actions").hidden = true;
+      const receiptPanel = byId("contribution-receipt");
+      receiptPanel.hidden = false;
+      receiptPanel.scrollIntoView({ behavior: "smooth", block: "center" });
+      byId("contribution-form").reset();
+      byId("contribution-photo-name").textContent = "Choose photo";
+      byId("contribution-consent").checked = false;
+    } catch (error) {
+      showError(error.message || "The contribution could not be submitted.");
+    } finally {
+      button.disabled = false;
+      button.textContent = "Confirm and submit";
+    }
+  }
+
+  function startAnotherContribution() {
+    state.pendingPayload = null;
+    state.area = "";
+    state.lat = null;
+    state.lon = null;
+    state.photoDataUrl = null;
+    byId("contribution-summary").hidden = true;
+    byId("contribution-receipt").hidden = true;
+    document.querySelector(".contribution-workspace").hidden = false;
+    byId("contribution-area").value = "";
+    byId("contribution-latitude").textContent = "—";
+    byId("contribution-longitude").textContent = "—";
+    byId("contribution-pin").hidden = true;
+    byId("contribution-map-instruction").textContent = "Click the map to drop a pin";
+    document.querySelectorAll("#contribution-map .contribution-area").forEach((path) => path.classList.remove("selected"));
+    setKind("proposal");
+    document.querySelector(".contribution-workspace").scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function nearestArea(lat, lon) {
@@ -348,6 +491,9 @@
       byId("contribution-photo-name").textContent = file ? `${file.name} · ${(file.size / 1024 / 1024).toFixed(1)} MB` : "Choose photo";
     });
     byId("contribution-form").addEventListener("submit", handleSubmit);
+    byId("summary-back").addEventListener("click", backToEdit);
+    byId("summary-confirm").addEventListener("click", confirmSubmission);
+    byId("contribution-another").addEventListener("click", startAnotherContribution);
   }
 
   init();
