@@ -90,6 +90,12 @@ python -m http.server 8001 --directory dist
 
 Open `http://localhost:8001`. HTTP serving enables the lazy-loaded HDB and green-infrastructure layers.
 
+## Local environment heat results
+
+`dist/data/local-heat-results.json` contains the public outputs for 55 planning areas at three analysis radii. The validation summary is published in `reports/local-heat-model-validation.md`: 2,210 hourly observations across 11 stations, leave-one-station-out MAE 1.011 °C and RMSE 1.482 °C.
+
+The fitted local-environment model, its private weights and training implementation are not included in this public repository. The public site contains only the interface, validation summary and prediction results. The result is spatial downscaling under a specified network heat background—not a next-day weather forecast, direct observation or official alert.
+
 ## Reproduce inference
 
 The repository includes both released model artefacts:
