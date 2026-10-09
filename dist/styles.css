@@ -1203,24 +1203,12 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.6r
 /* SDG — structured end-user contribution interface */
 .module-entry-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 
-.contribute-hero { grid-template-columns: minmax(0, 1fr) minmax(270px, 360px); }
-.contribute-privacy-note {
-  justify-self: end;
-  align-self: end;
-  max-width: 360px;
-  padding: 1rem 1.05rem;
-  background: rgba(255,255,255,.94);
-  border: 1px solid rgba(217,200,202,.9);
-  border-radius: 12px;
-  box-shadow: 0 16px 45px rgba(83,27,38,.09);
-  backdrop-filter: blur(8px);
+.contribute-hero {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  padding: clamp(1.25rem, 2vw, 2rem) clamp(1.15rem, 1.7vw, 1.75rem);
 }
-.contribute-privacy-note span,
-.contribute-privacy-note strong,
-.contribute-privacy-note small { display: block; }
-.contribute-privacy-note span { color: var(--red); font-size: .67rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
-.contribute-privacy-note strong { margin: .22rem 0 .28rem; font-size: 1rem; }
-.contribute-privacy-note small { color: var(--muted); font-size: .72rem; line-height: 1.5; }
+.contribute-hero > div { align-self: start; max-width: 1120px; }
 
 .contribution-channels {
   display: grid;
@@ -1343,6 +1331,8 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.6r
 .receipt-impact span,
 .receipt-impact small { color: rgba(255,255,255,.58); font-size: .64rem; }
 .receipt-impact strong { margin: .22rem 0 .35rem; font-size: 1rem; }
+.contribution-privacy-footer { margin: 1rem .15rem 0; color: var(--muted); font-size: .64rem; line-height: 1.55; text-align: right; }
+.contribution-privacy-footer strong { color: var(--ink); font-weight: 800; }
 
 @media (max-width: 1100px) {
   .module-entry-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -1362,7 +1352,6 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.6r
   .module-entry:nth-child(2n) { border-right: 0; }
   .module-entry:last-child { grid-column: 1 / -1; border-bottom: 0; border-right: 0; }
   .contribute-hero { grid-template-columns: 1fr; }
-  .contribute-privacy-note { justify-self: start; align-self: auto; }
   .contribution-panel { grid-template-columns: 1fr; }
   .contribution-form { padding-top: 1rem; padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }
 }
@@ -1373,6 +1362,7 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.6r
   .module-entry:nth-child(3),
   .module-entry:last-child { grid-column: auto; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.14); }
   .module-entry:last-child { border-bottom: 0; }
+  .contribute-hero { padding: 1.15rem 1rem; }
   .contribution-channels { grid-template-columns: 1fr; }
   .contribution-channels > div { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.14); }
   .contribution-channels > div:last-child { border-bottom: 0; }
@@ -1383,4 +1373,5 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.6r
   .photo-field { grid-template-columns: 1fr; }
   .contribution-receipt { grid-template-columns: 1fr; }
   .receipt-impact { padding-top: .8rem; padding-left: 0; border-top: 1px solid rgba(255,255,255,.18); border-left: 0; }
+  .contribution-privacy-footer { text-align: left; }
 }
