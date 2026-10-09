@@ -257,27 +257,42 @@ def publish_results(
     areas = json.loads(
         (project_root / "dist" / "data" / "spatial" / "areas.geojson").read_text(encoding="utf-8")
     )["features"]
-    rows = []
-    for feature in areas:
-        properties = feature["properties"]
-        longitude, latitude = properties["centroid"]
-        estimates = {}
-        for radius in radii:
-            result = predictor.predict(longitude, latitude, radius, background_heat_index_c)
-            estimates[str(radius)] = {
-                "estimate_c": result["estimate_c"],
-                "interval_c": result["interval_c"],
-                "risk": result["risk"],
-                "local_adjustment_c": result["local_adjustment_c"],
-                "spatial_support": result["spatial_support"],
-                "spatial": result["spatial"],
+    subzones = json.loads(
+        (project_root / "dist" / "data" / "spatial" / "subzones.geojson").read_text(encoding="utf-8")
+    )["features"]
+
+    def estimate_features(features: list[dict[str, Any]], level: str) -> list[dict[str, Any]]:
+        rows = []
+        for feature in features:
+            properties = feature["properties"]
+            longitude, latitude = properties["centroid"]
+            estimates = {}
+            for radius in radii:
+                result = predictor.predict(longitude, latitude, radius, background_heat_index_c)
+                estimates[str(radius)] = {
+                    "estimate_c": result["estimate_c"],
+                    "interval_c": result["interval_c"],
+                    "risk": result["risk"],
+                    "local_adjustment_c": result["local_adjustment_c"],
+                    "spatial_support": result["spatial_support"],
+                    "spatial": result["spatial"],
+                }
+            row = {
+                "id": properties["id"],
+                "name": properties["display_name"],
+                "centroid": properties["centroid"],
+                "estimates": estimates,
             }
-        rows.append({
-            "id": properties["id"],
-            "name": properties["display_name"],
-            "centroid": properties["centroid"],
-            "estimates": estimates,
-        })
+            if level == "subzone":
+                row.update({
+                    "planning_area_id": properties["planning_area_id"],
+                    "planning_area": str(properties["planning_area"]).title(),
+                })
+            rows.append(row)
+        return rows
+
+    rows = estimate_features(areas, "planning_area")
+    subzone_rows = estimate_features(subzones, "subzone")
     output = {
         "schema_version": 1,
         "model": "local-environment-v1",
@@ -285,6 +300,7 @@ def publish_results(
         "background_heat_index_c": background_heat_index_c,
         "radii_m": radii,
         "areas": rows,
+        "subzones": subzone_rows,
         "notice": "Illustrative local-environment estimates under a fixed background heat condition; not observations, forecasts or official alerts.",
     }
     path = project_root / "dist" / "data" / "local-heat-results.json"
@@ -324,6 +340,7 @@ def write_report(project_root: Path, report: dict[str, Any]) -> None:
         "",
         "Every fold holds out one complete weather station. This prevents repeated hourly observations from the same location appearing in both training and validation.",
         "For feature profiles far from any training station, the local adjustment is conservatively shrunk toward the network background instead of extrapolating without bound.",
+        "Published map results evaluate the centroids of 55 planning areas and 332 official subzones at 250 m, 500 m and 1 km analysis radii.",
         "",
         "## Limitations",
         "",

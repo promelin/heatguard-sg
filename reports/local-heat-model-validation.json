@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-09T09:44:47.141107+00:00",
+  "generated_at": "2026-10-09T09:52:50.996341+00:00",
   "selected_model": "ridge",
   "training": {
     "rows": 2210,

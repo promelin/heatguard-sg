@@ -28,7 +28,7 @@ Full project credits are recorded in [CONTRIBUTORS.md](CONTRIBUTORS.md).
 - **Live Heat Index** — current heat-index conditions across the weather-station network, with observation and refresh times.
 - **Area Heat Risk** — a policy-calibrated random-forest score that combines forecast heat, official 2026 age structure and mapped eldercare access across 55 planning areas.
 - **Cooling Simulation** — selectable parks, cycling routes and park connectors, area-specific green baselines, adjustable cooling points and corridor shade.
-- **Local Heat Estimate** — a separate spatial model that combines the station-network background with nearby vegetation, HDB building form, coastline exposure and geographic position at 250 m, 500 m or 1 km.
+- **Local Heat Estimate** — a separate spatial model that combines the station-network background with nearby vegetation, HDB building form, coastline exposure and geographic position at 250 m, 500 m or 1 km. The overview covers 55 planning areas and reveals 332 selectable subzones when zoomed in.
 - **Community Data** — structured, privacy-minimised collection for green-pocket proposals, build confirmation, monthly condition checks and on-site comfort feedback.
 
 The public site also includes planning-area and subzone demographics, close-zoom HDB building detail, a ranked priority queue, model evidence and the completed DAISI B1 delivery flow.
@@ -67,7 +67,7 @@ python -m pip install -r backend/requirements.txt
 python scripts/train_local_heat_model.py
 ```
 
-This creates the private, Git-ignored `backend/model/local_heat_model.joblib`, updates the public validation evidence in `reports/local-heat-model-validation.*`, and publishes planning-area results to `dist/data/local-heat-results.json`. The released validation uses 2,210 hourly observations across 11 stations and reports a leave-one-station-out MAE of 1.011 °C and RMSE of 1.482 °C.
+This creates the private, Git-ignored `backend/model/local_heat_model.joblib`, updates the public validation evidence in `reports/local-heat-model-validation.*`, and publishes results for 55 planning areas and 332 subzones to `dist/data/local-heat-results.json`. The released validation uses 2,210 hourly observations across 11 stations and reports a leave-one-station-out MAE of 1.011 °C and RMSE of 1.482 °C.
 
 Example backend request:
 

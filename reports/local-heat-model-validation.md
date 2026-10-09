@@ -22,6 +22,7 @@ This model spatially downscales a supplied Singapore-wide background heat index.
 
 Every fold holds out one complete weather station. This prevents repeated hourly observations from the same location appearing in both training and validation.
 For feature profiles far from any training station, the local adjustment is conservatively shrunk toward the network background instead of extrapolating without bound.
+Published map results evaluate the centroids of 55 planning areas and 332 official subzones at 250 m, 500 m and 1 km analysis radii.
 
 ## Limitations
 

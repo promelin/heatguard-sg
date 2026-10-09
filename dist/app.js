@@ -2,6 +2,7 @@ const state = {
   data: null,
   localHeat: null,
   localRadius: 500,
+  localSubzone: null,
   geo: null,
   station: null,
   area: null,
@@ -429,6 +430,28 @@ function computeForecastPeakAreas() {
   }).sort((a, b) => b.heat - a.heat);
 }
 
+function localSubzoneRows() {
+  if (!state.localHeat?.subzones || !state.spatial?.subzones?.features) return [];
+  const radius = String(state.localRadius);
+  const byId = new Map(state.localHeat.subzones.map((row) => [row.id, row]));
+  return state.spatial.subzones.features.map((feature) => {
+    const source = byId.get(feature.properties.id);
+    const local = source?.estimates?.[radius];
+    if (!source || !local) return null;
+    const heat = Number(local.estimate_c);
+    return {
+      feature,
+      name: source.name,
+      planningArea: source.planning_area,
+      planningAreaId: source.planning_area_id,
+      heat,
+      local,
+      risk: riskForTemperature(heat),
+      score: clamp(((heat - 31.5) / 9.5) * 100, 0, 100),
+    };
+  }).filter(Boolean).sort((a, b) => b.heat - a.heat);
+}
+
 function guidanceForHeat(value) {
   if (value >= 40) return "Very high heat risk: avoid strenuous outdoor activity around the peak, use cooled spaces, and prioritise checks on vulnerable residents.";
   if (value >= 37) return "High heat risk: plan shaded breaks, hydration, and earlier outreach before the forecast peak.";
@@ -446,12 +469,15 @@ function guidanceForLocalHeat(value) {
 function updateForecastAreaPanel() {
   if (!els.forecastAreaTitle || !state.data || !state.geo) return;
   const areaName = state.area || computeForecastPeakAreas()[0]?.name;
-  const row = computeForecastPeakAreas().find((item) => item.name === areaName);
+  const subzone = state.localSubzone
+    ? localSubzoneRows().find((item) => item.name === state.localSubzone)
+    : null;
+  const row = subzone || computeForecastPeakAreas().find((item) => item.name === areaName);
   if (!areaName || !row) return;
-  state.area = areaName;
+  state.area = subzone?.planningArea || areaName;
   const risk = riskForTemperature(row.heat);
   const spatial = row.local?.spatial || {};
-  els.forecastAreaTitle.textContent = areaName;
+  els.forecastAreaTitle.textContent = subzone ? `${subzone.name} · ${subzone.planningArea}` : areaName;
   els.forecastAreaRiskChip.textContent = `${risk.label} risk`;
   els.forecastAreaRiskChip.className = `risk-chip ${risk.key}`;
   els.forecastAreaPeak.textContent = `${row.heat.toFixed(1)}°C`;
@@ -469,6 +495,15 @@ function updateForecastAreaPanel() {
 
 function selectForecastArea(areaName) {
   state.area = areaName;
+  state.localSubzone = null;
+  updateForecastAreaPanel();
+  renderMap(networkAtTime(getStation().series[state.index].time));
+  document.querySelector(".forecast-area-panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function selectForecastSubzone(row) {
+  state.area = row.planningArea;
+  state.localSubzone = row.name;
   updateForecastAreaPanel();
   renderMap(networkAtTime(getStation().series[state.index].time));
   document.querySelector(".forecast-area-panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -628,25 +663,41 @@ async function ensureGreenData() {
 }
 
 function appendSubzoneDetail(svg, view, stationRows, mapLayer) {
-  if (!state.spatial || (view.key !== "community" && view.key !== "cooling")) return;
-  const rows = computeSubzones(stationRows);
+  if (!state.spatial || !["community", "cooling", "forecast"].includes(view.key)) return;
+  const rows = view.key === "forecast" ? localSubzoneRows() : computeSubzones(stationRows);
   const group = svgEl("g", { class: "subzone-layer" });
   for (const row of rows) {
     const parent = state.geo.features.find((feature) => feature.properties.code === row.feature.properties.planning_area_id)?.properties;
+    const selected = view.key === "forecast"
+      ? row.name === state.localSubzone
+      : parent?.name === state.area;
     const path = svgEl("path", {
       d: geometryPath(row.feature.geometry),
-      class: `subzone-shape ${parent?.name === state.area ? "selected-area" : ""}`,
+      class: `subzone-shape ${selected ? "selected-area" : ""}`,
       fill: areaFill(row, mapLayer),
       "fill-rule": "evenodd",
-      tabindex: -1,
+      tabindex: view.key === "forecast" ? 0 : -1,
+      role: view.key === "forecast" ? "button" : "img",
+      "aria-label": view.key === "forecast"
+        ? `${row.name}, ${row.planningArea}, local heat estimate ${row.heat.toFixed(1)} degrees Celsius`
+        : `${row.name}, ${parent?.name || row.planningArea} subzone`,
     });
-    path.addEventListener("pointermove", (event) => showMapTooltip(event,
-      `<strong>${row.name}</strong><span>${parent?.name || row.planningArea} subzone</span><span>${row.heat.toFixed(1)}°C heat estimate · score ${row.score.toFixed(0)}</span><span>${fmtNumber.format(row.seniors)} residents aged 65+ · official 2026</span><span>${fmtNumber.format(row.hdbBlocks)} HDB buildings</span>`, view
-    ));
+    const detail = view.key === "forecast"
+      ? `<strong>${row.name}</strong><span>${row.planningArea} subzone</span><span>${row.heat.toFixed(1)}°C local estimate · ${state.localRadius} m surroundings</span><span>Click for local environment inputs</span>`
+      : `<strong>${row.name}</strong><span>${parent?.name || row.planningArea} subzone</span><span>${row.heat.toFixed(1)}°C heat estimate · score ${row.score.toFixed(0)}</span><span>${fmtNumber.format(row.seniors)} residents aged 65+ · official 2026</span><span>${fmtNumber.format(row.hdbBlocks)} HDB buildings</span>`;
+    path.addEventListener("pointermove", (event) => showMapTooltip(event, detail, view));
     path.addEventListener("pointerleave", () => hideMapTooltip(view));
-    path.addEventListener("click", () => parent?.name && selectArea(parent.name));
+    const activate = () => view.key === "forecast"
+      ? selectForecastSubzone(row)
+      : parent?.name && selectArea(parent.name);
+    path.addEventListener("click", activate);
+    if (view.key === "forecast") {
+      path.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); activate(); }
+      });
+    }
     group.appendChild(path);
-    if (parent?.name === state.area) {
+    if ((view.key === "forecast" ? row.planningArea === state.area : parent?.name === state.area)) {
       const [x, y] = project(featureCentroid(row.feature));
       const label = svgEl("text", { x, y, class: "subzone-label", "text-anchor": "middle", "pointer-events": "none" });
       label.textContent = row.name;
@@ -892,8 +943,6 @@ function initMapInteractions() {
       drag.clientY = event.clientY;
       drag.startX = mapViewportState[view.key].x;
       drag.startY = mapViewportState[view.key].y;
-      view.svg.setPointerCapture?.(event.pointerId);
-      view.stage?.classList.add("is-panning");
     });
     view.svg.addEventListener("pointermove", (event) => {
       if (!drag.active || event.pointerId !== drag.pointerId) return;
@@ -902,7 +951,12 @@ function initMapInteractions() {
       const box = getViewBoxForMap(view.key);
       const dx = event.clientX - drag.clientX;
       const dy = event.clientY - drag.clientY;
-      if (Math.hypot(dx, dy) > 3) drag.moved = true;
+      if (Math.hypot(dx, dy) > 3 && !drag.moved) {
+        drag.moved = true;
+        view.svg.setPointerCapture?.(event.pointerId);
+        view.stage?.classList.add("is-panning");
+      }
+      if (!drag.moved) return;
       mapViewportState[view.key].x = drag.startX - dx * (box.width / rect.width);
       mapViewportState[view.key].y = drag.startY - dy * (box.height / rect.height);
       applyMapViewport(view);

@@ -1095,6 +1095,7 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.6r
 .map-stage.labels-detailed .subzone-layer { opacity: 1; pointer-events: auto; }
 .map-stage.labels-local .hdb-block-layer { opacity: 1; pointer-events: auto; }
 .map-stage.labels-local .subzone-layer { opacity: .22; pointer-events: none; }
+.forecast-map-panel .map-stage.labels-local .subzone-layer { opacity: 1; pointer-events: auto; }
 .subzone-shape {
   fill-opacity: .84;
   stroke: rgba(82, 45, 49, .54);

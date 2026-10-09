@@ -35,17 +35,25 @@ def main() -> None:
     assert published["model"] == "local-environment-v1"
     assert published["radii_m"] == [250, 500, 1000]
     assert len(published["areas"]) == 55
+    assert len(published["subzones"]) == 332
     assert all(set(area["estimates"]) == {"250", "500", "1000"} for area in published["areas"])
+    assert all(set(area["estimates"]) == {"250", "500", "1000"} for area in published["subzones"])
     values = [
         estimate["estimate_c"]
         for area in published["areas"]
         for estimate in area["estimates"].values()
     ]
+    values.extend(
+        estimate["estimate_c"]
+        for area in published["subzones"]
+        for estimate in area["estimates"].values()
+    )
     assert min(values) >= 20.0 and max(values) <= 55.0
     print(json.dumps({
         "status": "ok",
         "queries": len(examples),
         "published_areas": len(published["areas"]),
+        "published_subzones": len(published["subzones"]),
         "published_range_c": [min(values), max(values)],
     }, indent=2))
 
