@@ -399,14 +399,37 @@
 
             <div class="contribution-rules"><strong>Data safeguards</strong><span>Location-and-time tagged evidence · first valid issue counts · weekly submission cap · no public names</span></div>
             <div class="form-error" id="contribution-error" role="alert" hidden></div>
-            <button class="contribution-submit" type="submit">Submit for review</button>
+            <button class="contribution-submit" type="submit">Review summary</button>
           </form>
         </article>
       </div>
 
+      <section class="panel contribution-summary" id="contribution-summary" aria-labelledby="contribution-summary-title" hidden>
+        <div class="contribution-summary-head">
+          <div><p class="panel-kicker">Summary mode</p><h2 id="contribution-summary-title">Review your contribution</h2><p>Check the structured record below before it enters the council-review queue.</p></div>
+          <span class="summary-status" id="contribution-summary-status">Ready to submit</span>
+        </div>
+        <div class="contribution-summary-grid">
+          <article><span>Contribution</span><strong id="summary-kind">—</strong><small id="summary-step">—</small></article>
+          <article><span>Location</span><strong id="summary-area">—</strong><small id="summary-coordinates">—</small></article>
+          <article><span>Channel</span><strong id="summary-channel">—</strong><small id="summary-time">—</small></article>
+          <article><span>Evidence</span><strong id="summary-evidence">—</strong><small>Private review evidence</small></article>
+        </div>
+        <div class="summary-record">
+          <div><p class="panel-kicker">Structured answers</p><dl id="summary-details"></dl></div>
+          <figure class="summary-photo" id="summary-photo" hidden><img id="summary-photo-preview" alt="Uploaded contribution evidence preview"><figcaption id="summary-photo-caption">Photo evidence</figcaption></figure>
+        </div>
+        <p class="summary-consent"><strong>Consent confirmed.</strong> Exact location and evidence remain in the private review record; only approved, aggregated reporting may appear publicly.</p>
+        <div class="summary-actions" id="summary-actions">
+          <button class="summary-back" id="summary-back" type="button">Back to edit</button>
+          <button class="summary-confirm" id="summary-confirm" type="button">Confirm and submit</button>
+        </div>
+      </section>
+
       <section class="contribution-receipt" id="contribution-receipt" aria-live="polite" hidden>
         <div><p class="panel-kicker">Contribution received</p><h2>Thank you for helping your neighbourhood adapt.</h2><p id="contribution-receipt-copy">Your structured report has been added to the review queue.</p></div>
         <div class="receipt-impact"><span>Estimated local value</span><strong id="contribution-impact">Review pending</strong><small id="contribution-receipt-id">Receipt —</small></div>
+        <button class="receipt-another" id="contribution-another" type="button">Start another contribution</button>
       </section>
       <p class="contribution-privacy-footer"><strong>Privacy by design.</strong> No names appear on the public map. Location, time and structured observations are used for council review, and only aggregated reporting is shared publicly.</p>
     </section>
