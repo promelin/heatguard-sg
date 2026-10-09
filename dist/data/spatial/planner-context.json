@@ -1,0 +1,19 @@
+{
+  "source": "spatial_context.tif",
+  "bounds": {
+    "minLon": 103.59665569676571,
+    "minLat": 1.1495678265883582,
+    "maxLon": 104.0975098555467,
+    "maxLat": 1.4798358469084434
+  },
+  "width": 5574,
+  "height": 3652,
+  "layers": [
+    "buildings",
+    "roads",
+    "walking and cycling",
+    "vegetation",
+    "water",
+    "conserved buildings"
+  ]
+}

@@ -1,0 +1,38 @@
+#!/bin/bash
+#PBS -N hg_cvae_div_eval
+#PBS -q auto_free
+#PBS -l select=1:ncpus=4:ngpus=1:mem=48gb
+#PBS -l walltime=01:00:00
+#PBS -J 0-1
+#PBS -j oe
+
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+
+python_bin="/scratch/e1539397/miniforge3/envs/spark_jax/bin/python"
+data_root="${HEATGUARD_CVAE_DATA:-$PBS_O_WORKDIR/spatial_cvae/data/training_tiles_v1}"
+result_root="${HEATGUARD_CVAE_RESULTS:-$PBS_O_WORKDIR/spatial_cvae/results_diverse}"
+sample_index="${HEATGUARD_CVAE_SAMPLE_INDEX:-10}"
+
+case "${PBS_ARRAY_INDEX}" in
+  0) run_name="inject_b32_z128_d2" ;;
+  1) run_name="inject_b32_z192_d3" ;;
+  *) exit 2 ;;
+esac
+
+run_dir="$result_root/$run_name"
+output_file="$run_dir/candidates_100_sample${sample_index}.npy"
+
+"$python_bin" -m spatial_cvae.sample \
+  --checkpoint "$run_dir/best.pt" \
+  --data "$data_root" \
+  --sample-index "$sample_index" \
+  --count 100 \
+  --batch-size 20 \
+  --output "$output_file"
+
+"$python_bin" -m spatial_cvae.evaluate_candidates \
+  --candidates "$output_file" \
+  --data "$data_root" \
+  --sample-index "$sample_index" \
+  --output "$run_dir/candidates_100_sample${sample_index}.evaluation.json"

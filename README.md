@@ -28,6 +28,7 @@ Full project credits are recorded in [CONTRIBUTORS.md](CONTRIBUTORS.md).
 - **Live Heat Index** — current heat-index conditions across the weather-station network, with observation and refresh times.
 - **Area Heat Risk** — a policy-calibrated random-forest score that combines forecast heat, official 2026 age structure and mapped eldercare access across 55 planning areas.
 - **Cooling Simulation** — selectable parks, cycling routes and park connectors, area-specific green baselines, adjustable cooling points and corridor shade.
+- **Nature-positive Layout Generator** — a Conditional Spatial VAE that accepts a user-drawn boundary on a zoomable Singapore training-data map and generates 10–1,000 aligned building, blue-green, mobility and community-facility layout candidates for an unseen site. The map includes planning-area navigation for focus only, up to 40× zoom and lazy-loaded exact building footprints; the model remains conditioned on the user's arbitrary drawn boundary.
 - **Local Heat Estimate** — a separate spatial model that combines the station-network background with nearby vegetation, HDB building form, coastline exposure and geographic position at 250 m, 500 m or 1 km. The overview covers 55 planning areas and reveals 332 selectable subzones when zoomed in.
 - **Community Data** — structured, privacy-minimised collection for green-pocket proposals, build confirmation, monthly condition checks and on-site comfort feedback.
 
@@ -37,7 +38,7 @@ The public site also includes planning-area and subzone demographics, close-zoom
 
 ```text
 backend/          FastAPI service, weather ingestion and model runtime
-backend/model/    V4 TFT and planning-area risk-model weights
+backend/model/    Forecast, risk and spatial-layout inference weights and context raster
 dist/             GitHub Pages website, spatial layers and published forecast
 docs/             Concept poster and project visuals
 reports/          Held-out validation evidence
@@ -55,7 +56,9 @@ cp backend/.env.example .env
 python run_live.py
 ```
 
-Open `http://localhost:8000`. The service exposes `/api/health`, `/api/heatguard-data.json`, `/api/local-heat-index` and `/api/community-submissions`, and serves the website from the same origin. Community records, photos and the fitted local-heat model are private backend runtime data and are excluded from Git.
+Open `http://localhost:8000`. The service exposes `/api/health`, `/api/heatguard-data.json`, `/api/local-heat-index`, `/api/spatial-layout/status`, `/api/spatial-layout/jobs` and `/api/community-submissions`, and serves the website from the same origin. Community records, photos and the fitted local-heat model are private backend runtime data and are excluded from Git.
+
+For layout generation, select a planning area to focus the map or click an area boundary, inspect the real buildings and blue-green context, then draw any site boundary. Choose target dwelling density and footprint coverage and request 10–1,000 candidates. The backend converts the boundary and mapped surroundings into the model's 14 condition channels, samples with an expanded latent range, checks hard exclusions and returns a coverage-aware, spatially diverse subset as crisp native 256 × 256 previews.
 
 ## Train the local environment model
 
@@ -94,6 +97,8 @@ The repository includes both released model artefacts:
 - `backend/model/best_model.pt` — V4 history-only full Temporal Fusion Transformer.
 - `backend/model/risk_model.joblib` — policy-calibrated planning-area random forest.
 - `backend/model/v4_runtime_metadata.json` — feature order and training normalisation used by the V4 runtime.
+- `backend/model/spatial_cvae_inference.pt` — compact FP16 Conditional Spatial VAE inference weights.
+- `backend/model/spatial_context.tif` — compressed 10 m Singapore context used to condition arbitrary drawn sites.
 
 The new local-environment model artefact is intentionally not released in the public repository. Its reproducible training code, validation report and published prediction results are included.
 
@@ -113,7 +118,7 @@ python scripts/publish_forecast.py
 - URA: planning-area and subzone boundaries
 - SingStat and HDB: 2026 age structure and building context
 - MOH: eldercare-service locations
-- NParks: parks, nature reserves and Park Connector Network
+- NParks: [Parks and Nature Reserves](https://data.gov.sg/datasets/d_77d7ec97be83d44f61b85454f844382f/view) and Park Connector Network
 - LTA: cycling network
 
 Detailed spatial provenance is recorded in `dist/data/spatial/metadata.json`. HeatGuard SG is designed for planning review with human oversight; public health actions should continue to follow official Singapore guidance.

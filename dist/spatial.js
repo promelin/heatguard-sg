@@ -1,8 +1,10 @@
 (function () {
   const ROOT = "data/spatial";
   const blockCache = new Map();
+  const plannerBuildingCache = new Map();
   let basePromise = null;
   let greenPromise = null;
+  let plannerBuildingIndexPromise = null;
 
   async function fetchJson(path) {
     const response = await fetch(path, { cache: "force-cache" });
@@ -54,6 +56,23 @@
     return request;
   }
 
+  async function loadPlannerBuildings(areaId) {
+    if (!areaId) return null;
+    if (plannerBuildingCache.has(areaId)) return plannerBuildingCache.get(areaId);
+    if (!plannerBuildingIndexPromise) {
+      plannerBuildingIndexPromise = fetchJson(`${ROOT}/planner-buildings-index.json`);
+    }
+    const index = await plannerBuildingIndexPromise;
+    const item = index[areaId];
+    if (!item) return null;
+    const request = fetchJson(`${ROOT}/${item.file}`).then((collection) => ({ ...collection, metadata: item })).catch((error) => {
+      plannerBuildingCache.delete(areaId);
+      throw error;
+    });
+    plannerBuildingCache.set(areaId, request);
+    return request;
+  }
+
   function enrichPlanningAreas(original, spatial) {
     const oldByName = new Map(original.features.map((feature) => [feature.properties.name.toUpperCase(), feature.properties]));
     const greenById = new Map(spatial.greenMetrics.areas.map((row) => [row.id, row]));
@@ -99,5 +118,5 @@
     return spatial.subzones.features.filter((feature) => feature.properties.planning_area_id === areaId);
   }
 
-  window.HeatGuardSpatial = { loadBase, loadGreen, loadBlocks, enrichPlanningAreas, getAreaId, getSubzones };
+  window.HeatGuardSpatial = { loadBase, loadGreen, loadBlocks, loadPlannerBuildings, enrichPlanningAreas, getAreaId, getSubzones };
 })();

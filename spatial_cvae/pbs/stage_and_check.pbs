@@ -1,0 +1,37 @@
+#!/bin/bash
+#PBS -N hg_cvae_stage
+#PBS -q auto_free
+#PBS -l select=1:ncpus=4:mem=16gb
+#PBS -l walltime=00:20:00
+#PBS -j oe
+
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+
+tar -xzf heatguard_cvae_code.tar.gz
+tar -xzf heatguard_cvae_training_tiles_v1.tar.gz
+
+module purge
+module load PyTorch-bundle/2.1.2-foss-2023a-CUDA-12.1.1
+
+python - <<'PY'
+import json
+from pathlib import Path
+
+import numpy as np
+import torch
+
+root = Path("spatial_cvae/data/training_tiles_v1")
+manifest = json.loads((root / "manifest.json").read_text())
+conditions = np.load(root / "conditions.npy", mmap_mode="r")
+targets = np.load(root / "targets.npy", mmap_mode="r")
+assert conditions.shape == (1000, 14, 256, 256), conditions.shape
+assert targets.shape == (1000, 13, 256, 256), targets.shape
+print("torch", torch.__version__)
+print("cuda_runtime", torch.version.cuda)
+print("conditions", conditions.shape, conditions.dtype)
+print("targets", targets.shape, targets.dtype)
+print("channels", len(manifest["condition_names"]), len(manifest["target_names"]))
+PY
+
+touch STAGE_OK

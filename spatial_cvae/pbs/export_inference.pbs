@@ -1,0 +1,17 @@
+#!/bin/bash
+#PBS -N hg_cvae_export
+#PBS -q auto_free
+#PBS -l select=1:ncpus=1:mem=8gb
+#PBS -l walltime=00:20:00
+#PBS -j oe
+
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+
+python_bin="/scratch/e1539397/miniforge3/envs/spark_jax/bin/python"
+checkpoint="${HEATGUARD_CVAE_CHECKPOINT:-$PBS_O_WORKDIR/spatial_cvae/results_diverse/selected_diverse_best.pt}"
+output="${HEATGUARD_CVAE_EXPORT:-$PBS_O_WORKDIR/spatial_cvae/results_diverse/spatial_cvae_inference.pt}"
+
+"$python_bin" -m spatial_cvae.export_inference \
+  --checkpoint "$checkpoint" \
+  --output "$output"

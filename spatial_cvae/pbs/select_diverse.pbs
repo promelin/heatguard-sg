@@ -1,0 +1,13 @@
+#!/bin/bash
+#PBS -N hg_cvae_div_select
+#PBS -q auto_free
+#PBS -l select=1:ncpus=1:mem=8gb
+#PBS -l walltime=00:20:00
+#PBS -j oe
+
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+
+python_bin="/scratch/e1539397/miniforge3/envs/spark_jax/bin/python"
+results="${HEATGUARD_CVAE_RESULTS:-$PBS_O_WORKDIR/spatial_cvae/results_diverse}"
+"$python_bin" -m spatial_cvae.select_diverse --results "$results" --sample-index 10

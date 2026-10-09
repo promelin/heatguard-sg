@@ -13,3 +13,12 @@ output/
 tmp/
 runtime/
 backend/model/local_heat_model.joblib
+backend/data/heatguard-data-live.json
+spatial_cvae/data/
+spatial_cvae/results/
+spatial_cvae/checkpoints/
+*.npy
+*.pt
+*.pth
+!backend/model/spatial_cvae_inference.pt
+*.o[0-9]*

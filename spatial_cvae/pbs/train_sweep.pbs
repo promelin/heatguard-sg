@@ -1,0 +1,41 @@
+#!/bin/bash
+#PBS -N hg_cvae_sweep
+#PBS -q auto_free
+#PBS -l select=1:ncpus=8:ngpus=1:mem=64gb
+#PBS -l walltime=12:00:00
+#PBS -J 0-3
+#PBS -j oe
+
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+
+export OMP_NUM_THREADS=8
+export MKL_NUM_THREADS=8
+export OPENBLAS_NUM_THREADS=8
+
+data_root="${HEATGUARD_CVAE_DATA:-$PBS_O_WORKDIR/spatial_cvae/data/training_tiles_v1}"
+result_root="${HEATGUARD_CVAE_RESULTS:-$PBS_O_WORKDIR/spatial_cvae/results}"
+index="${PBS_ARRAY_INDEX:-0}"
+python_bin="/scratch/e1539397/miniforge3/envs/spark_jax/bin/python"
+
+case "$index" in
+  0) run_name="b24_z64_beta001"; base=24; latent=64; beta=0.001; lr=0.0003; batch=6 ;;
+  1) run_name="b32_z128_beta003"; base=32; latent=128; beta=0.003; lr=0.0002; batch=4 ;;
+  2) run_name="b32_z192_beta005"; base=32; latent=192; beta=0.005; lr=0.0002; batch=4 ;;
+  3) run_name="b40_z128_beta003"; base=40; latent=128; beta=0.003; lr=0.0001; batch=3 ;;
+  *) echo "Unknown PBS_ARRAY_INDEX=$index" >&2; exit 2 ;;
+esac
+
+"$python_bin" -m spatial_cvae.train \
+  --data "$data_root" \
+  --output "$result_root" \
+  --run-name "$run_name" \
+  --epochs 120 \
+  --batch-size "$batch" \
+  --workers 6 \
+  --base-channels "$base" \
+  --latent-dim "$latent" \
+  --beta "$beta" \
+  --learning-rate "$lr" \
+  --kl-warmup-epochs 20 \
+  --patience 18

@@ -1,0 +1,25 @@
+#!/bin/bash
+#PBS -N hg_cvae_smoke
+#PBS -q auto_free
+#PBS -l select=1:ncpus=4:ngpus=1:mem=32gb
+#PBS -l walltime=00:30:00
+#PBS -j oe
+
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+
+data_root="${HEATGUARD_CVAE_DATA:-$PBS_O_WORKDIR/spatial_cvae/data/training_tiles_v1}"
+result_root="${HEATGUARD_CVAE_RESULTS:-$PBS_O_WORKDIR/spatial_cvae/results}"
+python_bin="/scratch/e1539397/miniforge3/envs/spark_jax/bin/python"
+
+nvidia-smi
+"$python_bin" -m spatial_cvae.train \
+  --data "$data_root" \
+  --output "$result_root" \
+  --run-name gpu_smoke \
+  --epochs 2 \
+  --batch-size 2 \
+  --workers 2 \
+  --base-channels 16 \
+  --latent-dim 32 \
+  --patience 2

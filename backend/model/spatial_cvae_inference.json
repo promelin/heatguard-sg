@@ -1,0 +1,40 @@
+{
+  "format": "heatguard-spatial-cvae-inference-v1",
+  "file": "spatial_cvae_inference.pt",
+  "bytes": 51355077,
+  "sha256": "bff8d8c19de8467b0a48318714bb9d03df5dad270841917d9c4d1af63a34d2bb",
+  "model_config": {
+    "condition_channels": 14,
+    "output_channels": 13,
+    "base_channels": 32,
+    "latent_dim": 192,
+    "tile_size": 256,
+    "latent_injection": true,
+    "condition_skip_dropout": 0.35
+  },
+  "training": {
+    "epoch": 11,
+    "best_val_loss": 0.7393798950840446,
+    "args": {
+      "data": "/scratch/e1539397/heatguard_sdg/spatial_cvae/data/training_tiles_v1",
+      "output": "/scratch/e1539397/heatguard_sdg/spatial_cvae/results_diverse",
+      "run_name": "inject_b32_z192_d3",
+      "epochs": 80,
+      "batch_size": 3,
+      "workers": 4,
+      "learning_rate": 0.0002,
+      "weight_decay": 0.0001,
+      "base_channels": 32,
+      "latent_dim": 192,
+      "latent_injection": true,
+      "skip_dropout": 0.35,
+      "beta": 0.0003,
+      "kl_warmup_epochs": 12,
+      "patience": 16,
+      "diversity_weight": 3.0,
+      "diversity_margin": 0.05,
+      "seed": 20261009,
+      "resume": null
+    }
+  }
+}

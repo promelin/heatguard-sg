@@ -1,0 +1,25 @@
+#!/bin/bash
+#PBS -N hg_cvae_env
+#PBS -q auto_free
+#PBS -l select=1:ncpus=2:mem=8gb
+#PBS -l walltime=00:10:00
+#PBS -j oe
+
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+
+module purge
+module load PyTorch-bundle/2.1.2-foss-2023a-CUDA-12.1.1
+
+python - <<'PY'
+import importlib.util
+import platform
+import torch
+
+print("python", platform.python_version())
+print("torch", torch.__version__)
+print("cuda_runtime", torch.version.cuda)
+print("cuda_available", torch.cuda.is_available())
+for name in ["numpy", "geopandas", "rasterio", "pyarrow", "shapely"]:
+    print(name, bool(importlib.util.find_spec(name)))
+PY

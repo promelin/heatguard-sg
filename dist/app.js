@@ -18,6 +18,14 @@ const state = {
   green: null,
   greenPaths: null,
   greenLayers: { parks: true, cycling: true, parkConnectors: true },
+  plannerBoundary: [],
+  plannerDrawing: false,
+  plannerClosed: false,
+  plannerContext: null,
+  plannerStatus: null,
+  plannerFocusAreaId: null,
+  plannerBuildings: null,
+  plannerBuildingLoadToken: 0,
   nextRefreshAt: null,
 };
 
@@ -52,6 +60,7 @@ const OVERVIEW_LABEL_AREAS = new Set([
 ]);
 
 const BOUNDS = { minLon: 103.58, maxLon: 104.04, minLat: 1.215, maxLat: 1.48 };
+const PLANNER_BOUNDS = { minLon: 103.57, maxLon: 104.12, minLat: 1.13, maxLat: 1.49 };
 const MAP = { width: 1080, height: 650, padX: 52, padY: 46 };
 const els = {};
 const mapViewportState = {
@@ -59,6 +68,7 @@ const mapViewportState = {
   home: { zoom: 1, x: 0, y: 0 },
   forecast: { zoom: 1, x: 0, y: 0 },
   cooling: { zoom: 1, x: 0, y: 0 },
+  planner: { zoom: 1, x: 0, y: 0 },
 };
 const byId = (id) => document.getElementById(id);
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
@@ -72,6 +82,7 @@ const VIEW_TITLES = {
   forecast: "Local Heat Estimate",
   "community-risk": "Community Risk",
   cooling: "Cooling Simulation",
+  "spatial-planner": "Layout Generator",
   contribute: "Community Data",
   model: "Model & Evidence",
   readiness: "B1 Readiness",
@@ -110,12 +121,34 @@ function showView(viewName = routeNameFromHash()) {
     renderMap(networkAtTime(getStation().series[state.index].time));
     if (target === "forecast") updateForecastAreaPanel();
   }
+  if (target === "spatial-planner" && state.geo) renderPlannerMap();
 }
 
 function project([lon, lat]) {
   return [
     MAP.padX + ((lon - BOUNDS.minLon) / (BOUNDS.maxLon - BOUNDS.minLon)) * (MAP.width - MAP.padX * 2),
     MAP.padY + ((BOUNDS.maxLat - lat) / (BOUNDS.maxLat - BOUNDS.minLat)) * (MAP.height - MAP.padY * 2),
+  ];
+}
+
+function unproject([x, y]) {
+  return [
+    BOUNDS.minLon + ((x - MAP.padX) / (MAP.width - MAP.padX * 2)) * (BOUNDS.maxLon - BOUNDS.minLon),
+    BOUNDS.maxLat - ((y - MAP.padY) / (MAP.height - MAP.padY * 2)) * (BOUNDS.maxLat - BOUNDS.minLat),
+  ];
+}
+
+function projectPlanner([lon, lat]) {
+  return [
+    MAP.padX + ((lon - PLANNER_BOUNDS.minLon) / (PLANNER_BOUNDS.maxLon - PLANNER_BOUNDS.minLon)) * (MAP.width - MAP.padX * 2),
+    MAP.padY + ((PLANNER_BOUNDS.maxLat - lat) / (PLANNER_BOUNDS.maxLat - PLANNER_BOUNDS.minLat)) * (MAP.height - MAP.padY * 2),
+  ];
+}
+
+function unprojectPlanner([x, y]) {
+  return [
+    PLANNER_BOUNDS.minLon + ((x - MAP.padX) / (MAP.width - MAP.padX * 2)) * (PLANNER_BOUNDS.maxLon - PLANNER_BOUNDS.minLon),
+    PLANNER_BOUNDS.maxLat - ((y - MAP.padY) / (MAP.height - MAP.padY * 2)) * (PLANNER_BOUNDS.maxLat - PLANNER_BOUNDS.minLat),
   ];
 }
 
@@ -607,13 +640,34 @@ function updateDashboard() {
   updateAreaDetails();
 }
 
-function geometryPath(geometry) {
+function geometryPathWithProjector(geometry, projector) {
   const ringPath = (ring) => ring.map((point, index) => {
-    const [x, y] = project(point);
+    const [x, y] = projector(point);
     return `${index ? "L" : "M"}${x.toFixed(2)},${y.toFixed(2)}`;
   }).join(" ") + " Z";
   const polygons = geometry.type === "Polygon" ? [geometry.coordinates] : geometry.coordinates;
   return polygons.flatMap((polygon) => polygon.map(ringPath)).join(" ");
+}
+
+function geometryBoundsWithProjector(geometry, projector) {
+  const bounds = { minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity };
+  const visit = (coordinates) => {
+    if (typeof coordinates?.[0] === "number") {
+      const [x, y] = projector(coordinates);
+      bounds.minX = Math.min(bounds.minX, x);
+      bounds.minY = Math.min(bounds.minY, y);
+      bounds.maxX = Math.max(bounds.maxX, x);
+      bounds.maxY = Math.max(bounds.maxY, y);
+      return;
+    }
+    coordinates?.forEach(visit);
+  };
+  visit(geometry.coordinates);
+  return bounds;
+}
+
+function geometryPath(geometry) {
+  return geometryPathWithProjector(geometry, project);
 }
 
 function lineGeometryPath(geometry) {
@@ -823,12 +877,27 @@ function getMapViews() {
       scaleLabel: els.coolingMapScaleLabel,
       scaleLine: els.coolingMapScaleLine,
     },
+    {
+      key: "planner",
+      svg: els.plannerMap,
+      tooltip: els.plannerMapTooltip,
+      legend: null,
+      stationCount: null,
+      stage: els.plannerMapStage,
+      scale: els.plannerMapScale,
+      scaleLabel: els.plannerMapScaleLabel,
+      scaleLine: els.plannerMapScaleLine,
+    },
   ].filter((view) => view.svg);
+}
+
+function maxMapZoom(key) {
+  return key === "planner" ? 40 : 7;
 }
 
 function getViewBoxForMap(key) {
   const viewport = mapViewportState[key] || mapViewportState.community;
-  const zoom = clamp(viewport.zoom, 1, 7);
+  const zoom = clamp(viewport.zoom, 1, maxMapZoom(key));
   const width = MAP.width / zoom;
   const height = MAP.height / zoom;
   const maxX = MAP.width - width;
@@ -848,6 +917,7 @@ function applyMapViewport(view) {
   view.stage?.classList.toggle("labels-detailed", zoom >= 1.45);
   view.stage?.classList.toggle("labels-local", zoom >= 2.7);
   view.stage?.classList.toggle("labels-stations", zoom >= 3.2);
+  view.stage?.classList.toggle("planner-local-detail", view.key === "planner" && zoom >= 5);
   view.stage?.style.setProperty("--map-label-scale", (1 / zoom).toFixed(4));
   updateMapScale(view);
   updateSpatialDetailStatus(view);
@@ -873,14 +943,15 @@ function updateMapScale(view) {
   const rect = view.svg.getBoundingClientRect();
   if (!rect.width) return;
   const box = getViewBoxForMap(view.key);
-  const midLat = (BOUNDS.minLat + BOUNDS.maxLat) / 2;
-  const geoWidthKm = (BOUNDS.maxLon - BOUNDS.minLon) * 111.32 * Math.cos(midLat * Math.PI / 180);
+  const bounds = view.key === "planner" ? PLANNER_BOUNDS : BOUNDS;
+  const midLat = (bounds.minLat + bounds.maxLat) / 2;
+  const geoWidthKm = (bounds.maxLon - bounds.minLon) * 111.32 * Math.cos(midLat * Math.PI / 180);
   const projectedWidth = MAP.width - MAP.padX * 2;
   const svgUnitsPerKm = projectedWidth / geoWidthKm;
   const pixelsPerKm = svgUnitsPerKm * (rect.width / box.width);
-  const candidates = [20, 10, 5, 2, 1, .5, .2];
+  const candidates = [20, 10, 5, 2, 1, .5, .2, .1, .05, .02];
   let distance = candidates.find((km) => km * pixelsPerKm <= 145 && km * pixelsPerKm >= 60);
-  if (!distance) distance = candidates.find((km) => km * pixelsPerKm <= 145) || .2;
+  if (!distance) distance = candidates.find((km) => km * pixelsPerKm <= 145) || .02;
   const px = clamp(distance * pixelsPerKm, 42, 150);
   view.scale.style.setProperty("--scale-width", `${px.toFixed(0)}px`);
   view.scaleLabel.textContent = distance >= 1 ? `${distance} km` : `${Math.round(distance * 1000)} m`;
@@ -890,7 +961,7 @@ function setMapZoom(view, nextZoom, anchor = null) {
   if (!view?.svg) return;
   const viewport = mapViewportState[view.key];
   const oldBox = getViewBoxForMap(view.key);
-  const newZoom = clamp(nextZoom, 1, 7);
+  const newZoom = clamp(nextZoom, 1, maxMapZoom(view.key));
   const newWidth = MAP.width / newZoom;
   const newHeight = MAP.height / newZoom;
   let anchorX = .5;
@@ -916,6 +987,13 @@ function resetMapZoom(view) {
   viewport.zoom = 1;
   viewport.x = 0;
   viewport.y = 0;
+  if (view.key === "planner") {
+    state.plannerFocusAreaId = null;
+    state.plannerBuildings = null;
+    if (els.plannerAreaNavigator) els.plannerAreaNavigator.value = "";
+    renderPlannerMap();
+    return;
+  }
   applyMapViewport(view);
 }
 
@@ -932,9 +1010,11 @@ function initMapInteractions() {
     });
     view.svg.addEventListener("dblclick", (event) => {
       event.preventDefault();
+      if (view.key === "planner" && state.plannerDrawing) return;
       setMapZoom(view, mapViewportState[view.key].zoom * 1.5, event);
     });
     view.svg.addEventListener("pointerdown", (event) => {
+      if (view.key === "planner" && state.plannerDrawing) return;
       if (mapViewportState[view.key].zoom <= 1.01 || event.button !== 0) return;
       drag.active = true;
       drag.moved = false;
@@ -975,6 +1055,10 @@ function initMapInteractions() {
       event.stopPropagation();
       drag.moved = false;
     }, true);
+    view.svg.addEventListener("wheel", (event) => {
+      event.preventDefault();
+      setMapZoom(view, mapViewportState[view.key].zoom * (event.deltaY < 0 ? 1.25 : .8), event);
+    }, { passive: false });
   });
   window.addEventListener("resize", () => getMapViews().forEach(updateMapScale));
 }
@@ -1060,7 +1144,7 @@ function renderMap(stationRows) {
   const forecastPeakAreas = computeForecastPeakAreas();
   const forecastPeakRows = networkAtTime(state.data?.peakTime || forecastWindowPoints().at(-1)?.time);
   const coolingRows = simulatedCoolingRows();
-  getMapViews().forEach((view) => {
+  getMapViews().filter((view) => view.key !== "planner").forEach((view) => {
     const useCurrent = view.key === "home" && observedRows.length > 0;
     const rows = view.key === "forecast" ? forecastPeakRows : useCurrent ? observedRows : stationRows;
     const areas = view.key === "forecast"
@@ -1340,6 +1424,335 @@ function renderCoolingPriorityList() {
   });
 }
 
+function plannerMapView() {
+  return getMapViews().find((view) => view.key === "planner");
+}
+
+function plannerScreenPoint(event) {
+  const point = els.plannerMap.createSVGPoint();
+  point.x = event.clientX;
+  point.y = event.clientY;
+  const local = point.matrixTransform(els.plannerMap.getScreenCTM().inverse());
+  return [local.x, local.y];
+}
+
+function plannerAreaId(feature) {
+  return feature?.properties?.code || feature?.properties?.id || "";
+}
+
+function populatePlannerAreaNavigator() {
+  if (!els.plannerAreaNavigator || !state.geo?.features) return;
+  const current = els.plannerAreaNavigator.value;
+  els.plannerAreaNavigator.replaceChildren(new Option("Whole Singapore", ""));
+  state.geo.features
+    .slice()
+    .sort((a, b) => a.properties.name.localeCompare(b.properties.name))
+    .forEach((feature) => {
+      els.plannerAreaNavigator.appendChild(new Option(feature.properties.name, plannerAreaId(feature)));
+    });
+  els.plannerAreaNavigator.value = current;
+}
+
+function fitPlannerFeature(feature) {
+  const bounds = geometryBoundsWithProjector(feature.geometry, projectPlanner);
+  const featureWidth = Math.max(8, bounds.maxX - bounds.minX);
+  const featureHeight = Math.max(8, bounds.maxY - bounds.minY);
+  const zoom = clamp(Math.min(
+    MAP.width / (featureWidth * 1.28),
+    MAP.height / (featureHeight * 1.28),
+  ), 1, maxMapZoom("planner"));
+  const viewport = mapViewportState.planner;
+  viewport.zoom = zoom;
+  viewport.x = (bounds.minX + bounds.maxX) / 2 - MAP.width / zoom / 2;
+  viewport.y = (bounds.minY + bounds.maxY) / 2 - MAP.height / zoom / 2;
+}
+
+async function focusPlannerArea(areaId) {
+  const token = ++state.plannerBuildingLoadToken;
+  state.plannerFocusAreaId = areaId || null;
+  state.plannerBuildings = null;
+  if (!areaId) {
+    const viewport = mapViewportState.planner;
+    viewport.zoom = 1;
+    viewport.x = 0;
+    viewport.y = 0;
+    renderPlannerMap();
+    return;
+  }
+  const feature = state.geo?.features?.find((item) => plannerAreaId(item) === areaId);
+  if (!feature) return;
+  fitPlannerFeature(feature);
+  renderPlannerMap();
+  if (els.plannerMapInstruction) els.plannerMapInstruction.textContent = `Loading exact building footprints for ${feature.properties.name}…`;
+  try {
+    const buildings = await window.HeatGuardSpatial?.loadPlannerBuildings?.(areaId);
+    if (token !== state.plannerBuildingLoadToken) return;
+    state.plannerBuildings = buildings;
+    renderPlannerMap();
+    if (els.plannerMapInstruction) {
+      const count = buildings?.metadata?.buildingCount || buildings?.features?.length || 0;
+      els.plannerMapInstruction.textContent = `${feature.properties.name} · ${fmtNumber.format(count)} mapped buildings · zoom further, then draw any site`;
+    }
+  } catch (error) {
+    console.warn(`Detailed buildings could not be loaded for ${feature.properties.name}.`, error);
+    if (els.plannerMapInstruction) els.plannerMapInstruction.textContent = `${feature.properties.name} selected · zoom further, then draw any site`;
+  }
+}
+
+function updatePlannerControls() {
+  const points = state.plannerBoundary.length;
+  const ready = points >= 3 && state.plannerClosed;
+  if (els.plannerAreaChip) {
+    els.plannerAreaChip.textContent = ready
+      ? `${points} vertices · site ready`
+      : state.plannerDrawing
+        ? `${points} vertices · drawing`
+        : "No site drawn";
+  }
+  if (els.plannerFinishButton) els.plannerFinishButton.disabled = points < 3 || !state.plannerDrawing;
+  if (els.plannerUndoButton) els.plannerUndoButton.disabled = points === 0;
+  if (els.plannerClearButton) els.plannerClearButton.disabled = points === 0;
+  if (els.plannerGenerateButton) {
+    els.plannerGenerateButton.disabled = !state.plannerStatus?.ready || !ready;
+  }
+  if (els.plannerMapInstruction) {
+    els.plannerMapInstruction.textContent = state.plannerDrawing
+      ? points < 3 ? "Click at least three points around the site" : "Continue drawing or press Finish"
+      : ready ? "Boundary ready · zoom or adjust the controls before generation" : "Zoom or pan, then click Draw site";
+  }
+}
+
+function startPlannerDrawing() {
+  state.plannerBoundary = [];
+  state.plannerDrawing = true;
+  state.plannerClosed = false;
+  els.plannerMap?.parentElement?.classList.add("is-drawing");
+  renderPlannerMap();
+  updatePlannerControls();
+}
+
+function finishPlannerBoundary() {
+  if (state.plannerBoundary.length < 3) return;
+  state.plannerDrawing = false;
+  state.plannerClosed = true;
+  els.plannerMap?.parentElement?.classList.remove("is-drawing");
+  renderPlannerMap();
+  updatePlannerControls();
+}
+
+function undoPlannerPoint() {
+  state.plannerBoundary.pop();
+  state.plannerClosed = false;
+  if (state.plannerBoundary.length) state.plannerDrawing = true;
+  renderPlannerMap();
+  updatePlannerControls();
+}
+
+function clearPlannerBoundary() {
+  state.plannerBoundary = [];
+  state.plannerDrawing = false;
+  state.plannerClosed = false;
+  els.plannerMap?.parentElement?.classList.remove("is-drawing");
+  if (els.plannerResults) els.plannerResults.hidden = true;
+  renderPlannerMap();
+  updatePlannerControls();
+}
+
+function addPlannerPoint(event) {
+  if (!state.plannerDrawing || event.button !== 0) return;
+  const [x, y] = plannerScreenPoint(event);
+  const [lon, lat] = unprojectPlanner([x, y]);
+  if (lon < PLANNER_BOUNDS.minLon || lon > PLANNER_BOUNDS.maxLon || lat < PLANNER_BOUNDS.minLat || lat > PLANNER_BOUNDS.maxLat) return;
+  state.plannerBoundary.push([lon, lat]);
+  renderPlannerMap();
+  updatePlannerControls();
+}
+
+function renderPlannerMap() {
+  if (!els.plannerMap || !state.geo) return;
+  const svg = els.plannerMap;
+  svg.replaceChildren();
+  svg.appendChild(svgEl("rect", { width: MAP.width, height: MAP.height, class: "planner-water" }));
+  const contextBounds = state.plannerContext?.bounds || {
+    minLon: 103.5966557, minLat: 1.1495678, maxLon: 104.0975099, maxLat: 1.4798358,
+  };
+  const [imageX, imageY] = projectPlanner([contextBounds.minLon, contextBounds.maxLat]);
+  const [imageRight, imageBottom] = projectPlanner([contextBounds.maxLon, contextBounds.minLat]);
+  svg.appendChild(svgEl("image", {
+    href: "data/spatial/planner-context.png",
+    x: imageX,
+    y: imageY,
+    width: imageRight - imageX,
+    height: imageBottom - imageY,
+    class: "planner-context-image",
+    preserveAspectRatio: "none",
+    "pointer-events": "none",
+  }));
+  const boundaries = svgEl("g", { class: "planner-reference-boundaries" });
+  state.geo.features.forEach((feature) => {
+    const areaId = plannerAreaId(feature);
+    const path = svgEl("path", {
+      d: geometryPathWithProjector(feature.geometry, projectPlanner),
+      class: `planner-area-reference ${state.plannerFocusAreaId === areaId ? "selected" : ""}`,
+      "fill-rule": "evenodd",
+      tabindex: state.plannerDrawing ? -1 : 0,
+      role: "button",
+      "aria-label": `Focus ${feature.properties.name}`,
+    });
+    const activate = (event) => {
+      if (state.plannerDrawing) return;
+      event.stopPropagation();
+      if (els.plannerAreaNavigator) els.plannerAreaNavigator.value = areaId;
+      focusPlannerArea(areaId);
+    };
+    path.addEventListener("click", activate);
+    path.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") { event.preventDefault(); activate(event); }
+    });
+    path.addEventListener("pointermove", (event) => showMapTooltip(event, `<strong>${feature.properties.name}</strong><span>Click to inspect this planning area</span>`, plannerMapView()));
+    path.addEventListener("pointerleave", () => hideMapTooltip(plannerMapView()));
+    boundaries.appendChild(path);
+  });
+  svg.appendChild(boundaries);
+
+  if (state.plannerBuildings?.features?.length) {
+    const buildings = svgEl("g", { class: "planner-building-layer", "pointer-events": "none" });
+    state.plannerBuildings.features.forEach((feature) => buildings.appendChild(svgEl("path", {
+      d: geometryPathWithProjector(feature.geometry, projectPlanner),
+      class: "planner-building-detail",
+      "fill-rule": "evenodd",
+    })));
+    svg.appendChild(buildings);
+  }
+
+  if (state.plannerBoundary.length) {
+    const points = state.plannerBoundary.map(projectPlanner);
+    const d = points.map(([x, y], index) => `${index ? "L" : "M"}${x.toFixed(2)},${y.toFixed(2)}`).join(" ")
+      + (state.plannerClosed ? " Z" : "");
+    svg.appendChild(svgEl("path", { d, class: `planner-drawn-site ${state.plannerClosed ? "closed" : ""}` }));
+    points.forEach(([x, y], index) => {
+      svg.appendChild(svgEl("circle", { cx: x, cy: y, r: 5, class: "planner-drawn-vertex", "data-index": index }));
+    });
+  }
+  applyMapViewport(plannerMapView());
+}
+
+async function loadPlannerStatus() {
+  if (!els.plannerStatus || !els.plannerGenerateButton) return;
+  if (window.location.protocol === "file:") {
+    els.plannerStatus.textContent = "The trained arbitrary-site model is packaged with the live HeatGuard service.";
+    els.plannerStatus.className = "planner-status ready";
+    els.plannerGenerateButton.disabled = true;
+    return;
+  }
+  try {
+    const response = await fetch("/api/spatial-layout/status", { cache: "no-store" });
+    if (!response.ok) throw new Error("Spatial model service is unavailable");
+    state.plannerStatus = await response.json();
+    els.plannerStatus.textContent = `${state.plannerStatus.model} ready · draw any Singapore site · up to 1,000 candidates per run.`;
+    els.plannerStatus.className = "planner-status ready";
+    updatePlannerControls();
+  } catch (error) {
+    els.plannerStatus.textContent = "Open the live HeatGuard service to run the trained spatial model.";
+    els.plannerStatus.className = "planner-status error";
+    els.plannerGenerateButton.disabled = true;
+  }
+}
+
+function drawPlannerPreview(canvas, preview) {
+  const raw = atob(preview.rgbaBase64);
+  const bytes = new Uint8ClampedArray(raw.length);
+  for (let index = 0; index < raw.length; index += 1) bytes[index] = raw.charCodeAt(index);
+  canvas.width = preview.width;
+  canvas.height = preview.height;
+  canvas.getContext("2d").putImageData(new ImageData(bytes, preview.width, preview.height), 0, 0);
+}
+
+function renderPlannerResults(result) {
+  if (!els.plannerResults || !els.plannerPreviewGrid) return;
+  els.plannerResults.hidden = false;
+  els.plannerResultsTitle.textContent = `Drawn site · ${result.site.areaHectares.toFixed(1)} ha`;
+  els.plannerResultTime.textContent = `${result.elapsedSeconds.toFixed(1)} s · ${result.device.toUpperCase()}`;
+  els.plannerResultCount.textContent = fmtNumber.format(result.candidateCount);
+  els.plannerResultTarget.textContent = `${fmtNumber.format(result.summary.withinTarget05)} within ±5%`;
+  els.plannerResultDiversity.textContent = `${(result.summary.selectedLayoutDifferenceMean * 100).toFixed(1)}%`;
+  els.plannerResultGreen.textContent = `${(result.summary.greenCoverageMean * 100).toFixed(1)}%`;
+  els.plannerResultOverlap.textContent = result.summary.hardExclusionOverlapMax === 0 ? "0%" : `${(result.summary.hardExclusionOverlapMax * 100).toFixed(2)}%`;
+  els.plannerPreviewGrid.replaceChildren();
+  result.previews.forEach((preview) => {
+    const article = document.createElement("article");
+    article.className = "planner-candidate-card";
+    article.tabIndex = 0;
+    article.setAttribute("role", "button");
+    article.setAttribute("aria-label", `Enlarge candidate ${preview.id}`);
+    const frame = document.createElement("div");
+    frame.className = "planner-preview-frame";
+    const canvas = document.createElement("canvas");
+    canvas.setAttribute("aria-label", `Candidate ${preview.id} spatial layout preview`);
+    frame.append(canvas);
+    const meta = document.createElement("div");
+    meta.className = "planner-candidate-meta";
+    const difference = preview.layoutDifference === 0 ? "Reference option" : `${(preview.layoutDifference * 100).toFixed(1)}% spatial difference`;
+    meta.innerHTML = `<strong>Candidate ${String(preview.id).padStart(3, "0")}</strong><span>Buildings ${(preview.buildingCoverage * 100).toFixed(1)}%</span><span>Green ${(preview.greenCoverage * 100).toFixed(1)}%</span><span class="planner-candidate-difference">${difference}</span><span class="planner-open-hint">Click to enlarge</span>`;
+    article.append(frame, meta);
+    els.plannerPreviewGrid.appendChild(article);
+    drawPlannerPreview(canvas, preview);
+    const toggleExpanded = () => article.classList.toggle("expanded");
+    article.addEventListener("click", toggleExpanded);
+    article.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") { event.preventDefault(); toggleExpanded(); }
+    });
+  });
+  els.plannerResults.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+async function generatePlannerLayouts() {
+  if (!state.plannerClosed || state.plannerBoundary.length < 3 || !els.plannerGenerateButton) return;
+  const count = Number(els.plannerCandidateCount.value);
+  const targetDensity = Number(els.plannerDensity.value);
+  const targetCoverage = Number(els.plannerCoverage.value) / 100;
+  const button = els.plannerGenerateButton;
+  button.disabled = true;
+  button.textContent = `Generating ${fmtNumber.format(count)} layouts…`;
+  els.plannerStatus.textContent = "Sampling the spatial latent space and checking hard exclusions…";
+  els.plannerStatus.className = "planner-status";
+  try {
+    const response = await fetch("/api/spatial-layout/jobs", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        boundary: state.plannerBoundary,
+        candidate_count: count,
+        target_dwelling_density: targetDensity,
+        target_building_coverage: targetCoverage,
+        seed: Date.now() % 2147483647,
+      }),
+    });
+    let job = await response.json();
+    if (!response.ok) throw new Error(job.detail || "Candidate generation failed");
+    const started = Date.now();
+    while (job.status === "queued" || job.status === "running") {
+      const elapsed = Math.max(1, Math.round((Date.now() - started) / 1000));
+      els.plannerStatus.textContent = `${job.status === "queued" ? "Queued" : "Generating"} ${fmtNumber.format(count)} layouts · ${elapsed} s elapsed`;
+      await new Promise((resolve) => window.setTimeout(resolve, 1200));
+      const jobResponse = await fetch(`/api/spatial-layout/jobs/${job.jobId}`, { cache: "no-store" });
+      job = await jobResponse.json();
+      if (!jobResponse.ok) throw new Error(job.detail || "Generation status is unavailable");
+    }
+    if (job.status !== "complete") throw new Error(job.error || "Candidate generation failed");
+    const payload = job.result;
+    renderPlannerResults(payload);
+    els.plannerStatus.textContent = `${fmtNumber.format(payload.candidateCount)} layouts generated for the ${payload.site.areaHectares.toFixed(1)} ha drawn site; a constraint-checked diverse subset is shown below.`;
+    els.plannerStatus.className = "planner-status ready";
+  } catch (error) {
+    els.plannerStatus.textContent = error.message || "Candidate generation failed";
+    els.plannerStatus.className = "planner-status error";
+  } finally {
+    updatePlannerControls();
+    button.textContent = "Generate layouts";
+  }
+}
+
 function svgEl(name, attrs = {}) {
   const element = document.createElementNS("http://www.w3.org/2000/svg", name);
   Object.entries(attrs).forEach(([key, value]) => element.setAttribute(key, value));
@@ -1557,6 +1970,35 @@ async function init() {
     simulationGreenNetwork: byId("simulation-green-network"),
     simulationGuidance: byId("simulation-guidance"),
     coolingPriorityList: byId("cooling-priority-list"),
+    plannerMap: byId("planner-sg-map"),
+    plannerMapTooltip: byId("planner-map-tooltip"),
+    plannerMapStage: document.querySelector('[data-map-key="planner"]'),
+    plannerMapScale: document.querySelector('[data-map-key="planner"] .map-scale'),
+    plannerMapScaleLabel: document.querySelector('[data-map-key="planner"] .map-scale-label'),
+    plannerMapScaleLine: document.querySelector('[data-map-key="planner"] .map-scale-line'),
+    plannerMapInstruction: byId("planner-map-instruction"),
+    plannerAreaChip: byId("planner-area-chip"),
+    plannerAreaNavigator: byId("planner-area-navigator"),
+    plannerDrawButton: byId("planner-draw-button"),
+    plannerFinishButton: byId("planner-finish-button"),
+    plannerUndoButton: byId("planner-undo-button"),
+    plannerClearButton: byId("planner-clear-button"),
+    plannerDensity: byId("planner-density"),
+    plannerDensityOutput: byId("planner-density-output"),
+    plannerCoverage: byId("planner-coverage"),
+    plannerCoverageOutput: byId("planner-coverage-output"),
+    plannerCandidateCount: byId("planner-candidate-count"),
+    plannerGenerateButton: byId("planner-generate-button"),
+    plannerStatus: byId("planner-status"),
+    plannerResults: byId("planner-results"),
+    plannerResultsTitle: byId("planner-results-title"),
+    plannerResultTime: byId("planner-result-time"),
+    plannerResultCount: byId("planner-result-count"),
+    plannerResultTarget: byId("planner-result-target"),
+    plannerResultDiversity: byId("planner-result-diversity"),
+    plannerResultGreen: byId("planner-result-green"),
+    plannerResultOverlap: byId("planner-result-overlap"),
+    plannerPreviewGrid: byId("planner-preview-grid"),
   });
 
   initMapInteractions();
@@ -1569,6 +2011,9 @@ async function init() {
   try {
     const packagedGeo = window.__HEATGUARD_GEO__ || await fetch("sg-planning-areas.json").then((response) => response.json());
     state.geo = packagedGeo;
+    state.plannerContext = await fetch("data/spatial/planner-context.json", { cache: "force-cache" })
+      .then((response) => response.ok ? response.json() : null)
+      .catch(() => null);
     if (window.HeatGuardSpatial && window.location.protocol !== "file:") {
       try {
         state.spatial = await window.HeatGuardSpatial.loadBase();
@@ -1579,6 +2024,9 @@ async function init() {
     }
     state.localHeat = await loadLocalHeatResults();
     applyForecastData(await loadLatestData(), false);
+    populatePlannerAreaNavigator();
+    renderPlannerMap();
+    await loadPlannerStatus();
     els.mappedSeniors.textContent = fmtNumber.format(state.geo.features.reduce((sum, feature) => sum + feature.properties.seniors, 0));
     ensureBlocksForArea(state.area);
     if (routeNameFromHash() === "cooling") ensureGreenData();
@@ -1626,6 +2074,19 @@ async function init() {
       updateForecastAreaPanel();
       renderMap(networkAtTime(getStation().series[state.index].time));
     });
+    els.plannerMap?.addEventListener("click", addPlannerPoint);
+    els.plannerAreaNavigator?.addEventListener("change", (event) => focusPlannerArea(event.target.value));
+    els.plannerDrawButton?.addEventListener("click", startPlannerDrawing);
+    els.plannerFinishButton?.addEventListener("click", finishPlannerBoundary);
+    els.plannerUndoButton?.addEventListener("click", undoPlannerPoint);
+    els.plannerClearButton?.addEventListener("click", clearPlannerBoundary);
+    els.plannerDensity?.addEventListener("input", (event) => {
+      els.plannerDensityOutput.textContent = `${event.target.value} dwellings/ha`;
+    });
+    els.plannerCoverage?.addEventListener("input", (event) => {
+      els.plannerCoverageOutput.textContent = `${event.target.value}%`;
+    });
+    els.plannerGenerateButton?.addEventListener("click", generatePlannerLayouts);
     document.querySelectorAll("[data-green-layer]").forEach((input) => {
       input.addEventListener("change", () => {
         state.greenLayers[input.dataset.greenLayer] = input.checked;

@@ -1,0 +1,55 @@
+#!/bin/bash
+#PBS -N hg_cvae_diverse
+#PBS -q auto_free
+#PBS -l select=1:ncpus=4:ngpus=1:mem=48gb
+#PBS -l walltime=04:00:00
+#PBS -J 0-1
+#PBS -j oe
+
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+
+python_bin="/scratch/e1539397/miniforge3/envs/spark_jax/bin/python"
+data_root="${HEATGUARD_CVAE_DATA:-$PBS_O_WORKDIR/spatial_cvae/data/training_tiles_v1}"
+result_root="${HEATGUARD_CVAE_RESULTS:-$PBS_O_WORKDIR/spatial_cvae/results_diverse}"
+
+case "${PBS_ARRAY_INDEX}" in
+  0)
+    run_name="inject_b32_z128_d2"
+    latent=128
+    beta=0.0001
+    diversity=2.0
+    margin=0.030
+    dropout=0.25
+    ;;
+  1)
+    run_name="inject_b32_z192_d3"
+    latent=192
+    beta=0.0003
+    diversity=3.0
+    margin=0.050
+    dropout=0.35
+    ;;
+  *)
+    echo "Unexpected PBS_ARRAY_INDEX=${PBS_ARRAY_INDEX}" >&2
+    exit 2
+    ;;
+esac
+
+"$python_bin" -m spatial_cvae.train \
+  --data "$data_root" \
+  --output "$result_root" \
+  --run-name "$run_name" \
+  --epochs 80 \
+  --patience 16 \
+  --batch-size 3 \
+  --workers 4 \
+  --base-channels 32 \
+  --latent-dim "$latent" \
+  --latent-injection \
+  --skip-dropout "$dropout" \
+  --beta "$beta" \
+  --kl-warmup-epochs 12 \
+  --diversity-weight "$diversity" \
+  --diversity-margin "$margin" \
+  --learning-rate 0.0002
