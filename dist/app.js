@@ -1662,12 +1662,20 @@ async function loadPlannerStatus() {
 }
 
 function drawPlannerPreview(canvas, preview) {
+  const renderSize = 1080;
   const raw = atob(preview.rgbaBase64);
   const bytes = new Uint8ClampedArray(raw.length);
   for (let index = 0; index < raw.length; index += 1) bytes[index] = raw.charCodeAt(index);
-  canvas.width = preview.width;
-  canvas.height = preview.height;
-  canvas.getContext("2d").putImageData(new ImageData(bytes, preview.width, preview.height), 0, 0);
+  const source = document.createElement("canvas");
+  source.width = preview.width;
+  source.height = preview.height;
+  source.getContext("2d").putImageData(new ImageData(bytes, preview.width, preview.height), 0, 0);
+  canvas.width = renderSize;
+  canvas.height = renderSize;
+  const context = canvas.getContext("2d");
+  context.imageSmoothingEnabled = true;
+  context.imageSmoothingQuality = "high";
+  context.drawImage(source, 0, 0, renderSize, renderSize);
 }
 
 function renderPlannerResults(result) {
