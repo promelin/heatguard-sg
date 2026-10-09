@@ -29,6 +29,7 @@ Full project credits are recorded in [CONTRIBUTORS.md](CONTRIBUTORS.md).
 - **Area Heat Risk** — a policy-calibrated random-forest score that combines forecast heat, official 2026 age structure and mapped eldercare access across 55 planning areas.
 - **Cooling Simulation** — selectable parks, cycling routes and park connectors, area-specific green baselines, adjustable cooling points and corridor shade.
 - **Next-Day Forecast** — a V4 Temporal Fusion Transformer forecast for hours 1–24, selectable by planning area with an hourly curve and risk guidance.
+- **Community Data** — structured, privacy-minimised collection for green-pocket proposals, build confirmation, monthly condition checks and on-site comfort feedback.
 
 The public site also includes planning-area and subzone demographics, close-zoom HDB building detail, a ranked priority queue, model evidence and the completed DAISI B1 delivery flow.
 
@@ -54,7 +55,7 @@ cp backend/.env.example .env
 python run_live.py
 ```
 
-Open `http://localhost:8000`. The service exposes `/api/health` and `/api/heatguard-data.json` and serves the website from the same origin.
+Open `http://localhost:8000`. The service exposes `/api/health`, `/api/heatguard-data.json` and `/api/community-submissions`, and serves the website from the same origin. Community records and photos are private backend runtime data and are excluded from Git.
 
 For a website-only preview:
 

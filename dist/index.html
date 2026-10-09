@@ -48,6 +48,10 @@
             <h2>Next-Day Forecast</h2>
             <p>24-hour V4 heat-risk outlook.</p>
           </a>
+          <a class="module-entry" href="#contribute" data-nav-view="contribute">
+            <h2>Community Data</h2>
+            <p>Propose, verify and care for local cooling actions.</p>
+          </a>
         </nav>
 
 
@@ -292,6 +296,125 @@
       </article>
     </section>
 
+    <!-- COMMUNITY DATA COLLECTION -->
+    <section class="app-view view-shell contribute-view" id="contribute" data-view="contribute" aria-labelledby="contribute-title" hidden>
+      <div class="view-header contribute-hero">
+        <div>
+          <p class="eyebrow">End-user data collection</p>
+          <h1 id="contribute-title">Help make your block cooler.</h1>
+          <p class="lede view-lede">Drop a pin, answer a few structured questions and add a photo. Each contribution enters a council-reviewed queue before it can affect the public map.</p>
+        </div>
+        <div class="contribute-privacy-note">
+          <span>Privacy by design</span>
+          <strong>No names on the public map</strong>
+          <small>Location, time and structured observations only. Public reporting is aggregated.</small>
+        </div>
+      </div>
+
+      <div class="contribution-channels" aria-label="Available contribution channels">
+        <div><b>01</b><span><strong>Web form</strong><small>Pin · dropdowns · photo</small></span></div>
+        <div><b>02</b><span><strong>On-site QR</strong><small>Scan · one tap · no sign-up</small></span></div>
+        <div><b>03</b><span><strong>AAC-assisted</strong><small>Staff-supported tablet entry</small></span></div>
+      </div>
+
+      <div class="contribution-workspace">
+        <aside class="contribution-steps" aria-label="Contribution type">
+          <p class="panel-kicker">Choose an action</p>
+          <button class="contribution-step active" type="button" data-contribution-kind="proposal" aria-pressed="true"><b>01</b><span><strong>Propose a green pocket</strong><small>Choose a site and describe the idea.</small></span></button>
+          <button class="contribution-step" type="button" data-contribution-kind="confirmation" aria-pressed="false"><b>02</b><span><strong>Confirm it is built</strong><small>Add an after photo for review.</small></span></button>
+          <button class="contribution-step" type="button" data-contribution-kind="maintenance" aria-pressed="false"><b>03</b><span><strong>Monthly check-in</strong><small>Rate condition or report a problem.</small></span></button>
+          <button class="contribution-step" type="button" data-contribution-kind="comfort" aria-pressed="false"><b>04</b><span><strong>On-site comfort</strong><small>Log too hot, OK or cool.</small></span></button>
+        </aside>
+
+        <article class="panel contribution-panel">
+          <div class="contribution-map-column">
+            <div class="contribution-map-heading">
+              <div><p class="panel-kicker">Location</p><h2>Pin the place</h2></div>
+              <button id="contribution-use-location" class="location-button" type="button">Use my location</button>
+            </div>
+            <div class="contribution-map-stage" id="contribution-map-stage">
+              <svg id="contribution-map" role="img" aria-label="Select a planning area and location for the community contribution" viewBox="0 0 1080 650"></svg>
+              <div class="contribution-pin" id="contribution-pin" hidden aria-hidden="true"><span></span></div>
+              <p class="map-instruction" id="contribution-map-instruction">Click the map to drop a pin</p>
+            </div>
+            <label class="field-label" for="contribution-area">Planning area</label>
+            <select id="contribution-area" name="area" required><option value="">Choose an area</option></select>
+            <div class="coordinate-readout" aria-live="polite"><span>Latitude <strong id="contribution-latitude">—</strong></span><span>Longitude <strong id="contribution-longitude">—</strong></span></div>
+          </div>
+
+          <form class="contribution-form" id="contribution-form" novalidate>
+            <div class="contribution-form-head">
+              <div><p class="panel-kicker" id="contribution-form-kicker">Step 01</p><h2 id="contribution-form-title">Propose a green pocket</h2></div>
+              <span class="draft-count" id="contribution-draft-count">0 saved</span>
+            </div>
+
+            <label class="field-label" for="contribution-channel">Submission channel</label>
+            <select id="contribution-channel" name="channel" required>
+              <option value="web">Web form</option>
+              <option value="qr">On-site QR</option>
+              <option value="aac">AAC-assisted</option>
+            </select>
+
+            <fieldset class="contribution-fields" data-contribution-fields="proposal">
+              <legend>Site proposal</legend>
+              <div class="form-grid">
+                <label><span>Site type</span><select name="siteType"><option value="void-deck">Void deck edge</option><option value="open-space">Open space</option><option value="corridor-edge">Corridor edge</option><option value="community-facility">Community facility</option></select></label>
+                <label><span>Approximate size</span><select name="approxSize"><option value="under-25">Under 25 m²</option><option value="25-100">25–100 m²</option><option value="100-500">100–500 m²</option><option value="over-500">Over 500 m²</option></select></label>
+                <label><span>Existing shade</span><select name="shade"><option value="none">None</option><option value="partial">Partial</option><option value="full">Full</option></select></label>
+                <label><span>Seating</span><select name="seating"><option value="no">No</option><option value="yes">Yes</option></select></label>
+              </div>
+              <div class="choice-group"><span>Suggested planting</span><label><input type="checkbox" name="plantTypes" value="native"> Native</label><label><input type="checkbox" name="plantTypes" value="edible"> Edible</label><label><input type="checkbox" name="plantTypes" value="flowering"> Flowering</label><label><input type="checkbox" name="plantTypes" value="shade-tree"> Shade tree</label></div>
+              <label><span>Town council stage</span><select name="approvalStatus"><option value="not-requested">Not requested yet</option><option value="requested">Approval requested</option><option value="approved">Approved</option></select></label>
+            </fieldset>
+
+            <fieldset class="contribution-fields" data-contribution-fields="confirmation" hidden>
+              <legend>Build confirmation</legend>
+              <div class="form-grid">
+                <label><span>Proposal reference</span><input name="proposalReference" maxlength="32" placeholder="e.g. HG-24-0182"></label>
+                <label><span>Confirmed by</span><select name="verifierRole"><option value="town-council">Town council staff</option><option value="aac">AAC staff</option><option value="resident-pending">Resident · pending staff review</option></select></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="contribution-fields" data-contribution-fields="maintenance" hidden>
+              <legend>Monthly condition</legend>
+              <div class="form-grid">
+                <label><span>Pocket reference</span><input name="pocketReference" maxlength="32" placeholder="e.g. HG-24-0182"></label>
+                <label><span>Condition rating</span><select name="conditionRating"><option value="5">5 · Thriving</option><option value="4">4 · Healthy</option><option value="3">3 · Acceptable</option><option value="2">2 · Needs attention</option><option value="1">1 · Critical</option></select></label>
+                <label class="wide-field"><span>Observed issue</span><select name="issue"><option value="none">No issue</option><option value="dead-plants">Dead or damaged plants</option><option value="standing-water">Standing water</option><option value="blocked-access">Blocked access</option><option value="damaged-seating">Damaged seating</option></select></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="contribution-fields" data-contribution-fields="comfort" hidden>
+              <legend>On-site use</legend>
+              <label><span>Pocket / QR code</span><input name="qrReference" maxlength="32" placeholder="Scan or enter the site code"></label>
+              <div class="comfort-options" role="radiogroup" aria-label="How does this place feel?">
+                <label><input type="radio" name="comfort" value="too-hot"><span>Too hot</span></label>
+                <label><input type="radio" name="comfort" value="ok" checked><span>OK</span></label>
+                <label><input type="radio" name="comfort" value="cool"><span>Cool</span></label>
+              </div>
+            </fieldset>
+
+            <label class="photo-field" id="contribution-photo-field">
+              <span><strong id="contribution-photo-title">Before photo</strong><small>JPG, PNG or WebP · location and submission time are attached to the record</small></span>
+              <input id="contribution-photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" capture="environment">
+              <output id="contribution-photo-name">Choose photo</output>
+            </label>
+
+            <label class="consent-field"><input id="contribution-consent" type="checkbox" required><span>I consent to this location, time and observation being used for council review and aggregated heat-planning analysis.</span></label>
+
+            <div class="contribution-rules"><strong>Data safeguards</strong><span>Location-and-time tagged evidence · first valid issue counts · weekly submission cap · no public names</span></div>
+            <div class="form-error" id="contribution-error" role="alert" hidden></div>
+            <button class="contribution-submit" type="submit">Submit for review</button>
+          </form>
+        </article>
+      </div>
+
+      <section class="contribution-receipt" id="contribution-receipt" aria-live="polite" hidden>
+        <div><p class="panel-kicker">Contribution received</p><h2>Thank you for helping your neighbourhood adapt.</h2><p id="contribution-receipt-copy">Your structured report has been added to the review queue.</p></div>
+        <div class="receipt-impact"><span>Estimated local value</span><strong id="contribution-impact">Review pending</strong><small id="contribution-receipt-id">Receipt —</small></div>
+      </section>
+    </section>
+
     <!-- MODEL & EVIDENCE -->
     <section class="app-view view-shell model-view" id="model" data-view="model" aria-labelledby="model-title" hidden>
       <div class="view-header text-only-hero">
@@ -373,5 +496,6 @@
   <script src="data-bundle.js" defer></script>
   <script src="spatial.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="contribute.js" defer></script>
 </body>
 </html>

@@ -11,3 +11,4 @@ __pycache__/
 .playwright-cli/
 output/
 tmp/
+runtime/
