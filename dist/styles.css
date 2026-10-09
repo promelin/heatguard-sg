@@ -1029,6 +1029,15 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.6r
 .forecast-area-panel { margin-top: 1rem; padding: clamp(1rem, 2vw, 1.4rem); border-radius: 16px; }
 .forecast-area-head { align-items: center; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
 .forecast-area-head h2 { font-size: clamp(1.55rem, 2.6vw, 2.35rem); }
+.local-radius-control { margin-left: auto; }
+.local-radius-control label { display: block; margin-bottom: .3rem; color: var(--muted); font-size: .68rem; font-weight: 750; letter-spacing: .05em; text-transform: uppercase; }
+.local-radius-control select { min-width: 120px; padding: .55rem .7rem; color: var(--ink); background: #fff; border: 1px solid var(--line-strong); border-radius: 8px; font: inherit; font-size: .8rem; font-weight: 700; }
+.local-feature-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 1rem; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; }
+.local-feature-grid > div { min-width: 0; padding: 1rem 1.1rem; background: rgba(255,255,255,.72); border-right: 1px solid var(--line); }
+.local-feature-grid > div:last-child { border-right: 0; }
+.local-feature-grid span { display: block; color: var(--muted); font-size: .7rem; font-weight: 650; }
+.local-feature-grid strong { display: block; margin-top: .3rem; color: var(--ink); font-size: clamp(1.15rem, 2vw, 1.65rem); }
+.local-model-note { margin: .85rem 0 0; color: var(--muted); font-size: .72rem; line-height: 1.5; }
 .forecast-risk-alert {
   display: grid;
   grid-template-columns: minmax(190px, .34fr) minmax(0, 1fr);
@@ -1059,6 +1068,11 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.6r
   .forecast-map-panel .map-scale { bottom: .65rem; }
   .forecast-risk-alert { grid-template-columns: 1fr; }
   .forecast-risk-alert > div { border-right: 0; border-bottom: 1px solid currentColor; }
+  .forecast-area-head { align-items: flex-start; }
+  .local-radius-control { margin-left: 0; }
+  .local-feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .local-feature-grid > div:nth-child(2) { border-right: 0; }
+  .local-feature-grid > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
 }
 
 /* v3.3 — 2026 subzone / HDB detail and mapped cooling infrastructure */
