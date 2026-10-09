@@ -65,6 +65,38 @@ async def heatguard_data() -> JSONResponse:
     )
 
 
+@app.post("/api/local-heat-index")
+async def local_heat_index(payload: dict = Body(...)) -> JSONResponse:
+    """Estimate local heat from nearby vegetation, buildings, coast and location."""
+    try:
+        longitude = float(payload["longitude"])
+        latitude = float(payload["latitude"])
+        radius_m = int(payload.get("radius_m", 500))
+        background = payload.get("background_heat_index_c")
+        if background is not None:
+            background = float(background)
+        if not 103.55 <= longitude <= 104.10 or not 1.15 <= latitude <= 1.50:
+            raise ValueError("Location must be within Singapore's map extent")
+        if not 200 <= radius_m <= 2_000:
+            raise ValueError("radius_m must be between 200 and 2000")
+        if background is not None and not 20.0 <= background <= 55.0:
+            raise ValueError("background_heat_index_c must be between 20 and 55")
+        result = await asyncio.to_thread(
+            service.estimate_local_heat,
+            longitude,
+            latitude,
+            radius_m,
+            background,
+        )
+        return JSONResponse(result, headers={"Cache-Control": "no-store, max-age=0"})
+    except KeyError as error:
+        raise HTTPException(status_code=422, detail=f"Missing field: {error.args[0]}") from error
+    except (TypeError, ValueError) as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+    except FileNotFoundError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+
+
 @app.post("/api/community-submissions", status_code=201)
 async def create_community_submission(payload: dict = Body(...)) -> JSONResponse:
     """Accept a privacy-minimised structured report for the council-review queue."""

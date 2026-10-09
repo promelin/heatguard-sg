@@ -1,6 +1,6 @@
 # HeatGuard SG
 
-[HeatGuard SG](https://promelin.github.io/heatguard-sg/) is DeltaNexus's open-source heat-planning dashboard for Singapore. It combines current station heat index, a planning-area Heat Risk Score, cooling-infrastructure scenarios and a 24-hour V4 forecast in one map-led interface.
+[HeatGuard SG](https://promelin.github.io/heatguard-sg/) is DeltaNexus's open-source heat-planning dashboard for Singapore. It combines current station heat index, a planning-area Heat Risk Score, cooling-infrastructure scenarios and local micro-environment heat estimates in one map-led interface.
 
 [![HeatGuard SG concept poster](docs/HeatGuard-SG-Concept-Poster.png)](docs/HeatGuard-SG-Concept-Poster.pdf)
 
@@ -28,7 +28,7 @@ Full project credits are recorded in [CONTRIBUTORS.md](CONTRIBUTORS.md).
 - **Live Heat Index** — current heat-index conditions across the weather-station network, with observation and refresh times.
 - **Area Heat Risk** — a policy-calibrated random-forest score that combines forecast heat, official 2026 age structure and mapped eldercare access across 55 planning areas.
 - **Cooling Simulation** — selectable parks, cycling routes and park connectors, area-specific green baselines, adjustable cooling points and corridor shade.
-- **Next-Day Forecast** — a V4 Temporal Fusion Transformer forecast for hours 1–24, selectable by planning area with an hourly curve and risk guidance.
+- **Local Heat Estimate** — a separate spatial model that combines the station-network background with nearby vegetation, HDB building form, coastline exposure and geographic position at 250 m, 500 m or 1 km.
 - **Community Data** — structured, privacy-minimised collection for green-pocket proposals, build confirmation, monthly condition checks and on-site comfort feedback.
 
 The public site also includes planning-area and subzone demographics, close-zoom HDB building detail, a ranked priority queue, model evidence and the completed DAISI B1 delivery flow.
@@ -55,7 +55,29 @@ cp backend/.env.example .env
 python run_live.py
 ```
 
-Open `http://localhost:8000`. The service exposes `/api/health`, `/api/heatguard-data.json` and `/api/community-submissions`, and serves the website from the same origin. Community records and photos are private backend runtime data and are excluded from Git.
+Open `http://localhost:8000`. The service exposes `/api/health`, `/api/heatguard-data.json`, `/api/local-heat-index` and `/api/community-submissions`, and serves the website from the same origin. Community records, photos and the fitted local-heat model are private backend runtime data and are excluded from Git.
+
+## Train the local environment model
+
+The local model learns a station's heat-index difference from the same-hour peer-station background. Nearby parks, HDB footprints and height, building density, coastline proximity, latitude, longitude and CBD distance provide the spatial inputs. Validation holds out complete weather stations rather than randomly splitting repeated hours.
+
+```bash
+conda activate cueq
+python -m pip install -r backend/requirements.txt
+python scripts/train_local_heat_model.py
+```
+
+This creates the private, Git-ignored `backend/model/local_heat_model.joblib`, updates the public validation evidence in `reports/local-heat-model-validation.*`, and publishes planning-area results to `dist/data/local-heat-results.json`. The released validation uses 2,210 hourly observations across 11 stations and reports a leave-one-station-out MAE of 1.011 °C and RMSE of 1.482 °C.
+
+Example backend request:
+
+```bash
+curl -X POST http://localhost:8000/api/local-heat-index \
+  -H 'Content-Type: application/json' \
+  -d '{"longitude":103.8519,"latitude":1.2903,"radius_m":500,"background_heat_index_c":34}'
+```
+
+The background heat condition is required for an absolute heat-index estimate; if omitted, the live backend uses the latest station-network mean. This is spatial downscaling, not a next-day weather forecast. Feature profiles far from the training stations are conservatively shrunk toward the background, and every response includes a research-use notice.
 
 For a website-only preview:
 
@@ -72,6 +94,8 @@ The repository includes both released model artefacts:
 - `backend/model/best_model.pt` — V4 history-only full Temporal Fusion Transformer.
 - `backend/model/risk_model.joblib` — policy-calibrated planning-area random forest.
 - `backend/model/v4_runtime_metadata.json` — feature order and training normalisation used by the V4 runtime.
+
+The new local-environment model artefact is intentionally not released in the public repository. Its reproducible training code, validation report and published prediction results are included.
 
 Install CPU PyTorch and the inference dependencies, then publish a fresh result:
 

@@ -12,3 +12,4 @@ __pycache__/
 output/
 tmp/
 runtime/
+backend/model/local_heat_model.joblib

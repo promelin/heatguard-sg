@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from .data_gov import DataGovClient, WeatherCache
+from .local_environment import LocalHeatIndexModel
 from .predictor import V4Predictor
 
 
@@ -27,11 +28,16 @@ class ForecastService:
         self.metadata_path = Path(os.getenv(
             "HEATGUARD_METADATA_PATH", project_root / "backend" / "model" / "v4_runtime_metadata.json"
         ))
+        self.local_heat_model_path = Path(os.getenv(
+            "HEATGUARD_LOCAL_HEAT_MODEL_PATH",
+            project_root / "backend" / "model" / "local_heat_model.joblib",
+        ))
         self.output_path = self.data_dir / "heatguard-data-live.json"
         self.fallback_path = project_root / "dist" / "heatguard-data.json"
         self.cache = WeatherCache(self.data_dir / "weather_cache.sqlite3")
         self.client = DataGovClient(self.cache)
         self.predictor: V4Predictor | None = None
+        self.local_heat_model: LocalHeatIndexModel | None = None
         self.lock = asyncio.Lock()
         self.last_run: str | None = None
         self.last_success: str | None = None
@@ -44,6 +50,38 @@ class ForecastService:
         if self.predictor is None:
             self.predictor = V4Predictor(self.model_path, self.metadata_path)
         return self.predictor
+
+    def _get_local_heat_model(self) -> LocalHeatIndexModel:
+        if self.local_heat_model is None:
+            self.local_heat_model = LocalHeatIndexModel(
+                self.local_heat_model_path,
+                self.project_root / "dist" / "data" / "spatial",
+            )
+        return self.local_heat_model
+
+    def estimate_local_heat(
+        self,
+        longitude: float,
+        latitude: float,
+        radius_m: int,
+        background_heat_index_c: float | None,
+    ) -> dict[str, Any]:
+        if background_heat_index_c is None:
+            payload, _ = self.read_payload()
+            current = payload.get("current") or {}
+            background_heat_index_c = (
+                current.get("networkMean")
+                or payload.get("networkActualMean")
+                or payload.get("networkMean")
+            )
+        if background_heat_index_c is None:
+            raise ValueError("A background heat index is required when live station data is unavailable")
+        return self._get_local_heat_model().predict(
+            longitude=longitude,
+            latitude=latitude,
+            radius_m=radius_m,
+            background_heat_index_c=float(background_heat_index_c),
+        )
 
     def _write_atomic(self, payload: dict[str, Any]) -> None:
         written_at = datetime.now(timezone.utc)
@@ -133,11 +171,13 @@ class ForecastService:
             except (OSError, json.JSONDecodeError):
                 pass
         model_ready = self.model_path.exists() and self.metadata_path.exists()
+        local_heat_model_ready = self.local_heat_model_path.exists()
         return {
             "status": "ok" if (live_current_available or live_forecast_available) else "starting",
             "liveObservationsAvailable": live_current_available,
             "liveForecastAvailable": live_forecast_available,
             "modelReady": model_ready,
+            "localHeatModelReady": local_heat_model_ready,
             "modelVersion": "V4-history-only",
             "refreshSeconds": self.refresh_seconds,
             "lastRun": self.last_run,

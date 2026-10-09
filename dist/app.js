@@ -1,5 +1,7 @@
 const state = {
   data: null,
+  localHeat: null,
+  localRadius: 500,
   geo: null,
   station: null,
   area: null,
@@ -66,7 +68,7 @@ const fmtCompact = { format: (value) => new Intl.NumberFormat(currentLocale(), {
 
 const VIEW_TITLES = {
   home: "Home",
-  forecast: "Forecast",
+  forecast: "Local Heat Estimate",
   "community-risk": "Community Risk",
   cooling: "Cooling Simulation",
   contribute: "Community Data",
@@ -205,8 +207,8 @@ function updatePublicationStatus() {
   const stale = !Number.isFinite(origin) || Date.now()-origin > 3*60*60*1000;
   const generated = state.data.generatedAt ? fmtTime(state.data.generatedAt) : "unknown time";
   node.textContent = stale
-    ? `Latest available V4 forecast: ${generated} SGT · Hourly refresh enabled.`
-    : `V4 forecast generated ${generated} SGT · Recomputed hourly from station history.`;
+    ? `Latest available heat data: ${generated} SGT · Hourly refresh enabled.`
+    : `Heat data updated ${generated} SGT · Local estimates use the published spatial model.`;
   node.closest(".publication-status")?.classList.toggle("is-stale", stale);
 }
 
@@ -392,6 +394,24 @@ function areaForecastSeries(areaName) {
 
 function computeForecastPeakAreas() {
   if (!state.geo?.features) return [];
+  if (state.localHeat?.areas) {
+    const byName = new Map(state.localHeat.areas.map((row) => [row.name, row]));
+    const radius = String(state.localRadius);
+    return state.geo.features.map((feature) => {
+      const p = feature.properties;
+      const local = byName.get(p.name)?.estimates?.[radius];
+      const heat = Number(local?.estimate_c ?? state.localHeat.background_heat_index_c ?? 34);
+      return {
+        feature,
+        name: p.name,
+        heat,
+        local,
+        risk: riskForTemperature(heat),
+        score: clamp(((heat - 31.5) / 9.5) * 100, 0, 100),
+        ...p,
+      };
+    }).sort((a, b) => b.heat - a.heat);
+  }
   return state.geo.features.map((feature) => {
     const p = feature.properties;
     const series = areaForecastSeries(p.name);
@@ -416,23 +436,35 @@ function guidanceForHeat(value) {
   return "Lower heat risk: normal precautions remain appropriate; continue monitoring the hourly outlook.";
 }
 
+function guidanceForLocalHeat(value) {
+  if (value >= 40) return "Very high possible local heat: prioritise shade, cooled spaces and checks on vulnerable residents; verify with on-site observations.";
+  if (value >= 37) return "High possible local heat: plan shaded breaks, hydration and targeted local checks; verify conditions before action.";
+  if (value >= 34) return "Elevated possible local heat: reduce prolonged sun exposure, use nearby shade and compare the estimate with current observations.";
+  return "Lower possible local heat: normal precautions remain appropriate; continue checking current station conditions.";
+}
+
 function updateForecastAreaPanel() {
   if (!els.forecastAreaTitle || !state.data || !state.geo) return;
   const areaName = state.area || computeForecastPeakAreas()[0]?.name;
-  const series = areaForecastSeries(areaName);
-  if (!areaName || !series.length) return;
+  const row = computeForecastPeakAreas().find((item) => item.name === areaName);
+  if (!areaName || !row) return;
   state.area = areaName;
-  const peakIndex = series.reduce((bestIndex, point, index) => point.predicted > series[bestIndex].predicted ? index : bestIndex, 0);
-  const peak = series[peakIndex];
-  const risk = riskForTemperature(peak.predicted);
+  const risk = riskForTemperature(row.heat);
+  const spatial = row.local?.spatial || {};
   els.forecastAreaTitle.textContent = areaName;
   els.forecastAreaRiskChip.textContent = `${risk.label} risk`;
   els.forecastAreaRiskChip.className = `risk-chip ${risk.key}`;
-  els.forecastAreaPeak.textContent = `${peak.predicted.toFixed(1)}°C`;
-  els.forecastAreaPeakTime.textContent = `Peak around ${fmtTime(peak.time)}`;
-  els.forecastAreaGuidance.textContent = guidanceForHeat(peak.predicted);
+  els.forecastAreaPeak.textContent = `${row.heat.toFixed(1)}°C`;
+  els.forecastAreaPeakTime.textContent = `${state.localRadius >= 1000 ? `${state.localRadius / 1000} km` : `${state.localRadius} m`} surroundings · ${Number(state.localHeat?.background_heat_index_c || 34).toFixed(1)}°C network background`;
+  els.forecastAreaGuidance.textContent = guidanceForLocalHeat(row.heat);
   els.forecastRiskAlert.className = `forecast-risk-alert ${risk.key}`;
-  renderChart(series, peakIndex, { showActual: false, allowSelection: false, compact24: true });
+  if (els.localParkCover) els.localParkCover.textContent = `${Number(spatial.park_cover_proxy_pct || 0).toFixed(1)}%`;
+  if (els.localBuildingCover) els.localBuildingCover.textContent = `${Number(spatial.building_coverage_pct || 0).toFixed(1)}%`;
+  if (els.localBuildingDensity) els.localBuildingDensity.textContent = `${Number(spatial.building_density_per_km2 || 0).toFixed(0)} / km²`;
+  if (els.localCoastDistance) {
+    const distance = Number(spatial.distance_to_coast_m || 0);
+    els.localCoastDistance.textContent = distance >= 1000 ? `${(distance / 1000).toFixed(1)} km` : `${distance.toFixed(0)} m`;
+  }
 }
 
 function selectForecastArea(areaName) {
@@ -1004,7 +1036,7 @@ function renderMapInstance(stationRows, view, areaRows, useCurrent) {
       tabindex: areaInteractive ? 0 : -1,
       role: areaInteractive ? "button" : "img",
       "aria-label": view.key === "forecast"
-        ? `${row.name}, next 24 hour peak heat index ${row.heat.toFixed(1)} degrees Celsius`
+        ? `${row.name}, local environment heat index estimate ${row.heat.toFixed(1)} degrees Celsius within ${state.localRadius} metres`
         : areaInteractive
           ? `${row.name}, estimated heat ${row.heat.toFixed(1)} degrees Celsius, community risk ${row.score.toFixed(0)}`
         : `${row.name}, live heat index estimate ${row.heat.toFixed(1)} degrees Celsius`,
@@ -1020,7 +1052,7 @@ function renderMapInstance(stationRows, view, areaRows, useCurrent) {
       const detail = view.key === "home"
         ? `<strong>${row.name}</strong><span>${row.heat.toFixed(1)}°C live heat index estimate</span>`
         : view.key === "forecast"
-          ? `<strong>${row.name}</strong><span>${row.heat.toFixed(1)}°C next-24h peak</span><span>${row.risk.label} heat risk · click for hourly outlook</span>`
+          ? `<strong>${row.name}</strong><span>${row.heat.toFixed(1)}°C local estimate</span><span>${row.risk.label} heat risk · ${state.localRadius} m surroundings</span><span>Click for environment details</span>`
           : view.key === "cooling"
             ? `<strong>${row.name}</strong><span>${row.simulatedRisk.label} · simulated score ${row.simulatedScore.toFixed(0)}</span><span>Green baseline ${Number(row.greenBaselineScore || 0).toFixed(0)}/100 · ${Number((row.cyclingKm || 0) + (row.parkConnectorKm || 0)).toFixed(1)} km network</span><span>${row.simulated ? `${row.score.toFixed(0)} before intervention · click to adjust` : "Click to test an intervention"}</span>`
           : `<strong>${row.name}</strong><span>${row.risk.label} · score ${row.score.toFixed(0)}</span><span>${row.heat.toFixed(1)}°C ${useCurrent ? "current" : "forecast"} estimate</span><span>${fmtNumber.format(row.seniors)} residents aged 65+</span>`;
@@ -1141,7 +1173,7 @@ function hideMapTooltip(view) {
 function renderLegend(view, useCurrent = false, layer = state.layer) {
   if (!view?.legend) return;
   const details = layer === "heat"
-    ? { title: view.key === "forecast" ? "Next 24h peak heat index" : useCurrent ? "Live observed heat index" : "24h heat index estimate", min: "31°C", max: "43°C", cls: "heat" }
+    ? { title: view.key === "forecast" ? "Local environment heat estimate" : useCurrent ? "Live observed heat index" : "24h heat index estimate", min: "31°C", max: "43°C", cls: "heat" }
     : layer === "elderly"
       ? { title: "Residents aged 65+ per km²", min: "Low", max: "High", cls: "elderly" }
       : { title: view.key === "cooling" ? "Simulated Heat Risk Score" : "Community Heat Risk Score", min: "Low", max: "High", cls: "risk" };
@@ -1420,6 +1452,11 @@ async function init() {
     forecastAreaPeakTime: byId("forecast-area-peak-time"),
     forecastAreaGuidance: byId("forecast-area-guidance"),
     forecastRiskAlert: byId("forecast-risk-alert"),
+    localRadiusSelect: byId("local-radius-select"),
+    localParkCover: byId("local-park-cover"),
+    localBuildingCover: byId("local-building-cover"),
+    localBuildingDensity: byId("local-building-density"),
+    localCoastDistance: byId("local-coast-distance"),
     areaTitle: byId("area-title"),
     areaRiskChip: byId("area-risk-chip"),
     areaRisk: byId("area-risk"),
@@ -1486,6 +1523,7 @@ async function init() {
         console.warn("Detailed 2026 spatial data could not be loaded; using packaged planning-area data.", error);
       }
     }
+    state.localHeat = await loadLocalHeatResults();
     applyForecastData(await loadLatestData(), false);
     els.mappedSeniors.textContent = fmtNumber.format(state.geo.features.reduce((sum, feature) => sum + feature.properties.seniors, 0));
     ensureBlocksForArea(state.area);
@@ -1529,6 +1567,11 @@ async function init() {
       updateCoolingSimulation();
       renderMap(networkAtTime(getStation().series[state.index].time));
     });
+    els.localRadiusSelect?.addEventListener("change", (event) => {
+      state.localRadius = Number(event.target.value);
+      updateForecastAreaPanel();
+      renderMap(networkAtTime(getStation().series[state.index].time));
+    });
     document.querySelectorAll("[data-green-layer]").forEach((input) => {
       input.addEventListener("change", () => {
         state.greenLayers[input.dataset.greenLayer] = input.checked;
@@ -1544,10 +1587,10 @@ async function init() {
       button.disabled = true;
       button.textContent = "Checking…";
       const success = await refreshForecastData();
-      button.textContent = success ? "Latest published forecast loaded" : "Could not update · retry";
+      button.textContent = success ? "Latest published data loaded" : "Could not update · retry";
       window.setTimeout(() => {
         button.disabled = false;
-        button.textContent = "Check for latest forecast";
+        button.textContent = "Check for latest data";
       }, 2500);
     });
   } catch (error) {
@@ -1578,6 +1621,18 @@ async function loadLatestData() {
   const response = await fetch("heatguard-data.json", { cache: "no-store" });
   if (!response.ok) throw new Error("Dashboard data unavailable");
   return response.json();
+}
+
+async function loadLocalHeatResults() {
+  if (window.location.protocol === "file:") return null;
+  try {
+    const response = await fetch("data/local-heat-results.json", { cache: "no-store" });
+    if (!response.ok) throw new Error("Local heat results are unavailable");
+    return await response.json();
+  } catch (error) {
+    console.warn("Local environment estimates could not be loaded; retaining the forecast fallback.", error);
+    return null;
+  }
 }
 
 function applyForecastData(data, preserveSelection = true) {
